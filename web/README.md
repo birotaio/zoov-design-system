@@ -1,8 +1,10 @@
-# Zoov Design System (ZDS)
+# ZDS Web: Vue implementation
 
-## Web
+This is a Vue implementation of the Zoov Design System, with standalone CSS lib built.
 
-### Project setup
+## Authoring
+
+### Install dependencies
 ```
 yarn install
 ```
