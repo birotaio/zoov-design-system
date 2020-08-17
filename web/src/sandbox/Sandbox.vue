@@ -171,7 +171,7 @@
       z-divider
       .sandbox__section
         h3 ZOverlay
-        z-button(@click="showOverlay = true" outline) toggle
+        z-button.mt-2(@click="showOverlay = true" outline) toggle
         z-overlay(v-model="showOverlay" close-on-click)
 
       z-divider
@@ -313,46 +313,42 @@
       z-divider
       .sandbox__section
         h3 ZTooltip
-        z-tooltip(valign="top" halign="right")
-          template(v-slot:activator)
-            z-button(icon)
-              z-icon copy
-          span Tooltip
-        .pa-2
-        z-tooltip(valign="top" halign="center")
-          template(v-slot:activator)
-            z-button(icon)
-              z-icon copy
-          span Very Long text yo. Duis nostrud enim nisi minim adipisicing sunt ut ipsum amet. Magna proident non magna tempor magna laborum proident laborum sint deserunt. Exercitation nostrud id dolor ea dolor Lorem eu esse sit anim minim magna eu aliquip. Id tempor tempor aliqua consequat tempor consectetur laboris. Et aute minim anim laborum cupidatat nulla dolore eiusmod exercitation aute nisi sint tempor. Aliquip anim exercitation incididunt sunt pariatur.
-        .pa-10
-        z-tooltip(valign="top" halign="left")
-          template(v-slot:activator)
-            z-button(icon)
-              z-icon copy
-          span Tooltip
-        z-tooltip(valign="bottom" halign="right")
-          template(v-slot:activator)
-            z-button(icon)
-              z-icon copy
-          span Tooltip
-        .pa-2
-        z-tooltip(valign="bottom" halign="center")
-          template(v-slot:activator)
-            z-button(icon)
-              z-icon copy
-          span Tooltip
-        .pa-2
-        z-tooltip(valign="bottom" halign="left")
-          template(v-slot:activator)
-            z-button(icon)
-              z-icon copy
-          span Tooltip
-        .pa-2
-        z-tooltip(valign="bottom" halign="left" no-hover)
-          template(v-slot:activator="{ activate }")
-            z-button(@click="activate")
-              span activate on click
-          span Tooltip
+        .sandbox__flex
+          z-tooltip(valign="top" halign="right")
+            template(v-slot:activator)
+              z-button(icon)
+                z-icon copy
+            span Tooltip
+          z-tooltip(valign="bottom" halign="right" :min-width="60")
+            template(v-slot:activator)
+              z-button(icon)
+                z-icon copy
+            span Very Long text yo. Duis nostrud enim nisi minim adipisicing sunt ut ipsum amet. Magna proident non magna tempor magna laborum proident laborum sint deserunt. Exercitation nostrud id dolor ea dolor Lorem eu esse sit anim minim magna eu aliquip. Id tempor tempor aliqua consequat tempor consectetur laboris. Et aute minim anim laborum cupidatat nulla dolore eiusmod exercitation aute nisi sint tempor. Aliquip anim exercitation incididunt sunt pariatur.
+          z-tooltip(valign="top" halign="left")
+            template(v-slot:activator)
+              z-button(icon)
+                z-icon copy
+            span Tooltip
+          z-tooltip(valign="top" halign="center")
+            template(v-slot:activator)
+              z-button(icon)
+                z-icon copy
+            span Tooltip
+          z-tooltip(valign="bottom" halign="center")
+            template(v-slot:activator)
+              z-button(icon)
+                z-icon copy
+            span Tooltip
+          z-tooltip(valign="bottom" halign="left")
+            template(v-slot:activator)
+              z-button(icon)
+                z-icon copy
+            span Tooltip
+          z-tooltip(valign="bottom" halign="left" no-hover)
+            template(v-slot:activator="{ activate }")
+              z-button(@click="activate")
+                span activate on click
+            span Tooltip
 
     //- Layout & structural components
     //----------------------------------------------------------------------------------------------------
@@ -432,8 +428,9 @@
     flex-wrap wrap
     align-items center
     margin size(1) 0
+
     > *
-      margin-right size(1)
+      margin size(0.5) size(1) size(0.5) 0
 
   &__icon
     display flex
@@ -463,6 +460,7 @@ import ZRadio from '@/components/ZRadio';
 import ZMenu from '@/components/ZMenu';
 import ZDialog from '@/components/ZDialog';
 import ZExpandable from '@/components/ZExpandable';
+import ZTooltip from '@/components/ZTooltip';
 
 import ZLayout from '@/components/ZLayout';
 import ZCol from '@/components/ZCol';
@@ -486,6 +484,7 @@ export default {
     ZMenu,
     ZDialog,
     ZExpandable,
+    ZTooltip,
 
     ZLayout,
     ZCol,
