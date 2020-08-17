@@ -1,0 +1,73 @@
+// fade in-out, fade-in, fade-out
+.zt-fade
+  &-enter-active, &-leave-active
+    transition opacity $fade-duration
+
+  &-enter, &-leave-to
+    opacity 0
+
+.zt-fade-out
+  &-leave-active
+    transition opacity $fade-duration
+
+  &-leave-to
+    opacity 0
+
+.zt-fade-in
+  &-enter-active
+    transition opacity $fade-duration
+
+  &-enter
+    opacity 0
+
+.zt-fade-rotate
+  &-enter-active, &-leave-active
+    transition transform $rotate-duration $ease-in-out, opacity $fade-duration
+
+  &-enter, &-leave-to
+    opacity 0
+    transform rotate(180deg)
+
+.zt-scale
+  &-enter-active, &-leave-active
+    transition transform $scale-duration $ease-in-out
+
+  &-enter, &-leave-to
+    transform scale(0)
+
+// client transitions used in v-client directive
+.v-client
+  opacity 0
+
+.no-script .v-client
+  opacity 1
+
+.v-client--fade
+  opacity 1
+  transition opacity $fade-duration $ease
+
+// from top, left, right or bottom
+generate-from-transitions()
+  for $direction in top left right bottom
+    for $mode in fade ''
+      $mode-str = $mode == 'fade' ? 'fade-' : ''
+      .zt-{$mode-str}from-{$direction}
+        &-enter-active, &-leave-active
+          if $mode == 'fade'
+            transition opacity $transform-duration, transform $transform-duration
+          else
+            transition transform $transform-duration
+
+        &-enter, &-leave-to
+          if $mode == 'fade'
+            opacity 0
+          if $direction == 'top'
+            transform translateY(-1 * $from-shift)
+          if $direction == 'left'
+            transform translateX(-1 * $from-shift)
+          if $direction == 'right'
+            transform translateX($from-shift)
+          if $direction == 'bottom'
+            transform translateY($from-shift)
+
+generate-from-transitions()

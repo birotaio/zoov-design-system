@@ -1,0 +1,91 @@
+/*
+ * Layout & Grids
+ */
+$shifted-breakpoints := {
+  xxs: 0,
+  xs: $breakpoints.xxs,
+  sm: $breakpoints.xs,
+  md: $breakpoints.sm,
+  lg: $breakpoints.md,
+  xl: $breakpoints.lg,
+}
+
+percentage($n)
+  return min(1, $n / $grid-cols-num) * 100%
+
+col-size-guttered($nsize, $ngutter)
+  flex-grow 0
+  flex-basis 'calc(%s - %s)' % (percentage($nsize) ($ngutter * $gutter-width))
+  max-width 'calc(%s - %s)' % (percentage($nsize) ($ngutter * $gutter-width))
+
+col-size($n)
+  flex-grow 0
+  flex-basis percentage($n)
+  max-width percentage($n)
+
+.flex-layout
+  flex-wrap wrap
+  display flex
+  flex 1 1 auto
+  min-width 100%
+
+  &--column
+    flex-direction column
+
+  &--reverse
+    flex-direction row-reverse
+
+.flex-layout--column.flex-layout--reverse
+    flex-direction column-reverse
+
+.align--start
+  align-items flex-start
+
+.align--center
+  align-items center
+
+.align--end
+  align-items flex-end
+
+.justify--start
+  justify-content flex-start
+
+.justify--center
+  justify-content center
+
+.justify--end
+  justify-content flex-end
+
+.justify--space-between
+  justify-content space-between
+
+.grow, .spacer
+  flex-grow 1 !important
+
+generate-overflows()
+  for $mode in hidden visible scroll
+    .overflow--{$mode}
+      overflow $mode
+
+    for $axis in x y
+      .overflow-{$axis}--{$mode}
+        overflow-{$axis} $mode
+
+generate-col-sizes()
+  .flex-layout
+    for $breakpoint_name, $breakpoint_value in $shifted-breakpoints
+      for $n in (1..$grid-cols-num)
+        @media (min-width: $breakpoint_value)
+          .{$breakpoint_name}{$n}
+            col-size($n)
+
+  for $ngutter in 1..4
+    .flex-layout--guttered-{$ngutter}
+      for $breakpoint_name, $breakpoint_value in $shifted-breakpoints
+        for $n in (1..$grid-cols-num)
+          @media (min-width: $breakpoint_value)
+            .{$breakpoint_name}{$n}
+              col-size-guttered($n, $ngutter)
+
+generate-overflows()
+generate-col-sizes()

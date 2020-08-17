@@ -1,0 +1,9 @@
+generate-elevations()
+  for $z in (0..24)
+    .elevation-{$z}
+      elevation($z, true)
+
+generate-elevations()
+
+.elevation-transition
+  transition box-shadow $elevation-duration

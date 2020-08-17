@@ -1,0 +1,47 @@
+/*
+ * Colors
+ */
+.zds
+  color: $colors.neutral.dark-3
+
+global-color($color_name, $color_value)
+  .{$color_name}
+    background-color $color_value !important
+    border-color $color_value !important
+
+  .border--{$color_name}
+    border-color $color_value !important
+
+  .text--{$color_name}
+    color $color_value !important
+    caret-color: $color_value !important
+
+    path
+      fill $color_value !important
+
+global-color-accent($color_name, $color_value, $color_type)
+  .{$color_name}--{$color_type}
+    background-color $color_value !important
+    border-color $color_value !important
+
+  .border--{$color_name}--{$color_type}
+    border-color $color_value !important
+
+  .text--{$color_name}--{$color_type}
+    color $color_value !important
+    caret-color $color_value !important
+
+    path
+      fill $color_value !important
+
+// Put the loop in a function so it can't leak
+create-global-colors()
+  for $color_name, $color_shade in $colors
+    for $color_type, $color_value in $color_shade
+      if $color_type == 'base'
+        global-color($color_name, $color_value)
+
+      else
+        global-color-accent($color_name, $color_value, $color_type)
+
+create-global-colors()

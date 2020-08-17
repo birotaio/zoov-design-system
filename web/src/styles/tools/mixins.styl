@@ -1,0 +1,119 @@
+/*
+ * Reset
+ */
+reset-sizing()
+  box-sizing border-box
+
+reset()
+  box-sizing border-box
+  border 0
+  margin 0
+  padding 0
+
+/*
+ * Colors
+ */
+bg-color($color_value, $important = false)
+  background-color $color_value important($important)
+  border-color $color_value important($important)
+
+text-color($color_value, $important = false)
+  color $color_value important($important)
+  caret-color $color_value important($important)
+
+  path
+    fill $color_value important($important)
+
+/*
+ * Elevations
+ */
+elevation($z, $important = false)
+  box-shadow: $shadow-umbra[$z],
+              $shadow-penumbra[$z],
+              $shadow-ambient[$z] important($important)
+
+elevation-transition()
+  transition: box-shadow $elevation-duration $ease
+  will-change: box-shadow
+
+/*
+ * Typography
+ */
+typography-rule($name, $settings, $rule)
+  if $name in $settings
+    {$rule}: $settings[$name]
+
+typography-rules($settings)
+  typography-rule('size', $settings, 'font-size')
+  typography-rule('weight', $settings, 'font-weight')
+  typography-rule('line-height', $settings, 'line-height')
+  typography-rule('letter-spacing', $settings, 'letter-spacing')
+  typography-rule('font', $settings, 'font-family')
+  typography-rule('color', $settings, 'color')
+
+/*
+ * Shape
+ */
+rounded($inc)
+  width size($inc)
+  height size($inc)
+  border-radius size($inc / 2)
+
+rounded-lr($inc)
+  height size($inc)
+  padding 0 size($inc / 2)
+  border-radius size($inc / 2)
+
+square($inc)
+  width size($inc)
+  height size($inc)
+
+/*
+ * Full Sizing
+ */
+fixed-full()
+  position fixed
+  top 0
+  left 0
+  right 0
+  bottom 0
+
+absolute-full()
+  position absolute
+  top 0
+  left 0
+  right 0
+  bottom 0
+
+/*
+ * Positionning
+ */
+fixed-centered() {
+  position fixed
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
+}
+
+absolute-centered() {
+  position absolute
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
+}
+
+/*
+ * Interactions (focus, hover, etc...)
+ */
+make-interactive()
+  background-image linear-gradient(transparent, transparent)
+  transition $background-image-transition
+
+  &:focus
+    background-image linear-gradient($focus-background, $focus-background)
+
+  &:hover
+    background-image linear-gradient($hover-background, $hover-background)
+
+  &:active
+    background-image linear-gradient($active-background, $active-background)

@@ -1,0 +1,7 @@
+generate-opacity()
+  for $value in (0..10)
+    $percentage = (10 * $value)
+    .alpha-{$percentage}
+      opacity ($value / 10)
+
+generate-opacity()

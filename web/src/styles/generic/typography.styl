@@ -1,0 +1,79 @@
+html, body
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+
+.zds
+  typography-rule('size', $typography.body, 'font-size')
+  typography-rule('weight', $typography.body, 'font-weight')
+  typography-rule('line-height', $typography.body, 'line-height')
+  typography-rule('letter-spacing', $typography.body, 'letter-spacing')
+  typography-rule('font', $typography.body, 'font-family')
+
+  h1, h2, h3, h4, h5, h6, p, ul, li, label, small, caption
+    margin 0
+
+  caption
+    display inline-block
+    width 100%
+
+  ul, li
+    list-style-type disc
+
+  ul
+    margin-left 17px
+
+  b, strong
+    font-weight 700
+
+  i, em
+    font-style italic
+
+.typography--display-3, .zds h1
+  typography-rules($typography.display-3)
+
+.typography--display-2, .zds h2
+  typography-rules($typography.display-2)
+
+.typography--display-1, .zds h3
+  typography-rules($typography.display-1)
+
+.typography--heading, .zds h4
+  typography-rules($typography.heading)
+
+.typography--title, .zds h5
+  typography-rules($typography.title)
+
+.typography--subheading, .zds h6, .zds input
+  typography-rules($typography.subheader)
+
+.typography--body, .zds p, .zds ul, .zds li, .zds label
+  typography-rules($typography.body)
+
+.typography--caption, .zds small, .zds caption
+  typography-rules($typography.caption)
+
+.typography--button, .zds button, .zds input[type=submit]
+  text-transform uppercase
+  typography-rules($typography.button)
+
+generate-weights()
+  for $weight_name, $weight_value in $weights
+    .text--{$weight_name}
+      font-weight $weight_value !important
+
+generate-alignments()
+  for $aligment_name in left right center
+    .text--{$aligment_name}
+      text-align $aligment_name !important
+
+generate-line-heights()
+  for $size in $sizes
+    .text--lh-{$size}
+      line-height size($size) !important
+
+generate-weights()
+generate-alignments()
+generate-line-heights()
+
+.text--nowrap
+  white-space nowrap
