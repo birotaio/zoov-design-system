@@ -7,6 +7,8 @@
 </template>
 
 <style lang="stylus">
+@import '../../styles/components.styl';
+
 .z-info-bubble
   display inline-block
   min-width size(8)

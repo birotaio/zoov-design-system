@@ -9,6 +9,8 @@
 </template>
 
 <style lang="stylus">
+@import '../../styles/components.styl';
+
 section.z-section
   padding size(9) size(5)
 

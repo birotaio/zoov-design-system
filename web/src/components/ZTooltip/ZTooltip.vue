@@ -12,6 +12,8 @@
 </template>
 
 <style lang="stylus">
+@import '../../styles/components.styl'
+
 .z-tooltip
   position relative
   z-index 1

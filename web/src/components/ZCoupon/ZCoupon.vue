@@ -9,6 +9,8 @@
 </template>
 
 <style lang="stylus">
+@import '../../styles/components.styl';
+
 .z-coupon
   display inline-block
   background-image linear-gradient($colors.secondary.base, $colors.secondary.base);

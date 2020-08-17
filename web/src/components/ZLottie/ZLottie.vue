@@ -3,6 +3,8 @@
 </template>
 
 <style lang="stylus">
+@import '../../styles/components.styl';
+
 .z-lottie
   overflow 'hidden'
   margin 0 auto

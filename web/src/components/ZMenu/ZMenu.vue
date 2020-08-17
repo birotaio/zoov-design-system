@@ -23,6 +23,7 @@
 
 <style lang="stylus">
 @import '../../styles/components.styl';
+
 .no-script .z-menu__activator
   cursor pointer
 
