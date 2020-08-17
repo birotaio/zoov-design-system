@@ -26,7 +26,7 @@
       bottom 0
 
 .z-tooltip__activator
-  display flex
+  display inline-flex
 </style>
 
 <script>
