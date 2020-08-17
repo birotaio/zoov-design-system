@@ -37,6 +37,7 @@ import { throttle, sizeStyle } from '../../modules/utils';
 export default {
   name: 'ZTooltip',
   mixins: [proxy('value')],
+  components: { ZInfoBubble },
   props: {
     value: {
       type: Boolean,
