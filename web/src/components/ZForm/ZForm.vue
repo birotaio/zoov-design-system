@@ -11,6 +11,9 @@
 
 <style lang="stylus">
 @import '../../styles/components.styl';
+
+.z-form
+  width 100%
 </style>
 
 <script>
