@@ -1,11 +1,10 @@
 import { throttle, isClient, getClientWidth } from './modules/utils';
-import * as components from './components';
 import directives from './directives';
 import './styles/index.styl';
 
 export default {
   install: function(Vue, options = {}) {
-    Object.entries(components).forEach(([name, component]) => {
+    Object.entries(options.components || {}).forEach(([name, component]) => {
       Vue.component(name, component);
     });
 
