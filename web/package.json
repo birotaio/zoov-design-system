@@ -1,6 +1,6 @@
 {
   "name": "@zoov/design-system",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve",
@@ -31,7 +31,7 @@
     "svgo-loader": "^2.2.1",
     "vue-template-compiler": "^2.6.11"
   },
-  "description": "This is a Vue implementation of the Zoov Design System, with standalone CSS lib built.",
+  "description": "Vue implementation of the Zoov Design System",
   "main": "src/index.js",
   "repository": {
     "type": "git",
@@ -48,5 +48,5 @@
   "bugs": {
     "url": "https://github.com/birotaio/zoov-design-system/issues"
   },
-  "homepage": "https://github.com/birotaio/zoov-design-system#readme"
+  "homepage": "https://github.com/birotaio/zoov-design-system/tree/master/web"
 }
