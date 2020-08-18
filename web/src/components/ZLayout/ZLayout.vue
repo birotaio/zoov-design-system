@@ -45,6 +45,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    column: {
+      type: Boolean,
+      default: false,
+    },
     gutter: {
       type: [Boolean, String, Number],
       default: false,
@@ -58,6 +62,7 @@ export default {
       if (props.align) classes.push('align--' + props.align);
       if (props.justify) classes.push('justify--' + props.justify);
       if (props.reverse) classes.push('flex-layout--reverse');
+      if (props.column) classes.push('flex-layout--column');
       return classes;
     },
   },
