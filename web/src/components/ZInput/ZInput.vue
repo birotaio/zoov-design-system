@@ -68,6 +68,9 @@
     &::placeholder
       color: $colors.neutral.dark-1
 
+    &:invalid
+      box-shadow none
+
   .z-input__wrapper
     display flex
     align-items center
