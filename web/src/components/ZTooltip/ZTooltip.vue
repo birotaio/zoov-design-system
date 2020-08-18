@@ -12,6 +12,8 @@
 </template>
 
 <style lang="stylus">
+@import '../../styles/components.styl'
+
 .z-tooltip
   position relative
   z-index 1
@@ -24,7 +26,7 @@
       bottom 0
 
 .z-tooltip__activator
-  display flex
+  display inline-flex
 </style>
 
 <script>
@@ -35,6 +37,7 @@ import { throttle, sizeStyle } from '../../modules/utils';
 export default {
   name: 'ZTooltip',
   mixins: [proxy('value')],
+  components: { ZInfoBubble },
   props: {
     value: {
       type: Boolean,
@@ -76,7 +79,9 @@ export default {
   },
   mounted() {
     this.getActivatorWidth();
-    window.addEventListener('resize', this.throttledOnResize, { passive: true });
+    window.addEventListener('resize', this.throttledOnResize, {
+      passive: true,
+    });
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.throttledOnResize);
@@ -92,13 +97,13 @@ export default {
       let xtrans, ytrans;
       switch (this.halign) {
         case 'right':
-          xtrans = `calc(0% + ${ this.activatorWidth / 2 - 4}px)`;
+          xtrans = `calc(0% + ${this.activatorWidth / 2 - 4}px)`;
           break;
         case 'center':
-          xtrans = `calc(-50% + ${ this.activatorWidth / 2}px)`;
+          xtrans = `calc(-50% + ${this.activatorWidth / 2}px)`;
           break;
         case 'left':
-          xtrans = `calc(-100% + ${ this.activatorWidth / 2 + 4}px)`;
+          xtrans = `calc(-100% + ${this.activatorWidth / 2 + 4}px)`;
           break;
       }
       switch (this.valign) {
@@ -111,27 +116,33 @@ export default {
       }
       const style = { transform: `translate(${xtrans}, ${ytrans})` };
       if (this.minWidth) {
-        style['min-width'] = sizeStyle(this.minWidth, { height: false })['min-width'];
+        style['min-width'] = sizeStyle(this.minWidth, { height: false })[
+          'min-width'
+        ];
       }
       return style;
     },
     infoBubbleValign() {
-      switch (this.valign) {
-        case 'top':
-          return 'bottom';
-        case 'bottom':
-          return 'top';
-      }
+      return (() => {
+        switch (this.valign) {
+          case 'top':
+            return 'bottom';
+          case 'bottom':
+            return 'top';
+        }
+      })();
     },
     infoBubbleHalign() {
-      switch (this.halign) {
-        case 'right':
-          return 'left';
-        case 'center':
-          return 'center';
-        case 'left':
-          return 'right';
-      }
+      return (() => {
+        switch (this.halign) {
+          case 'right':
+            return 'left';
+          case 'center':
+            return 'center';
+          case 'left':
+            return 'right';
+        }
+      })();
     },
   },
   methods: {
@@ -159,7 +170,10 @@ export default {
       if (!this.hideDelay || this.hideDelay === Infinity) return;
       // hide after a given delay
       if (this.timeout) clearTimeout(this.timeout);
-      this.timeout = setTimeout(() => (this.proxy__value = false), this.hideDelay);
+      this.timeout = setTimeout(
+        () => (this.proxy__value = false),
+        this.hideDelay
+      );
     },
     forwardDeactivate() {
       this.proxy__value = false;
