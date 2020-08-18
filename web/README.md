@@ -31,6 +31,24 @@ import { ZButton } from '@zoov/design-system/src/components/ZButton';
 Vue.use(zds, { components: { ZButton } });
 ```
 
+### Using built-in svg icons
+
+To properly use `ZIcon` component, you must have an svg **inline** loader (such as `svg-inline-loader`). The config to work with nuxt is, for example:
+```js
+// nuxt.config.js
+  build: {
+    extend(config) {
+      config.module.rules.find(rule => rule.test.test('.svg')).test = /\.(png|jpe?g|gif|webp)$/i;
+      config.module.rules = config.module.rules.concat([
+        {
+          test: /\.svg$/,
+          use: ['svg-inline-loader'],
+        },
+      ]);
+    },
+  },
+```
+
 ---
 
 ## Authoring
