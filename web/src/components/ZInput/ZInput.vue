@@ -5,6 +5,7 @@
       caption(v-if="caption") {{ caption }}
     .z-input__wrapper
       .z-input__input(:class="inputClasses")
+        h6.z-input__overlay(v-if="suffix" :data-suffix="suffix") {{ valueProxy || placeholder }}
         input.z-input__input__field(
           ref="input"
           :name="name"
@@ -53,6 +54,7 @@
       margin-bottom 0
       text-color($colors.neutral.dark-1)
 
+  .z-input__overlay,
   input.z-input__input__field
     box-sizing border-box
     width 100%
@@ -62,6 +64,18 @@
     padding-right size(2)
     padding-bottom 2px
 
+  .z-input__overlay
+    display flex
+    align-items center
+    position absolute
+    pointer-events none
+    color rgba(0, 0, 0, 0)
+
+    &:after
+      content attr(data-suffix)
+      color: $colors.neutral.dark-3
+
+  input.z-input__input__field
     &:focus
       outline none
 
@@ -251,6 +265,10 @@ export default {
     copyConfirmationText: {
       type: String,
       default: null,
+    },
+    suffix: {
+      type: String,
+      default: '',
     },
   },
   data() {
