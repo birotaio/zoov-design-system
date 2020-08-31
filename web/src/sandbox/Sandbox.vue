@@ -246,18 +246,24 @@
           z-checkbox(label="Disabled and checked" disabled :value="true")
         .sandbox__flex
           z-checkbox(label="Disabled and indeterminate" :indeterminate="checkboxIndeterminate2" disabled)
+        h6 Colors
+        .sandbox__flex
+          template(v-for="name in colorList")
+            z-checkbox.mr-2(:label="name" :color="name" :value="true")
 
       z-divider
       .sandbox__section
         h3 ZRadio
         .sandbox__flex
-          z-radio(label="Label" v-model="radios1" :input-value="1")
+          z-radio(label="Label" v-model="radios1" :input-value="1" name="radios1")
+          z-radio(label="Already checked" v-model="radios1" :input-value="2" name="radios1")
         .sandbox__flex
-          z-radio(label="Already checked" v-model="radios1" :input-value="2")
+          z-radio(label="Disabled" v-model="radios2" :input-value="1" disabled name="radios2")
+          z-radio(label="Disabled and checked" v-model="radios2" :input-value="2" disabled name="radios2")
+        h6 Colors
         .sandbox__flex
-          z-radio(label="Disabled" v-model="radios2" :input-value="1" disabled )
-        .sandbox__flex
-          z-radio(label="Disabled and checked" v-model="radios2" :input-value="2" disabled)
+          template(v-for="name in colorList")
+            z-radio.mr-2(:label="name" :color="name" :input-value="name" v-model="radios3" name="radios3")
 
       z-divider
       .sandbox__section
@@ -508,6 +514,7 @@ export default {
       checkboxIndeterminate2: true,
       radios1: 2,
       radios2: 2,
+      radios3: 'neutral',
     };
   },
   watch: {
