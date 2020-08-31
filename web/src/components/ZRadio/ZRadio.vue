@@ -113,7 +113,7 @@
           background-color: $colors.neutral.light-1
 
   .z-label
-    margin-left size(1)
+    padding-left size(1)
     cursor pointer
 
   &.z-radio--disabled
