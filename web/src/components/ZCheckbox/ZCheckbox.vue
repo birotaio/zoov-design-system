@@ -1,6 +1,6 @@
 <template lang="pug">
   .z-checkbox(:class="classes")
-    .z-checkbox__input
+    .z-checkbox__input(:class="'text--' + color")
       .z-checkbox__icon(v-html="iconMarkup")
       .z-checkbox__icon--overlay
       input(
@@ -57,7 +57,7 @@
       width 10px
 
       path
-        fill #fff
+        fill #fff !important
 
   .z-checkbox__icon--overlay
     position absolute
@@ -71,7 +71,7 @@
 
   &:hover:not(.z-checkbox--disabled)
     .z-checkbox__icon
-      border-color: $colors.primary.base
+      border-color currentColor
 
   &.z-checkbox--focused
     .z-checkbox__icon
@@ -80,8 +80,8 @@
 
   &--checked
     .z-checkbox__icon
-      border-color: $colors.primary.base
-      background-color: $colors.primary.base
+      border-color currentColor
+      background-color currentColor
 
       svg
         left 4px
@@ -89,8 +89,8 @@
 
   &--indeterminate:not(.z-checkbox--checked)
     .z-checkbox__icon
-      border-color: $colors.primary.base
-      background-color: $colors.primary.base
+      border-color currentColor
+      background-color currentColor
 
       svg
         left 4px
@@ -99,19 +99,19 @@
   &.z-checkbox--checked, &.z-checkbox--indeterminate
     &:hover:not(.z-checkbox--disabled)
       .z-checkbox__icon
-        border-color: $colors.primary.base
+        border-color currentColor
 
       .z-checkbox__icon--overlay
         background-color rgba(255, 255, 255, 0.25)
 
     &.z-checkbox--focused
       .z-checkbox__icon
-        border-color: $colors.primary.base
-        background-color: $colors.primary.base
+        border-color currentColor
+        background-color currentColor
 
       .z-checkbox__icon--overlay
         background-color rgba(255, 255, 255, 0.25)
-        border: 1px solid $colors.primary.base
+        border: 1px solid currentColor
 
     &.z-checkbox--disabled
       .z-checkbox__icon
@@ -119,7 +119,7 @@
         border-color: $colors.neutral.light-1
 
   .z-label
-    margin-left size(1)
+    padding-left size(1)
     cursor pointer
 
   &.z-checkbox--disabled
@@ -148,7 +148,7 @@ export default {
     },
     color: {
       type: String,
-      default: '',
+      default: 'primary',
     },
     disabled: {
       type: Boolean,

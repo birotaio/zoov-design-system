@@ -1,17 +1,17 @@
 <template lang="pug">
   component.z-button(
     ref="button"
-    :is="href ? 'a' : 'button'"
+    :is="href && !submit ? 'a' : 'button'"
     :href="href"
     :target="target"
     :rel="rel"
     :class="classes"
+    v-bind="href ? {} : { type: submit && !loading && !disabled ? 'submit' : 'button' }"
     @focus.stop="$emit('focus')"
     @blur.stop="$emit('blur')"
     @keydown.enter.space.stop="onClick($event, false)"
     @click.stop="onClick($event, true)"
   )
-    input.z-button__input(v-if="submit" type="submit" value="")
     z-loader.z-button__loader(
       v-if="loading"
       :size="2"
@@ -49,7 +49,6 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
   line-height 1
   position relative
 
-
   &.z-button--loading
     cursor progress
 
@@ -75,19 +74,8 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
     transform scale(0)
     transition transform 0.1s $ease-ripple-in, background-color 0.2s
 
-  .z-button__input, .z-button__loader
+  .z-button__loader
     position absolute
-
-  &.z-button--loading
-    .z-button__input
-      cursor default
-
-  .z-button__input
-    width 100%
-    height 100%
-
-    &:focus
-      outline 0
 
   .z-button__content
     height 100%

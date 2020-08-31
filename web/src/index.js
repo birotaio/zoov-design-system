@@ -68,7 +68,9 @@ export default {
             options.onDedectTouchDevice();
           }
           zds.isTouchDevice = true;
-          window.removeEventListener('touchstart', _hasTouch, { passive: true });
+          window.removeEventListener('touchstart', _hasTouch, {
+            passive: true,
+          });
         },
         { passive: true }
       );

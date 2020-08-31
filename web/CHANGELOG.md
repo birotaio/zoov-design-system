@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0 (August 31, 2020)
+
+### Features
+
+  * Update simple-parallax-js module
+  * Support for theme colors in radios and checkbox components
+
+### Fixes
+
+  * Fix submit-type button triggering form submit even if in disabled or loading state
+
 ## 0.1.7 (August 19, 2020)
 
 ### Features

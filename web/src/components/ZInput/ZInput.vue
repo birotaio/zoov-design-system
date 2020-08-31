@@ -27,7 +27,13 @@
                 z-icon(@click="activate") copy
               .z-input__icon-within__click-confirmation {{ copyConfirmationText }}
             z-icon(v-else) copy
-      z-button.z-input__button(v-if="submitButton" :loading="loading" :color="success ? 'success' : color || 'primary'" large submit)
+      z-button.z-input__button(
+        v-if="submitButton"
+        :loading="loading"
+        :color="success ? 'success' : color || 'primary'"
+        large
+        submit
+      )
         z-icon {{ success ? 'check-circle' : 'arrow-right' }}
     transition(name="zt-fade")
       .z-input__message(v-if="inputMessage" v-html="inputMessage")
@@ -168,7 +174,6 @@
 
 .z-input__icon-within__click-confirmation
   white-space pre
-
 </style>
 
 <script>

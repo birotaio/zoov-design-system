@@ -1,14 +1,14 @@
 // load client script client-side only
 let simpleParallax;
 if (process.browser) {
-  simpleParallax = require('../assets/lib/simpleParallax.min.js');
+  simpleParallax = require('simple-parallax-js');
 }
 /*
  * Directives
  */
 const defaultParallaxOptions = {
   scale: 1.5,
-  delay: .5,
+  delay: 0.5,
   transition: 'cubic-bezier(0,0,0,1)',
   overflow: true,
 };

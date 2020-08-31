@@ -87,7 +87,9 @@ export default {
         'DOMLoaded',
         'destroy',
       ].forEach(eventName => {
-        this.animation.addEventListener(eventName, e => this.$emit(eventName, e));
+        this.animation.addEventListener(eventName, e =>
+          this.$emit(eventName, e)
+        );
       });
     },
   },

@@ -106,7 +106,7 @@ export default {
     imgStyle(i) {
       let style = {};
       if (this.width || this.imgWidth) {
-        style = sizeStyle(this.width || this.imgWidth, { height: false })
+        style = sizeStyle(this.width || this.imgWidth, { height: false });
       }
       if (this.display[i]) style.visibility = 'visible';
       return style;
