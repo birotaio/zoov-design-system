@@ -1,7 +1,7 @@
 // load client script client-side only
 let simpleParallax;
 if (process.browser) {
-  simpleParallax = require('../assets/lib/simpleParallax.min.js');
+  simpleParallax = require('simple-parallax-js');
 }
 /*
  * Directives
