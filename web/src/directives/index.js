@@ -8,7 +8,7 @@ if (process.browser) {
  */
 const defaultParallaxOptions = {
   scale: 1.5,
-  delay: .5,
+  delay: 0.5,
   transition: 'cubic-bezier(0,0,0,1)',
   overflow: true,
 };

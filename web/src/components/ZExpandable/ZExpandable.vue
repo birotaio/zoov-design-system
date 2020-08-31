@@ -122,7 +122,9 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener('resize', this.throttledOnResize, { passive: true });
+    window.addEventListener('resize', this.throttledOnResize, {
+      passive: true,
+    });
     // immediate content height computation
     this.computeContentHeight();
     this.previousContentHeight = this.contentHeight;

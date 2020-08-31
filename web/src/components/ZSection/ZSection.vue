@@ -21,7 +21,6 @@ section.z-section
 +media-down('xxs')
   section.z-section
     padding size(4) size(3)
-
 </style>
 
 <script>

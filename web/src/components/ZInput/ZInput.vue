@@ -168,7 +168,6 @@
 
 .z-input__icon-within__click-confirmation
   white-space pre
-
 </style>
 
 <script>

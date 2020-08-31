@@ -57,7 +57,9 @@ export default {
   methods: {
     classes(props) {
       const classes = ['flex-layout'];
-      if (Number(props.gutter)) classes.push('flex-layout--guttered-' + Number(props.gutter));
+      if (Number(props.gutter)) {
+        classes.push('flex-layout--guttered-' + Number(props.gutter));
+      }
       if (props.align) classes.push('align--' + props.align);
       if (props.justify) classes.push('justify--' + props.justify);
       if (props.reverse) classes.push('flex-layout--reverse');
