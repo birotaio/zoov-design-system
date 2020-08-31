@@ -1,12 +1,13 @@
 <template lang="pug">
   .z-radio(:class="classes")
-    .z-radio__input
+    .z-radio__input(:class="'text--' + color")
       .z-radio__icon
       .z-radio__icon--overlay
       input(
         ref="radio"
         role="radio"
         type="radio"
+        :name="name"
         :value="inputValue"
         :aria-checked="String(proxy__value === inputValue)"
         :disabled="disabled"
@@ -68,7 +69,7 @@
 
   &:hover:not(.z-radio--disabled)
     .z-radio__icon
-      border-color: $colors.primary.base
+      border-color currentColor
 
   &.z-radio--focused
     .z-radio__icon
@@ -78,10 +79,10 @@
   &--checked
     .z-radio__icon
       background-color transparent
-      border-color: $colors.primary.base
+      border-color currentColor
 
       &::before
-        background-color: $colors.primary.base
+        background-color currentColor
 
       svg
         left 4px
@@ -90,19 +91,19 @@
   &.z-radio--checked
     &:hover:not(.z-radio--disabled)
       .z-radio__icon
-        border-color: $colors.primary.base
+        border-color currentColor
 
       .z-radio__icon--overlay
         background-color rgba(255, 255, 255, 0.25)
 
     &.z-radio--focused
       .z-radio__icon
-        border-color: $colors.primary.base
+        border-color currentColor
         background-color transparent
 
       .z-radio__icon--overlay
         background-color rgba(255, 255, 255, 0.25)
-        border: 1px solid $colors.primary.base
+        border: 1px solid currentColor
 
     &.z-radio--disabled
       .z-radio__icon
@@ -139,11 +140,15 @@ export default {
     },
     color: {
       type: String,
-      default: '',
+      default: 'primary',
     },
     disabled: {
       type: Boolean,
       default: false,
+    },
+    name: {
+      type: String,
+      default: '',
     },
     // any type
     value: null,
