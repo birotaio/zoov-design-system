@@ -15,6 +15,7 @@
           :required="required"
           :pattern="validationPattern"
           :readonly="readonly"
+          v-bind="inputAttrs"
           v-model="valueProxy"
           @invalid.prevent="onInvalid"
           @focus="focused = true"
@@ -274,6 +275,11 @@ export default {
     suffix: {
       type: String,
       default: '',
+    },
+    // additional native input attributes
+    inputAttrs: {
+      type: Object,
+      default: () => ({}),
     },
   },
   data() {

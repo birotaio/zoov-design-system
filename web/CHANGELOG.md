@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 (September 1, 2020)
+
+### Features
+
+  * Support native input attributes in `attrs` prop for ZInput component
+
 ## 0.2.0 (August 31, 2020)
 
 ### Features
