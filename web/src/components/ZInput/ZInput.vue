@@ -5,7 +5,7 @@
       caption(v-if="caption") {{ caption }}
     .z-input__wrapper
       .z-input__input(:class="inputClasses")
-        h6.z-input__overlay(v-if="suffix" :data-suffix="suffix") {{ valueProxy || placeholder }}
+        h6.z-input__overlay(v-if="suffix" :data-suffix="suffix") {{ proxy__value || placeholder }}
         input.z-input__input__field(
           ref="input"
           :name="name"
@@ -16,7 +16,7 @@
           :pattern="validationPattern"
           :readonly="readonly"
           v-bind="inputAttrs"
-          v-model="valueProxy"
+          v-model="proxy__value"
           @invalid.prevent="onInvalid"
           @focus="focused = true"
           @blur="focused = false"
@@ -179,6 +179,7 @@
 
 <script>
 import { hasUnits, getCssVar } from '../../modules/utils';
+import proxy from '../../mixins/proxy';
 
 import ZLabel from '../../components/ZLabel';
 import ZIcon from '../../components/ZIcon';
@@ -191,6 +192,15 @@ const emailPattern =
 export default {
   name: 'ZInput',
   components: { ZLabel, ZIcon, ZButton, ZTooltip },
+  mixins: [
+    proxy('value', 'input', function(value) {
+      if (value !== this.lastInvalidValue) {
+        this.invalid = false;
+        this.validationMessage = '';
+      }
+      return value;
+    }),
+  ],
   props: {
     name: {
       type: String,
@@ -324,18 +334,6 @@ export default {
       if (this.iconWithin) classes.push('z-input__input--icon-within');
       if (this.color) classes.push('border--' + this.color);
       return classes;
-    },
-    valueProxy: {
-      get() {
-        return this.value;
-      },
-      set(value) {
-        if (value !== this.lastInvalidValue) {
-          this.invalid = false;
-          this.validationMessage = '';
-        }
-        this.$emit('input', value);
-      },
     },
     validationPattern() {
       return this.pattern || this.type === 'email' ? emailPattern : null;
