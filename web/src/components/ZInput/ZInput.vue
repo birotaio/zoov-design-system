@@ -4,8 +4,9 @@
       z-label(@click="focus") {{ label }}
       caption(v-if="caption") {{ caption }}
     .z-input__wrapper
-      .z-input__input(:class="inputClasses")
-        h6.z-input__overlay(v-if="suffix" :data-suffix="suffix") {{ proxy__value || placeholder }}
+      .z-input__input.pl-2(:class="inputClasses" @click="focus")
+        h6.z-input__prefix(v-if="prefix" :data-prefix="prefix")
+        h6.z-input__suffix(v-if="suffix" :data-suffix="suffix") {{ prefix + (proxy__value || placeholder) }}
         input.z-input__input__field(
           ref="input"
           :name="name"
@@ -61,26 +62,59 @@
       margin-bottom 0
       text-color($colors.neutral.dark-1)
 
-  .z-input__overlay,
+  .z-input__prefix
+    display flex
+    align-items center
+    height size(6)
+    padding-bottom 2px
+    user-select none
+    padding-left size(2)
+    margin-left size(-2)
+
+    &:before
+      content attr(data-prefix)
+      color: $colors.neutral.dark-3
+      margin-right 2px
+
+  .z-input__suffix,
   input.z-input__input__field
     box-sizing border-box
     width 100%
     min-width 0 // ff
     height size(6)
-    padding-left size(2)
     padding-right size(2)
     padding-bottom 2px
 
-  .z-input__overlay
+  input.z-input__input__field
+    color: $colors.neutral.dark-3
+
+  .z-input__suffix
     display flex
     align-items center
     position absolute
     pointer-events none
     color rgba(0, 0, 0, 0)
+    white-space nowrap
 
     &:after
       content attr(data-suffix)
+      display flex
+      align-items center
+      width 100%
+      height size(6) - 1px
+      margin-left 2px
+      padding-left 2px
       color: $colors.neutral.dark-3
+
+  &--hatched
+    .z-input__prefix, .z-input__suffix:after
+      hatched(rgba(0,0,0,0.07))
+
+    .z-input__prefix
+      margin-right 2px
+
+    .z-input__suffix
+      margin-left 4px
 
   input.z-input__input__field
     &:focus
@@ -282,9 +316,17 @@ export default {
       type: String,
       default: null,
     },
+    prefix: {
+      type: String,
+      default: '',
+    },
     suffix: {
       type: String,
       default: '',
+    },
+    hatched: {
+      type: Boolean,
+      default: false,
     },
     // additional native input attributes
     inputAttrs: {
@@ -310,6 +352,7 @@ export default {
       if (this.transparent) classes.push('z-input--transparent');
       if (this.submitButton) classes.push('z-input--submit-button');
       if (this.readonly) classes.push('z-input--readonly');
+      if (this.hatched) classes.push('z-input--hatched');
       return classes;
     },
     style() {
