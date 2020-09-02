@@ -16,6 +16,7 @@
           :required="required"
           :pattern="validationPattern"
           :readonly="readonly"
+          :class="textColor ? 'text--' + textColor : ''"
           v-bind="inputAttrs"
           v-model="proxy__value"
           @invalid.prevent="onInvalid"
@@ -150,7 +151,6 @@
       input.z-input__input__field
         padding-right 0
 
-
   .z-button.z-input__button
     padding 0 size(2)
     height size(6)
@@ -253,6 +253,10 @@ export default {
       default: '',
     },
     color: {
+      type: String,
+      default: '',
+    },
+    textColor: {
       type: String,
       default: '',
     },
