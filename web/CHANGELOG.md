@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.3 (September 2, 2020)
+
+### Features
+
+  * Add hatched stylus mixin
+  * Add fade-scale transition
+  * More input examples in Sandbox
+  * Add text-color option to ZInput
+  * Add prefix, improve prefix & suffix style, add hatched option to ZInput
+  * Use proxy mixin instead of state-loose internally declared proxy
+  * Improve proxy to use an optional handler
+
 ## 0.2.2 (September 2, 2020)
 
 ### Fixes
