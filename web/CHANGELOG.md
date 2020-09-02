@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.2 (September 2, 2020)
+
+### Fixes
+
+  * Make sure a-type button :hover color is correct
+  * Remove useless svgo-loader dependency
+
 ## 0.2.1 (September 1, 2020)
 
 ### Features

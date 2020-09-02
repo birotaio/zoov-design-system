@@ -49,6 +49,9 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
   line-height 1
   position relative
 
+  &:hover
+    text-color($colors.white.base)
+
   &.z-button--loading
     cursor progress
 
