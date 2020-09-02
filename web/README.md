@@ -26,9 +26,18 @@ import Vue from 'vue';
 import zds from '@zoov/design-system';
 
 import { ZButton } from '@zoov/design-system/src/components/ZButton';
-// and any other available component
+// and any other available component or all in one:
+// import * as components from '@zoov/design-system/src/components/ZButton'
 
 Vue.use(zds, { components: { ZButton } });
+```
+
+If you this library server-side such as with Nuxt in universal mode, you must transpile it, _e.g._:
+```js
+// nuxt.config.js
+  build: {
+    transpile: ['@zoov/design-system'],
+  },
 ```
 
 ### Using built-in svg icons
