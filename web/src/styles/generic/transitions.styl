@@ -35,6 +35,14 @@
   &-enter, &-leave-to
     transform scale(0)
 
+.zt-fade-scale
+  &-enter-active, &-leave-active
+    transition transform $scale-duration $ease-in-out, opacity $fade-duration
+
+  &-enter, &-leave-to
+    opacity 0
+    transform scale(0)
+
 // client transitions used in v-client directive
 .v-client
   opacity 0

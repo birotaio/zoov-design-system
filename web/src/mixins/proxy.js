@@ -1,7 +1,7 @@
 const proxy = 'proxy__';
 const internal = 'internal__';
 
-export default (name, event) => ({
+export default (name, event, handle) => ({
   name: 'state-proxy',
   data() {
     return {
@@ -17,7 +17,8 @@ export default (name, event) => ({
         return this[internal + name];
       },
       set(value) {
-        this[internal + name] = value;
+        this[internal + name] =
+          typeof handle === 'function' ? handle.call(this, value) : value;
         const eventName =
           event || (name === 'value' ? 'input' : 'update:' + name);
         this.$emit(eventName, value);
