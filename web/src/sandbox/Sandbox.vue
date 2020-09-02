@@ -196,14 +196,15 @@
             z-input(label="Copyable" value="COPY ME" copyable readonly)
         z-layout(align="end" gutter)
           z-col(xxs12 sm6 md3)
-            z-input(
-              label="With submit button"
-              placeholder="Input with submit button"
-              type="email"
-              submit-button
-              required
-              message="Hello message"
-            )
+            z-form(@submit.prevent="() => {}")
+              z-input(
+                label="With submit button"
+                placeholder="Input with submit button"
+                type="email"
+                submit-button
+                required
+                message="Hello message"
+              )
           z-col(xxs12 sm6 md3)
             z-input(
               placeholder="Loading"
@@ -229,6 +230,24 @@
               success
               required
               message="Success message"
+            )
+        z-layout.mt-3(align="end" gutter)
+          z-col(xxs12 sm6 md3)
+            z-input(
+              label="With prefix and suffix"
+              placeholder="domain"
+              submit-button
+              prefix="prefix."
+              suffix=".suffix"
+            )
+          z-col(xxs12 sm6 md3)
+            z-input(
+              label="Hatched style"
+              placeholder="domain"
+              submit-button
+              prefix="prefix."
+              suffix=".suffix"
+              hatched
             )
 
       z-divider
@@ -467,6 +486,7 @@ import ZMenu from '@/components/ZMenu';
 import ZDialog from '@/components/ZDialog';
 import ZExpandable from '@/components/ZExpandable';
 import ZTooltip from '@/components/ZTooltip';
+import ZForm from '@/components/ZForm';
 
 import ZLayout from '@/components/ZLayout';
 import ZCol from '@/components/ZCol';
@@ -491,6 +511,7 @@ export default {
     ZDialog,
     ZExpandable,
     ZTooltip,
+    ZForm,
 
     ZLayout,
     ZCol,
