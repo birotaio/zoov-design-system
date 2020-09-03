@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.4 (September 3, 2020)
+
+### Features
+
+  * Add `width` prop to ZDialog component
+  * Fix buttons interaction background to work over dark backrgounds
+
 ## 0.2.3 (September 2, 2020)
 
 ### Features
