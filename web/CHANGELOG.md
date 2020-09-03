@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.5 (September 3, 2020)
+
+### Features
+
+  * Add `nowrap` option to ZLayout component
+
 ## 0.2.4 (September 3, 2020)
 
 ### Features

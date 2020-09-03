@@ -53,6 +53,10 @@ export default {
       type: [Boolean, String, Number],
       default: false,
     },
+    nowrap: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     classes(props) {
@@ -64,6 +68,7 @@ export default {
       if (props.justify) classes.push('justify--' + props.justify);
       if (props.reverse) classes.push('flex-layout--reverse');
       if (props.column) classes.push('flex-layout--column');
+      if (props.nowrap) classes.push('flex-layout--nowrap');
       return classes;
     },
   },
