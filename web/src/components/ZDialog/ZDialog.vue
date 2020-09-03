@@ -4,7 +4,7 @@
       slot(name="activator" :activate="onClickActivator")
     z-overlay(:value="proxy__value")
     transition(name="zt-fade")
-      .z-dialog__content(v-if="proxy__value")
+      .z-dialog__content(v-if="proxy__value" :style="contentStyle")
         z-card.elevation-5
           slot
 </template>
@@ -15,7 +15,13 @@
 .z-dialog
   display inline-block
 
+  &__activator
+    display flex
+
   &__content
+    width 100%
+    max-width size(45)
+    padding size(2)
     fixed-centered()
     z-index 11
 </style>
@@ -24,7 +30,7 @@
 import ZCard from '../../components/ZCard';
 import ZOverlay from '../../components/ZOverlay';
 import proxy from '../../mixins/proxy';
-import { isClient } from '../../modules/utils';
+import { isClient, sizeStyle } from '../../modules/utils';
 
 // cannot be used in SSR
 if (isClient) require('element-closest-polyfill');
@@ -37,6 +43,15 @@ export default {
     value: {
       type: Boolean,
       default: false,
+    },
+    width: {
+      type: [String, Number],
+      default: 45,
+    },
+  },
+  computed: {
+    contentStyle() {
+      return { 'max-width': sizeStyle(this.width, { height: false }).width };
     },
   },
   methods: {
