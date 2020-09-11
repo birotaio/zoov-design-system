@@ -14,10 +14,13 @@
         .spacer
         .z-expandable__icon
           z-loader(v-if="loading" color="neutral" size=3 circular)
-          template(v-else)
+          template(v-else-if="variant")
             transition-group(name="zt-fade-rotate")
-              z-icon(v-if="proxy__value" key="iconCollapse") {{ iconCollapse }}
-              z-icon(v-else key="iconExpand") {{ iconExpand }}
+              z-icon(v-if="proxy__value" key="iconCollapse") minus
+              z-icon(v-else key="iconExpand") plus
+          template(v-else)
+            z-icon.z-expandable__icon__chevron(:class="{ 'z-expandable__icon__chevron--rotate': proxy__value }") chevron-down
+
     .z-expandable__container(:style="containerStyle")
       .z-expandable__content(ref="content")
         slot
@@ -64,6 +67,12 @@
 
   .z-icon
     position absolute
+
+.z-expandable__icon__chevron
+  transition transform $rotate-duration $ease
+
+  &--rotate
+    transform rotate(180deg)
 
 .z-expandable__container
     height 0
@@ -147,12 +156,6 @@ export default {
       if (this.transitioning) classes.push('z-expandable--transitioning');
       if (this.disabled) classes.push('z-expandable--disabled');
       return classes;
-    },
-    iconCollapse() {
-      return this.variant ? 'minus' : 'chevron-up';
-    },
-    iconExpand() {
-      return this.variant ? 'plus' : 'chevron-down';
     },
     height() {
       return this.proxy__value ? this.contentHeight : 0;

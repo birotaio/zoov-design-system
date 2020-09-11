@@ -79,6 +79,12 @@ export default {
     initTouchDeviceChecker();
 
     /*
+     * App-wize communication
+     */
+    Vue.util.defineReactive(zds, 'app', {});
+    Vue.util.defineReactive(zds.app, 'drawer', null);
+
+    /*
      * Register instance
      */
     Vue.prototype.$zds = zds;
