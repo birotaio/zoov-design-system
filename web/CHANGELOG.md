@@ -7,6 +7,10 @@
   * Add a `ZApp` wrapper component that reacts to `ZDrawer` instances
   * Add a `ZDrawer` component
 
+### Fixes
+
+  * Fix `ZExpandable` icon animation
+
 ## 0.2.5 (September 3, 2020)
 
 ### Features
