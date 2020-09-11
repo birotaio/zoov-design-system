@@ -1,3 +1,4 @@
+export { ZApp } from './ZApp';
 export { ZButton } from './ZButton';
 export { ZCard } from './ZCard';
 export { ZCheckbox } from './ZCheckbox';
