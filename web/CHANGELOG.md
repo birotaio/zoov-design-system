@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.6 (September 11, 2020)
+
+### Features
+
+  * Add a `ZApp` wrapper component that reacts to `ZDrawer` instances
+  * Add a `ZDrawer` component
+
 ## 0.2.5 (September 3, 2020)
 
 ### Features
