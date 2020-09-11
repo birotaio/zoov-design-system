@@ -472,51 +472,10 @@
 </style>
 
 <script>
-import ZDivider from '@/components/ZDivider';
-import ZIcon from '@/components/ZIcon';
-import ZButton from '@/components/ZButton';
-import ZLogo from '@/components/ZLogo';
-import ZLabel from '@/components/ZLabel';
-
-import ZOverlay from '@/components/ZOverlay';
-import ZInput from '@/components/ZInput';
-import ZCheckbox from '@/components/ZCheckbox';
-import ZRadio from '@/components/ZRadio';
-import ZMenu from '@/components/ZMenu';
-import ZDialog from '@/components/ZDialog';
-import ZExpandable from '@/components/ZExpandable';
-import ZTooltip from '@/components/ZTooltip';
-import ZForm from '@/components/ZForm';
-
-import ZLayout from '@/components/ZLayout';
-import ZCol from '@/components/ZCol';
-import ZCard from '@/components/ZCard';
-
 import iconList from './utils/icon-list';
 import colorList from './utils/color-list';
 
 export default {
-  components: {
-    ZDivider,
-    ZIcon,
-    ZButton,
-    ZLogo,
-    ZLabel,
-
-    ZOverlay,
-    ZInput,
-    ZCheckbox,
-    ZRadio,
-    ZMenu,
-    ZDialog,
-    ZExpandable,
-    ZTooltip,
-    ZForm,
-
-    ZLayout,
-    ZCol,
-    ZCard,
-  },
   data() {
     return {
       iconList,
