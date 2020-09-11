@@ -26,7 +26,6 @@
     right 0
 
 .z-drawer__content
-  padding size(3) size(4)
   height 100%
   max-height 100%
   overflow scroll
