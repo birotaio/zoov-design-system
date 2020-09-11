@@ -189,7 +189,7 @@ The class naming conventions is [BEM](http://getbem.com/naming/) (with scope pre
 
 #### Using ZDS styles
 
-**IMPORTANT NOTE**: For all the HTML elements of your document to be affected by ZDS styles, you need to add to the document container element the class `.zds`.
+**IMPORTANT NOTE**: For all the HTML elements of your document to be affected by ZDS styles, you need to wrap all the content in `ZApp` component or add to the document container element the class `.zds`.
 
 #### Mixins and functions
 
