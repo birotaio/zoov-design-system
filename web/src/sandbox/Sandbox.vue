@@ -132,7 +132,8 @@
         z-divider
         .sandbox__section
           h3 ZDivider
-          p Just see below or above this section.
+          p Just see below or above this section. You can adjust height, and also use it's loading property to make it a linear indeterminate loader:
+          z-divider(loading :height="0.5")
 
         z-divider
         .sandbox__section

@@ -5,6 +5,7 @@
 ### Features
 
   * Can set height of `ZDivider` component
+  * Can use `ZDivider` as linear indeterminate loader
 
 ## 0.2.6 (September 11, 2020)
 
