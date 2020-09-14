@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.7 (Unreleased)
+
+### Features
+
+  * Can set height of `ZDivider` component
+
 ## 0.2.6 (September 11, 2020)
 
 ### Features

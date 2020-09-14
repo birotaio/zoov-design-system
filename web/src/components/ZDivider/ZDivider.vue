@@ -3,6 +3,7 @@
     :ref="data.ref"
     :class="[data.class, data.staticClass, props.light ? 'z-divider--light' : 'z-divider--dark']"
     :style="[data.style, data.staticStyle]"
+    :style="[data.style, data.staticStyle, $options.methods.computeStyle(props)]"
     v-on="listeners"
   )
 </template>
@@ -25,12 +26,23 @@
 </style>
 
 <script>
+import { sizeStyle } from '../../modules/utils';
+
 export default {
   name: 'ZDivider',
   props: {
     light: {
       type: Boolean,
       default: false,
+    },
+    height: {
+      type: [String, Number],
+      default: '1px',
+    },
+  },
+  methods: {
+    computeStyle(props) {
+      return sizeStyle(props.height, { width: false });
     },
   },
 };
