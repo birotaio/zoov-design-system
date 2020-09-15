@@ -2,7 +2,7 @@
   z-app
     .sandbox
       .sandbox__title
-        p.mb-0 Zoov Design System
+        p.mb-0 Zoov Design System – {{ version }}
         h3 Sandbox
 
       //- Generic HTML elements and styles
@@ -485,10 +485,12 @@
 <script>
 import iconList from './utils/icon-list';
 import colorList from './utils/color-list';
+import { version } from '../../package.json';
 
 export default {
   data() {
     return {
+      version,
       iconList,
       colorList,
       buttonSizes: [
