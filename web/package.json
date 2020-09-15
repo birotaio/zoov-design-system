@@ -4,7 +4,7 @@
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build:sandbox": "vue-cli-service build",
     "build:lib": "vue-cli-service build --target lib --name zds --filename index src/index.js",
     "lint": "vue-cli-service lint"
   },

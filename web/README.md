@@ -426,13 +426,16 @@ This will serve `Sandbox.vue` in which you can play with the library:
 yarn dev
 ```
 
+### Build sandbox
+
+```sh
+yarn build:sandbox
+```
+
 ### Compiles and minifies for production
 
 **DISCLAIMER**: not tested.
 
-```sh
-yarn build
-```
 ```sh
 yarn build:lib
 ```

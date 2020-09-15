@@ -7,15 +7,11 @@ IMAGES_REPO_NAME := eu.gcr.io/birota-cloud
 IMAGE_NAME := zoov-design-system
 # grep version from package.json
 IMAGE_VERSION = $(shell cat package.json | grep version | head -1 | awk -F: '{ print $$2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
-# util
-WORKING_DIR = $(shell pwd)
 
 # shortcuts
-
-all: tag publish
+all: tag sandbox publish
 
 # utils
-
 name:
 	@echo NAME: $(IMAGE_NAME)
 
@@ -32,7 +28,46 @@ remove-tag:
 	git tag -d v$(IMAGE_VERSION)
 	git push origin :refs/tags/v$(IMAGE_VERSION) --no-verify
 
-# build app
+###
+### LIBRARY
+###
+
 publish:
 	npm publish --access public
 
+###
+### SANDBOX
+###
+
+sandbox: version build-sandbox image-sandbox push-sandbox
+
+# build sandbox
+build-sandbox:
+	yarn build:sandbox
+
+# build image
+image-sandbox:
+	@echo "### BUILDING IMAGE ###"
+	@echo NAME: $(IMAGE_NAME)
+	@echo VERSION: $(IMAGE_VERSION)
+	docker build -t $(IMAGES_REPO_NAME)/$(IMAGE_NAME):latest -t $(IMAGES_REPO_NAME)/$(IMAGE_NAME):$(IMAGE_VERSION) .
+
+# run and kill and rm
+run-sandbox:
+	docker run -itd --name $(IMAGE_NAME) -p 3000:8080 -e IMAGE_VERSION=$(IMAGE_VERSION) $(IMAGES_REPO_NAME)/$(IMAGE_NAME):$(IMAGE_VERSION)
+
+kill-sandbox:
+	docker kill $(IMAGE_NAME)
+
+rm-sandbox:
+	docker rm $(IMAGE_NAME)
+
+# clean
+clean-sandbox: kill-sandbox rm-sandbox
+
+# push
+push-sandbox:
+	docker push $(IMAGES_REPO_NAME)/$(IMAGE_NAME):$(IMAGE_VERSION); \
+	docker push $(IMAGES_REPO_NAME)/$(IMAGE_NAME):latest
+
+.PHONY: clean-sandbox
