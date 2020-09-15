@@ -1,9 +1,12 @@
 # Changelog
 
-## 0.2.7 (Unreleased)
+## 0.2.7 (September 15, 2020)
 
 ### Features
 
+  * Use auto scroll bars for `ZDrawer`
+  * Few sandbox fixes, add zds version
+  * Add build config for sandbox
   * Can set height of `ZDivider` component
   * Can use `ZDivider` as linear indeterminate loader
 
