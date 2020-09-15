@@ -41,7 +41,7 @@
           .sandbox__flex
             template(v-for="name in iconList")
               .sandbox__icon
-                z-icon {{ name }}
+                z-icon.mr-1 {{ name }}
                 small {{ name }}
 
           h6.mt-1 Sizes and colors
