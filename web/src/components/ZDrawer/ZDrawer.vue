@@ -28,7 +28,7 @@
 .z-drawer__content
   height 100%
   max-height 100%
-  overflow scroll
+  overflow auto
 
 .z-drawer__controls
   width size(6)
