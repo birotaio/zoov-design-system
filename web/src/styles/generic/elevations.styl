@@ -14,11 +14,11 @@ generate-elevations()
           if $color_type == 'base'
             &--{$color_name}
               elevation-color($z, $color_value, true)
-              elevation-shadow-dark($z, true)
+              elevation-shadow-dark($z, $color_value, true)
           else
             &--{$color_name}--{$color_type}
               elevation-color($z, $color_value, true)
-              elevation-shadow-dark($z, true)
+              elevation-shadow-dark($z, $color_value, true)
 
 generate-elevations()
 

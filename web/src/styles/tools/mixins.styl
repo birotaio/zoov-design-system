@@ -45,11 +45,14 @@ elevation-shadow-light($z, $important = false)
     box-shadow: $shadow-umbra-light[$z - 1],
                 $shadow-penumbra-light[$z - 1] important($important)
 
-elevation-shadow-dark($z, $important = false)
+elevation-shadow-dark($z, $color = $colors.neutral.dark-4, $important = false)
   if $z == 'inset'
     box-shadow: $shadow-inset-dark important($important)
   else if $z == 0
     box-shadow: none important($important)
+  else if $z == 1
+    box-shadow: $shadow-umbra-dark[0] alpha($color, 0.08),
+                $shadow-penumbra-dark[0] important($important)
   else
     box-shadow: $shadow-umbra-dark[$z - 1],
                 $shadow-penumbra-dark[$z - 1] important($important)
@@ -64,7 +67,7 @@ elevation-light($z, $important = false)
 
 elevation-dark($z, $important = false)
   elevation-color($z, $colors.neutral.dark-4, $important)
-  elevation-shadow-dark($z, $important)
+  elevation-shadow-dark($z, $colors.neutral.dark-4, $important)
 
 elevation-transition()
   transition: box-shadow $elevation-duration $ease
