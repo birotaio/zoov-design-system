@@ -70,8 +70,8 @@ elevation-dark($z, $important = false)
   elevation-shadow-dark($z, $colors.neutral.dark-4, $important)
 
 elevation-transition()
-  transition: box-shadow $elevation-duration $ease
-  will-change: box-shadow
+  transition: box-shadow $elevation-duration $ease, background-color $elevation-duration $ease
+  will-change: box-shadow, background-color
 
 /*
  * Typography

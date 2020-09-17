@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.9 (September 17, 2020)
+
+### Fixes
+
+  * Make sure elevation-transition affects also background color
+
 ## 0.2.8 (September 17, 2020)
 
 ### Features
