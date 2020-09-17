@@ -1,7 +1,24 @@
 generate-elevations()
-  for $z in (0..24)
+  for $z in 'inset' 0 1 2 3 4 5 6
     .elevation-{$z}
       elevation($z, true)
+
+      &--light
+        elevation-light($z, true)
+
+      &--dark
+        elevation-dark($z, true)
+
+      for $color_name, $color_shade in $colors
+        for $color_type, $color_value in $color_shade
+          if $color_type == 'base'
+            &--{$color_name}
+              elevation-color($z, $color_value, true)
+              elevation-shadow-dark($z, $color_value, true)
+          else
+            &--{$color_name}--{$color_type}
+              elevation-color($z, $color_value, true)
+              elevation-shadow-dark($z, $color_value, true)
 
 generate-elevations()
 
