@@ -6,7 +6,7 @@ IMAGES_REPO_NAME := eu.gcr.io/birota-cloud
 # name
 IMAGE_NAME := zoov-design-system
 # grep version from package.json
-IMAGE_VERSION = $(shell cat package.json | grep version | head -1 | awk -F: '{ print $$2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]')
+IMAGE_VERSION = $(shell cat package.json | grep "\"version\"" | cut -d\" -f4)
 
 # shortcuts
 all: tag sandbox publish
