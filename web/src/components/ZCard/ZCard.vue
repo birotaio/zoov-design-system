@@ -12,7 +12,6 @@
 @import '../../styles/components.styl';
 
 .z-card
-  background-color: $colors.white.base
   border-radius size(1)
   padding size(2)
   elevation(1)

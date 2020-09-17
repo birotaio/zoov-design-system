@@ -27,10 +27,44 @@ text-color($color_value, $important = false)
 /*
  * Elevations
  */
+elevation-color($z, $color = $colors.white.base, $important = false)
+  $shift = $z + 1
+  if $z == 'inset'
+    $shift = 0
+  $r = max(min(red($color) + $red-shift[$shift], 255), 0)
+  $g = max(min(green($color) + $green-shift[$shift], 255), 0)
+  $b = max(min(blue($color) + $blue-shift[$shift], 255), 0)
+  background-color: unquote('rgba(' + $r + ', ' + $g + ', ' + $b + ', 1)') important($important)
+
+elevation-shadow-light($z, $important = false)
+  if $z == 'inset'
+    box-shadow: $shadow-inset-light important($important)
+  else if $z == 0
+    box-shadow: none important($important)
+  else
+    box-shadow: $shadow-umbra-light[$z - 1],
+                $shadow-penumbra-light[$z - 1] important($important)
+
+elevation-shadow-dark($z, $important = false)
+  if $z == 'inset'
+    box-shadow: $shadow-inset-dark important($important)
+  else if $z == 0
+    box-shadow: none important($important)
+  else
+    box-shadow: $shadow-umbra-dark[$z - 1],
+                $shadow-penumbra-dark[$z - 1] important($important)
+
 elevation($z, $important = false)
-  box-shadow: $shadow-umbra[$z],
-              $shadow-penumbra[$z],
-              $shadow-ambient[$z] important($important)
+  // TODO detect dark / light mode
+  elevation-light($z, $important)
+
+elevation-light($z, $important = false)
+  elevation-color($z, $colors.white.base, $important)
+  elevation-shadow-light($z, $important)
+
+elevation-dark($z, $important = false)
+  elevation-color($z, $colors.neutral.dark-4, $important)
+  elevation-shadow-dark($z, $important)
 
 elevation-transition()
   transition: box-shadow $elevation-duration $ease

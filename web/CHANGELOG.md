@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.8 (September 17, 2020)
+
+### Features
+
+  * Implement elevation system according to design system specifications
+
 ## 0.2.7 (September 15, 2020)
 
 ### Features

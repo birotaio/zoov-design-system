@@ -12,6 +12,7 @@
 
         z-divider
         .sandbox__section
+          h3.mb-2 Elements
           h1 Heading 1 (Display 3)
           h2 Heading 2 (Display 2)
           h3 Heading 3 (Display 1)
@@ -28,6 +29,20 @@
           .spacer
           small Small (Caption)
           caption Caption (Caption)
+
+        z-divider
+        .sandbox__section
+          h3.mb-2 Elevations
+          .sandbox__flex
+            .px-3.pt-4
+              p.my-1.py-3(v-for="z in elevations") {{ 'elevation-' + z }}
+
+            template(v-for="name in ['light', 'dark'].concat(colorList)")
+              .ma-0
+                p.my-1.text--center --{{ name }}
+                .px-3.py-1(:class="name === 'light' ? 'neutral--light-4' : name === 'dark' ? 'neutral--dark-4' : name")
+                  template(v-for="z in elevations")
+                    z-card.my-4.px-5.py-3(:class="'elevation-' + z + '--' + name")
 
       //- Stateless components
       //----------------------------------------------------------------------------------------------------
@@ -491,6 +506,7 @@ export default {
   data() {
     return {
       version,
+      elevations: ['inset', 0, 1, 2, 3, 4, 5, 6],
       iconList,
       colorList,
       buttonSizes: [
