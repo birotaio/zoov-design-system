@@ -4,7 +4,10 @@
       z-overlay(v-model="proxy__value" close-on-click)
     .z-drawer(:class="classes" :style="style")
       .z-drawer__controls(v-if="controls" @click="proxy__value = !proxy__value")
-        z-icon.z-drawer__controls__icon(:size="6" :class="{ 'z-drawer__controls__icon--rotate': proxy__value }") arrow-left
+        z-icon.z-drawer__controls__icon(
+          :size="controlsSize"
+          :class="{ 'z-drawer__controls__icon--rotate': proxy__value }"
+        ) arrow-left
       .z-drawer__content
         slot
 </template>
@@ -25,6 +28,17 @@
     left auto
     right 0
 
+  &.z-drawer--small-controls
+    .z-drawer__controls
+      width size(5)
+      height size(5)
+      right size(-5)
+
+      +media-down('xs')
+        width size(4)
+        height size(4)
+        right size(-4)
+
 .z-drawer__content
   height 100%
   max-height 100%
@@ -40,6 +54,11 @@
   top size(4)
   cursor pointer
   box-shadow: 0 4px 8px alpha($colors.neutral.dark-3, 25%)
+
+  +media-down('xs')
+    width size(5)
+    height size(5)
+    right size(-5)
 
 .z-drawer__controls__icon
   transition transform $rotate-duration $ease
@@ -79,6 +98,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    smallControls: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {};
@@ -87,6 +110,7 @@ export default {
     classes() {
       const classes = [];
       if (this.right) classes.push('z-drawer--right');
+      if (this.smallControls) classes.push('z-drawer--small-controls');
       return classes;
     },
     widthStyle() {
@@ -115,6 +139,15 @@ export default {
     },
     moveApp() {
       return this.app && !this.$zds.breakpoint.sm;
+    },
+    controlsSize() {
+      if (this.smallControls) {
+        if (this.$zds.breakpoint.xs) return 4;
+        else return 5;
+      } else {
+        if (this.$zds.breakpoint.xs) return 5;
+        else return 6;
+      }
     },
   },
   watch: {
