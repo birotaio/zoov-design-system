@@ -449,7 +449,7 @@
             z-button(@click="appDrawerOpen = !appDrawerOpen") app drawer
           .sandbox__flex
             z-button(@click="rightDrawerOpen = !rightDrawerOpen") right drawer
-          z-drawer(v-model="appDrawerOpen" app controls)
+          z-drawer(v-model="appDrawerOpen" app controls small-controls)
           z-drawer(v-model="rightDrawerOpen" right)
 
 </template>

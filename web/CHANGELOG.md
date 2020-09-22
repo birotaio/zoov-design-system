@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.10 (September 22, 2020)
+
+### Features
+
+  * Responsive ZDrawer controls and small variant
+
 ## 0.2.9 (September 17, 2020)
 
 ### Fixes
