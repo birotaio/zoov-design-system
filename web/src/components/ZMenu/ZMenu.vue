@@ -55,7 +55,7 @@
       position fixed
 
     &--top
-      top calc(-100% - 4px)
+      bottom calc(100% - 4px)
 
       .z-card
         margin-top 0
