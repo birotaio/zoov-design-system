@@ -66,13 +66,15 @@ export default {
   },
   watch: {
     proxy__value(newVal) {
-      if (isClient) {
-        if (newVal) {
-          window.addEventListener('click', this.onClickWindow);
-        } else {
-          window.removeEventListener('click', this.onClickWindow);
+      setTimeout(() => {
+        if (isClient) {
+          if (newVal) {
+            window.addEventListener('click', this.onClickWindow);
+          } else {
+            window.removeEventListener('click', this.onClickWindow);
+          }
         }
-      }
+      }, 100);
     },
   },
 };
