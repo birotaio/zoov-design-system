@@ -72,6 +72,58 @@
 
         z-divider
         .sandbox__section
+          h3 ZDivider
+          p Just see below or above this section. You can adjust height, and also use it's loading property to make it a linear indeterminate loader:
+          z-divider(loading :height="0.5")
+
+        z-divider
+        .sandbox__section
+          h3 ZLoader
+          .sandbox__flex
+            z-loader(:size="2")
+            z-loader(color="primary")
+            z-loader(:size="4" color="danger")
+            z-loader(circular)
+            z-loader(circular :size="4" color="primary")
+            z-loader(circular :size="6" color="success")
+
+        z-divider
+        .sandbox__section
+          h3 ZLogo
+          .sandbox__flex
+            z-logo
+            z-logo(slanted)
+
+          .sandbox__flex
+            z-logo(outline)
+            z-logo(outline slanted)
+
+
+          .sandbox__flex.mt-1
+            .primary.pa-3.br-1.mb-1
+              z-logo(color="white")
+              z-logo.mt-2(slanted color="white")
+
+            .primary.pa-3.br-1
+              z-logo(outline color="white")
+              z-logo.mt-2(outline slanted color="white")
+
+          .sandbox__flex.mt-2
+            template(v-for="i in [1, 2, 3, 4]")
+              z-logo(:width="4 + 4 * i" outline)
+
+        z-divider
+        .sandbox__section
+          h3 ZLabel
+          z-label Label
+
+      //- Stateful components
+      //----------------------------------------------------------------------------------------------------
+      .sandbox__content
+        h4 Stateful components
+
+                z-divider
+        .sandbox__section
           h3 ZButton
           h6 Shape and sizes
           .sandbox__flex
@@ -143,47 +195,6 @@
           .sandbox__flex
             z-button(disabled) Disabled
             z-button(loading) Loading
-
-        z-divider
-        .sandbox__section
-          h3 ZDivider
-          p Just see below or above this section. You can adjust height, and also use it's loading property to make it a linear indeterminate loader:
-          z-divider(loading :height="0.5")
-
-        z-divider
-        .sandbox__section
-          h3 ZLogo
-          .sandbox__flex
-            z-logo
-            z-logo(slanted)
-
-          .sandbox__flex
-            z-logo(outline)
-            z-logo(outline slanted)
-
-
-          .sandbox__flex.mt-1
-            .primary.pa-3.br-1.mb-1
-              z-logo(color="white")
-              z-logo.mt-2(slanted color="white")
-
-            .primary.pa-3.br-1
-              z-logo(outline color="white")
-              z-logo.mt-2(outline slanted color="white")
-
-          .sandbox__flex.mt-2
-            template(v-for="i in [1, 2, 3, 4]")
-              z-logo(:width="4 + 4 * i" outline)
-
-        z-divider
-        .sandbox__section
-          h3 ZLabel
-          z-label Label
-
-      //- Stateful components
-      //----------------------------------------------------------------------------------------------------
-      .sandbox__content
-        h4 Stateful components
 
         z-divider
         .sandbox__section
