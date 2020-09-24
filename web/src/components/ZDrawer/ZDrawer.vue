@@ -7,7 +7,7 @@
         z-icon.z-drawer__controls__icon(
           :size="controlsSize"
           :class="{ 'z-drawer__controls__icon--rotate': proxy__value }"
-        ) arrow-left
+        ) arrow-right
       .z-drawer__content
         slot
 </template>

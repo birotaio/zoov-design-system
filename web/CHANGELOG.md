@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.12 (September 24, 2020)
+
+### Fixes
+
+  * Fix ZDrawer arrow direction
+
 ## 0.2.11 (September 24, 2020)
 
 ### Features
