@@ -48,10 +48,18 @@ export default {
       type: [String, Number],
       default: 45,
     },
+    absolute: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     contentStyle() {
-      return { 'max-width': sizeStyle(this.width, { height: false }).width };
+      const style = {
+        'max-width': sizeStyle(this.width, { height: false }).width,
+      };
+      if (this.absolute) style.position = 'absolute';
+      return style;
     },
   },
   methods: {
