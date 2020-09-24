@@ -6,10 +6,10 @@
     v-on="listeners"
   )
     template(v-if="props.circular")
-      svg(viewBox="0 0 24 24")
-       path(fill="none" stroke="currentColor" d="M 20 12 A 8 8 0 1 1 13 4")
+      svg(viewBox="0 0 24 24" :class="props.color ? 'text--' + props.color : ''")
+       path.z-loader__circular-path(stroke="currentColor" d="M 20 12 A 8 8 0 1 1 13 4")
     template(v-else v-for="i in [1, 2, 3, 4]")
-      div(:class="props.color || 'primary'")
+      .z-loader__dot(:class="props.color")
 </template>
 
 <style lang="stylus">
@@ -23,6 +23,12 @@
 
 .z-loader--circular svg
   animation z-loader-circular-rotate 1.8s linear infinite
+
+  path.z-loader__circular-path
+    fill none !important
+
+.z-loader__dot
+  background-color currentColor
 
 @keyframes z-loader-circular-rotate
   0%
