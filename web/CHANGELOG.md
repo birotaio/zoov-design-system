@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.11 (September 24, 2020)
+
+### Features
+
+  * Update Sandbox: moved ZButton, add ZLoader
+  * Add `absolute` position of ZDialog
+
+### Fixes
+
+  * Fix `top` positionning of ZMenu
+  * Full support for colors in ZLoader
+  * Delay click listener in ZDialog so that it is not triggered too early
+
 ## 0.2.10 (September 22, 2020)
 
 ### Features
