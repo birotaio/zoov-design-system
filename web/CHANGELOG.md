@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.13 (October 6, 2020)
+
+### Features
+
+  * Add fill transition to ZLogo
+
 ## 0.2.12 (September 24, 2020)
 
 ### Fixes

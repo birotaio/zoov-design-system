@@ -10,6 +10,9 @@
   svg
     flex 1 1 auto
 
+    path
+      transition fill 0.3s
+
   &.z-logo--slanted
     svg
       transform rotate(-17deg)
