@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vue-cli-service serve",
     "build:sandbox": "vue-cli-service build",
-    "build:lib": "vue-cli-service build --target lib --name zds --filename index src/index.js",
+    "build:lib": "vue-cli-service build --target lib --name zds --filename zds@$(cat package.json | grep version | grep -soE '[0-9]+.[0-9]+.[0-9a-zA-Z]+') src/index-lib.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
