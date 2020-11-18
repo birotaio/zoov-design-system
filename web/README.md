@@ -6,7 +6,8 @@ This is a VueJS implementation of [Zoov Design System](https://sketch.cloud/s/Yr
 
 ## Getting started
 
-**DISCLAIMER**: For the moment, the library is not yet built as a standalone library so the only way to use it is to **link direclty with the sources**. For that you will need Webpack (or Nuxt) to process `.vue` files along with stylus and pug preprocessors.
+To benefit from tree-shaking you need to **link direclty with the sources**. For that you will need Webpack (or Nuxt) to process `.vue` files along with stylus and pug preprocessors.
+Otherwize you can build the lib with `yarn build:lib` and use the built JS and CSS files in `/dist`.
 
 ### Installation
 
@@ -433,8 +434,6 @@ yarn build:sandbox
 ```
 
 ### Compiles and minifies for production
-
-**DISCLAIMER**: not tested.
 
 ```sh
 yarn build:lib
