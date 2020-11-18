@@ -20,6 +20,8 @@ export default [
   'bluetooth',
   'bolt',
   'bookmark',
+  'bookmark-plus',
+  'bookmark-minus',
   'briefcase',
   'bus',
   'calendar',
