@@ -51,7 +51,6 @@ export default [
   'external-link',
   'eye-slash',
   'eye',
-  'facebook',
   'faceid',
   'filter',
   'flag',

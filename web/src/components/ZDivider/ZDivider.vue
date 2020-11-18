@@ -23,6 +23,11 @@
   &--light
     background-color: alpha($colors.white.base, 50%)
 
+  &.z-divider--vertical
+    width 1px
+    height auto
+    margin 0 size(1)
+
   &--loading
     &:before
       content ''
@@ -55,9 +60,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    width: {
+      type: [String, Number],
+      default: null,
+    },
     height: {
       type: [String, Number],
-      default: '1px',
+      default: null,
+    },
+    vertical: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {
@@ -65,10 +78,14 @@ export default {
       const classes = [];
       classes.push(props.light ? 'z-divider--light' : 'z-divider--dark');
       if (props.loading) classes.push('z-divider--loading');
+      if (props.vertical) classes.push('z-divider--vertical');
       return classes;
     },
     computeStyle(props) {
-      return sizeStyle(props.height, { width: false });
+      return {
+        ...(props.height ? sizeStyle(props.height, { width: false }) : {}),
+        ...(props.width ? sizeStyle(props.width, { height: false }) : {}),
+      };
     },
   },
 };

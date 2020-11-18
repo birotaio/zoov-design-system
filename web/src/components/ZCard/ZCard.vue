@@ -5,7 +5,12 @@
     :style="[data.style, data.staticStyle]"
     v-on="listeners"
   )
-    slot
+    .z-card__header
+      slot(name="header")
+    .z-card__content
+      slot
+    .z-card__footer
+      slot(name="footer")
 </template>
 
 <style lang="stylus">
@@ -13,18 +18,29 @@
 
 .z-card
   border-radius size(1)
-  padding size(2)
   elevation(1)
+  overflow hidden
   > :last-child
     margin-bottom 0
 
-  &.z-card--dense
+.z-card__content
+  padding size(2)
+
+.z-card__actions
+  padding size(1)
+  display flex
+
+.z-card.z-card--dense
+  .z-card__content
     padding size(1) size(2)
 </style>
 
 <script>
+import ZDivider from '../ZDivider';
+
 export default {
   name: 'ZCard',
+  components: { ZDivider },
   props: {
     dense: {
       type: Boolean,
