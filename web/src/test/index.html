@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ZDS Testing</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script src="../../dist/zds@0.2.12.umd.js"></script>
+    <link rel="stylesheet" href="../../dist/zds@0.2.12.css" />
+  </head>
+  <body>
+    <div id="nav">
+      <z-app>
+        <z-drawer app v-model="menuOpen">Drawer content</z-drawer> <!-- TRY TO REMOVE "app" PROP HERE -->
+        <div class="elevation-2 flex-layout align--center px-1 py-2">
+          <z-button icon ghost class="mr-1" @click="menuOpen = !menuOpen">
+            <z-icon>hamburger</z-icon>
+          </z-button>
+          <z-logo width="10" color="primary" outline></z-logo>
+          <span class="ml-1">Datacenter</span>
+        </div>
+      </z-app>
+    </div>
+    <script>
+      new Vue({
+        el: '#nav',
+        data() {
+          return {
+            menuOpen: false,
+          };
+        },
+      });
+    </script>
+
+    <div id="home">
+      <z-app>
+        <h1>Toto</h1>
+
+        <z-button @click="coucou" id="btn">{{ text }}</z-button>
+
+        <z-button icon>
+          <z-icon>bell</z-icon>
+        </z-button>
+
+        <z-card class="pa-0 elevation-2 elevation-4--hover elevation-transition">
+          <div slot="header" class="primary pa-2">test</div>
+          <div>Content</div>
+          <template slot="footer">
+            <z-divider></z-divider>
+            <div class="flex-layout px-1 pb-1">
+              <z-button ghost color="danger">cancel</z-button>
+              <z-spacer></z-spacer>
+              <z-divider vertical></z-divider>
+              <z-button ghost icon slot="activator">
+                <z-icon>bookmark</z-icon>
+              </z-button>
+            </div>
+          </template>
+        </z-card>
+      </z-app>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#home',
+        data() {
+          return {
+            text: 'Hello, World',
+          };
+        },
+        methods: {
+          coucou() {
+            console.log('coucou');
+          },
+        },
+        mounted() {
+          // jquery
+          $('#btn').on('click', () => console.log('BY JQUERY'));
+        },
+      });
+    </script>
+
+    <div class="zds">
+      <div id="outside">CLICKME</div>
+    </div>
+
+    <!-- init other -->
+    <script>
+      $('#outside').on('click', () => console.log('outside'));
+    </script>
+  </body>
+</html>
