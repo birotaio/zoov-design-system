@@ -25,3 +25,4 @@ export { ZSection } from './ZSection';
 export { ZImageSequence } from './ZImageSequence';
 export { ZLottie } from './ZLottie';
 export { ZDrawer } from './ZDrawer';
+export { ZSpacer } from './ZSpacer';
