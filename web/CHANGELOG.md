@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.2.15 (November 18, 2020)
+
+### Features
+
+  * Update bookmark icon and add bookmark-plus & bookmark-minus
+
+## 0.2.14 (November 18, 2020)
+
+### Features
+
+  * Build lib for the browser
+  * Add test html file to test built lib
+  * Improve elevations with hover & focus modifiers
+  * Add ZSpacer component (shorcuts .spacer class)
+  * Add "vertical" option for ZDivider
+  * Improve ZCard with header and footer slots
+
 ## 0.2.13 (October 6, 2020)
 
 ### Features
