@@ -151,7 +151,7 @@ export default {
                 ? this.$refs.content.querySelectorAll(':focus')
                 : [];
             }
-          } catch {
+          } catch(e) {
             /* nothing */
           }
           resolve(!!focusedChildren.length);

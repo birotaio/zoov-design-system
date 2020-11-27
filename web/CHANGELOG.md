@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.16 (November 27, 2020)
+
+### Fix
+
+  * Fix catch statement without error that could not compile in old versions of webpack
+
 ## 0.2.15 (November 18, 2020)
 
 ### Features
