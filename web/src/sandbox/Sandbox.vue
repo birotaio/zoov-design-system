@@ -196,12 +196,12 @@
                 z-icon traffic-light
               z-button(icon outline color="primary")
                 z-icon traffic-light
-              z-button(outline color="alt-blue")
+              z-button(outline color="tertiary")
                 z-icon traffic-light
                 span click me
-              z-button(icon ghost color="alt-blue")
+              z-button(icon ghost color="tertiary")
                 z-icon birdie
-              z-button(icon ghost color="alt-blue" hover-color="info")
+              z-button(icon ghost color="tertiary" hover-color="info")
                 z-icon birdie
 
             h6 States

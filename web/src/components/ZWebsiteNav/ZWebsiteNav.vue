@@ -230,11 +230,14 @@ html:not(.no-script)
     text-decoration none
 
 .z-website-nav__link--group
-  h6.z-website-nav__link:hover
-    color: $colors.primary.base
-    transition color 0.2s ease
+  h6.z-website-nav__link
+    margin-right 0
 
-.z-website-nav__link, .zds h6.z-website-nav__link
+    &:hover
+      color: $colors.primary.base
+      transition color 0.2s ease
+
+.z-website-nav__link, h6.z-website-nav__link
   margin-right size(4)
   white-space nowrap
   position relative
