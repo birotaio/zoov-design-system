@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0 (December 15, 2020)
+
+### Features
+
+  * Update color design tokens: alt-blue -> tertiary, alt-purple -> quaternary
+  * Add ZWebsiteNav component (based on corporate website component)
+  * Add ZLangPicker component
+  * Add ZLink component which contextually renders `nuxt-link`, `router-link` or `a`
+  * Use ZLink component to wrap ZButton, add `to` option
+  * Improve ZIcon component with flag & self-color options, add fr and en flag icons
+
 ## 0.2.16 (November 27, 2020)
 
 ### Fix
