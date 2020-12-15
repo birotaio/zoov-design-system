@@ -252,12 +252,12 @@ neutral
 // from light-2 to dark-2
 primary
 secondary
+tertiary
+quaternary
 success
 info
 warning
 danger
-alt-blue
-alt-purple
 // only 'base'
 white
 black

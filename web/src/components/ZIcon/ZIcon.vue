@@ -18,8 +18,11 @@
     flex-grow 1
 
   path
-    fill currentColor
     transition fill 0.2s ease
+
+  &:not(.z-icon--self-color)
+    path
+      fill currentColor
 </style>
 
 <script>
@@ -39,6 +42,10 @@ export default {
       type: String,
       default: '',
     },
+    selfColor: {
+      type: Boolean,
+      default: false,
+    },
     src: {
       type: String,
       default: null,
@@ -46,6 +53,10 @@ export default {
     markup: {
       type: String,
       default: null,
+    },
+    flag: {
+      type: Boolean,
+      default: false,
     },
   },
 
@@ -56,6 +67,9 @@ export default {
     // Set color
     if (props.color) {
       data.class = (data.class || []).concat('text--' + props.color);
+    }
+    if (props.selfColor || props.flag) {
+      data.class = (data.class || []).concat('z-icon--self-color');
     }
 
     // Set size if providen. If size has units, use if, otherwise use it as multiple of
@@ -90,9 +104,15 @@ export default {
         if (iconName) {
           // All the svg files from the the directory will be added to the bundle
           // TODO: For better tree-shaking, declare an icon file per icon...
-          svgMarkup = require('../../assets/icons/icon-24x24-' +
-            iconName +
-            '.svg');
+          if (props.flag) {
+            svgMarkup = require('../../assets/flags/flag-24x24-' +
+              iconName +
+              '.svg');
+          } else {
+            svgMarkup = require('../../assets/icons/icon-24x24-' +
+              iconName +
+              '.svg');
+          }
         }
       }
       // Pass svg markup to template

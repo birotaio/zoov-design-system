@@ -2,10 +2,10 @@ export default [
   'neutral',
   'primary',
   'secondary',
+  'tertiary',
+  'quaternary',
   'success',
   'info',
   'warning',
   'danger',
-  'alt-blue',
-  'alt-purple',
 ];

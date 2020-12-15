@@ -1,7 +1,8 @@
 <template lang="pug">
   component.z-button(
     ref="button"
-    :is="href && !submit ? 'a' : 'button'"
+    :is="(to || href) && !submit ? 'z-link' : 'button'"
+    :to="to"
     :href="href"
     :target="target"
     :rel="rel"
@@ -237,13 +238,14 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
 </style>
 
 <script>
+import ZLink from '../../components/ZLink';
 import ZLoader from '../../components/ZLoader';
 
 const sizes = ['giant', 'large', 'small', 'tiny'];
 
 export default {
   name: 'ZButton',
-  components: { ZLoader },
+  components: { ZLink, ZLoader },
   props: {
     color: {
       type: String,
@@ -306,6 +308,10 @@ export default {
       default: false,
     },
     href: {
+      type: String,
+      default: null,
+    },
+    to: {
       type: String,
       default: null,
     },
