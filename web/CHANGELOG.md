@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 (December 15, 2020)
+## 0.3.1 (December 15, 2020)
 
 ### Features
 
