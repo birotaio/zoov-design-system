@@ -34,7 +34,7 @@ export default {
   name: 'ZLink',
   props: {
     to: {
-      type: String,
+      type: [Object, String],
       default: null,
     },
     href: {
@@ -67,7 +67,14 @@ export default {
             activeClass: 'z-link--active',
             exactActiveClass: 'z-link--exact-active',
           }
-        : { href: this.to || this.href };
+        : { href: this.computedHref };
+    },
+    computedHref() {
+      return this.to
+        ? typeof this.to === 'string'
+          ? this.to
+          : this.to.path
+        : this.href;
     },
     classes() {
       const classes = [];
