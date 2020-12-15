@@ -71,6 +71,11 @@
               template(v-for="name in colorList")
                 z-icon(:color="name") {{ iconList[Math.floor(Math.random() * iconList.length)] }}
 
+            h6.mt-1 Flags
+              .sandbox__flex
+                z-icon(:size="2" flag) fr
+                z-icon(:size="2" flag) en
+
           z-divider
           .sandbox__section
             h3 ZDivider
