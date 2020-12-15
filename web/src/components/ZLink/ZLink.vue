@@ -54,7 +54,6 @@ export default {
       return this.to && this.$router;
     },
     component() {
-      console.log('HU', this.isRouterLink);
       return this.isNuxtLink
         ? 'nuxt-link'
         : this.isRouterLink
