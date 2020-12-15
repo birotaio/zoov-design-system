@@ -54,6 +54,10 @@ export default {
       type: String,
       default: null,
     },
+    flag: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   render(h, ctx) {
@@ -64,7 +68,7 @@ export default {
     if (props.color) {
       data.class = (data.class || []).concat('text--' + props.color);
     }
-    if (props.selfColor) {
+    if (props.selfColor || props.flag) {
       data.class = (data.class || []).concat('z-icon--self-color');
     }
 
@@ -100,9 +104,15 @@ export default {
         if (iconName) {
           // All the svg files from the the directory will be added to the bundle
           // TODO: For better tree-shaking, declare an icon file per icon...
-          svgMarkup = require('../../assets/icons/icon-24x24-' +
-            iconName +
-            '.svg');
+          if (props.flag) {
+            svgMarkup = require('../../assets/flags/flag-24x24-' +
+              iconName +
+              '.svg');
+          } else {
+            svgMarkup = require('../../assets/icons/icon-24x24-' +
+              iconName +
+              '.svg');
+          }
         }
       }
       // Pass svg markup to template
