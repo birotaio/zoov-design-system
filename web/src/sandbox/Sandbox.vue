@@ -1,6 +1,13 @@
 <template lang="pug">
   .sandbox__wrapper
     z-app
+      z-website-nav(
+        :lang="lang"
+        :lang-items="navLangItems"
+        :items="navItems"
+        :cta="navCta"
+        logo-href="/"
+      )
       .sandbox
         .sandbox__title
           p.mb-0 Zoov Design System – {{ version }}
@@ -478,7 +485,7 @@
               z-button(@click="appDrawerOpen = !appDrawerOpen") app drawer
             .sandbox__flex
               z-button(@click="rightDrawerOpen = !rightDrawerOpen") right drawer
-            z-drawer(v-model="appDrawerOpen" app controls small-controls)
+            z-drawer(v-model="appDrawerOpen" app)
             z-drawer(v-model="rightDrawerOpen" right)
 
     .sandbox__testing(v-if="isDev")
@@ -494,7 +501,7 @@
 @import '../styles/index.styl'
 
 .sandbox
-  padding 16px
+  padding 96px 16px 16px
   background-color #eee
 
   &__title
@@ -565,6 +572,25 @@ export default {
       appDrawerOpen: false,
       rightDrawerOpen: false,
       isDev,
+      // nav
+      lang: 'fr',
+      navLangItems: [
+        { lang: 'fr', text: 'French', to: '/' },
+        { lang: 'en', text: 'English', to: '/' },
+      ],
+      navItems: [
+        { to: '/', text: 'Link 1' },
+        {
+          text: 'Links group',
+          noscriptHref: '#',
+          group: [
+            { href: '/', text: 'Link 2' },
+            { href: '/', text: 'Link 3' },
+            { href: '/', text: 'Link 4' },
+          ],
+        },
+      ],
+      navCta: { href: '/', text: 'CTA' },
     };
   },
   watch: {
