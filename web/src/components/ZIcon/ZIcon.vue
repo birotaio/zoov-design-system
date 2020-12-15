@@ -18,8 +18,11 @@
     flex-grow 1
 
   path
-    fill currentColor
     transition fill 0.2s ease
+
+  &:not(.z-icon--self-color)
+    path
+      fill currentColor
 </style>
 
 <script>
@@ -39,6 +42,10 @@ export default {
       type: String,
       default: '',
     },
+    selfColor: {
+      type: Boolean,
+      default: false,
+    },
     src: {
       type: String,
       default: null,
@@ -56,6 +63,9 @@ export default {
     // Set color
     if (props.color) {
       data.class = (data.class || []).concat('text--' + props.color);
+    }
+    if (props.selfColor) {
+      data.class = (data.class || []).concat('z-icon--self-color');
     }
 
     // Set size if providen. If size has units, use if, otherwise use it as multiple of
