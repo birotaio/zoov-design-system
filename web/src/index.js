@@ -1,4 +1,5 @@
 import { throttle, isClient, getClientWidth } from './modules/utils';
+import theme from './theme';
 import directives from './directives';
 import './styles/index.styl';
 
@@ -13,6 +14,11 @@ export default {
      */
     const zds = {};
     Vue.util.defineReactive(zds, 'client', isClient);
+
+    /*
+     * Theme
+     */
+    Vue.util.defineReactive(zds, 'theme', theme);
 
     /*
      * Breakpoint watcher
