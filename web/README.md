@@ -207,7 +207,7 @@ Media queries mixins with predefined behaviour and breakpoints can be called as:
 
 - Rules applied for all window size greater or equal than `$breakpoint_name`:
 ```stylus
-+media-up($breakpoint_name)
++media-down($breakpoint_name)
 ```
 
 - Rules applied for all window size greater or equal than `$breakpoint_name`:
