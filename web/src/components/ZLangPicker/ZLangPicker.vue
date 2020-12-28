@@ -7,7 +7,7 @@
 
     template(v-for="(item, i) in items")
       z-divider.my-0(v-if="i !== 0")
-      z-link(:to="item.to" :href="item.href")
+      z-link(:to="item.to" :href="item.href" :hreflang="item.lang")
         h6.z-lang-picker__lang-link {{ item.text }}
 </template>
 

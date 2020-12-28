@@ -1,5 +1,5 @@
 <template lang="pug">
-  component.z-link(:is="component" :class="classes" v-bind="props")
+  component.z-link(:is="component" :class="classes" :hreflang="hreflang" v-bind="props")
     slot
 </template>
 
@@ -44,6 +44,10 @@ export default {
     inline: {
       type: Boolean,
       default: false,
+    },
+    hreflang: {
+      type: String,
+      default: null,
     },
   },
   computed: {
