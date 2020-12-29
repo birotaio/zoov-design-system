@@ -4,11 +4,20 @@
 
 ### Features
 
+  * Add ZTag component
   * Read stylus color file and expose colors theme to JS $zds instance
   * Support for hreflang in ZLink and ZLangPicker
+  * Update sandbox:
+    - use colors from exposed theme
+    - add background and text colors examples
+    - update elevation example
+    - update checkbox example
+    - add ZLink example
+    - add ZTag example
 
 ### Fix
 
+  * Fix ZCheckbox style for white color
   * Fix sizes of icons in ZButtons
 
 ## 0.3.1 (December 15, 2020)
