@@ -52,6 +52,11 @@
 
           slot(name="links-append")
 
+          template(v-if="searchButton")
+            z-divider(vertical :height="4")
+            z-button.ml-1.mr-2(icon ghost @click="$emit('click-search')")
+              z-icon search
+
           z-lang-picker.z-website-nav__link(
             v-if="langItems"
             :lang="lang"
@@ -99,6 +104,14 @@
 
         .z-website-nav__link(:style="transitionDelayStyle(flattenItems.length + 2)")
           slot(name="lang-append")
+
+        .z-website-nav__link(
+          v-if="searchButton"
+          :style="transitionDelayStyle(flattenItems.length + 3)"
+        )
+          z-divider
+          z-button.ml-neg-1(icon ghost @click="$emit('click-search')")
+            z-icon search
 
         z-layout.py-2(v-if="cta" justify="center")
           z-button.z-website-nav__button--mobile(
@@ -384,6 +397,10 @@ export default {
     logoHref: {
       type: String,
       default: '/',
+    },
+    searchButton: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
