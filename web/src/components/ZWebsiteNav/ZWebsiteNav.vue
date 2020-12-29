@@ -75,6 +75,8 @@
             component(v-else :is="cta.component" v-bind="cta.props")
 
       .z-website-nav__content--mobile(:class="mobileClass")
+
+        .z-website-nav__link(:style="transitionDelayStyle(-1)")
           slot(name="links-prepend")
 
         .z-website-nav__mobile-link(v-for="(item, i) in flattenItems")
@@ -83,15 +85,19 @@
             :href="item.href"
             :to="item.to"
           )
-            h6.z-website-nav__link {{ item.text }}
+            h6.z-website-nav__link(:style="transitionDelayStyle(i)") {{ item.text }}
+
+        .z-website-nav__link(:style="transitionDelayStyle(flattenItems.length)")
           slot(name="links-append")
 
         z-lang-picker.z-website-nav__link(
           v-if="langItems"
           :lang="lang"
           :items="langItems"
+          :style="transitionDelayStyle(flattenItems.length + 1)"
         )
 
+        .z-website-nav__link(:style="transitionDelayStyle(flattenItems.length + 2)")
           slot(name="lang-append")
 
         z-layout.py-2(v-if="cta" justify="center")
@@ -300,17 +306,6 @@ html:not(.no-script)
       .z-website-nav__button--mobile
         transform scale(1)
         transition-delay 0.12s
-
-      for $n in 0 1 2 3 4
-        .z-website-nav__mobile-link:nth-child({$n + 1})
-          .z-website-nav__link
-            $delay = $n * 0.03s + 0.25
-            transition-delay $delay
-
-        .z-lang-picker.z-website-nav__link
-          $delay = 4 * 0.03s + 0.25
-          transition-delay $delay
-
 
 @keyframes slide-y
   0%
@@ -523,6 +518,9 @@ export default {
         //
         this.mobileMenuAnimating = false;
       }
+    },
+    transitionDelayStyle(index) {
+      return { 'transition-delay': (index * 0.03 + 0.25) + 's' }
     },
   },
   watch: {
