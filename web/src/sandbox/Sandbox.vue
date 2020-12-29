@@ -40,6 +40,23 @@
 
           z-divider
           .sandbox__section
+            h3.mb-2 Colors
+            h4 Background
+            z-layout(:gutter="2")
+              z-col(v-for="(colors, i) in chunkedColors" :key="i" xxs12 xs6 sm4 md3 lg2)
+                template(v-for="color in colors")
+                  div
+                    span {{ color }}
+                    div(:class="color" :style="{ width: '48px', height: '24px' }")
+
+            h4.mt-2 Text
+            z-layout(:gutter="2")
+              z-col(v-for="(colors, i) in chunkedColors" :key="i" xxs12 xs6 sm4 md3 lg2)
+                template(v-for="color in colors")
+                  div(:class="'text--' + color") {{ 'text--' + color }}
+
+          z-divider
+          .sandbox__section
             h3.mb-2 Elevations
             .sandbox__flex
               .px-3.pt-4
