@@ -1,7 +1,10 @@
 <template lang="pug">
   .z-checkbox(:class="classes")
-    .z-checkbox__input(:class="'text--' + color")
-      .z-checkbox__icon(v-html="iconMarkup")
+    .z-checkbox__input(:class="color === 'white' ? 'text--neutral--light-3' : 'text--' + color")
+      .z-checkbox__icon(
+        v-html="iconMarkup"
+        :class="color === 'white' ? 'z-checkbox__icon--dark' : ''"
+      )
       .z-checkbox__icon--overlay
       input(
         ref="checkbox"
@@ -55,9 +58,15 @@
     svg
       position absolute
       width 10px
+      height 10px
 
       path
         fill #fff !important
+
+    &.z-checkbox__icon--dark
+      svg
+        path
+          fill: $colors.neutral.dark-4 !important
 
   .z-checkbox__icon--overlay
     position absolute
