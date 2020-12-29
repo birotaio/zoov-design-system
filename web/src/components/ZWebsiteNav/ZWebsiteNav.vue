@@ -18,6 +18,9 @@
         .spacer
 
         .z-website-nav__links.sm-and-up
+
+          slot(name="links-prepend")
+
           template(v-for="(item, i) in items")
             z-link(
               v-if="!item.group"
@@ -47,12 +50,17 @@
                 )
                   h6.z-website-nav__link {{ subItem.text }}
 
+          slot(name="links-append")
+
           z-lang-picker.z-website-nav__link(
             v-if="langItems"
             :lang="lang"
             :items="langItems"
+            :right="langMenuRight"
             hover
           )
+
+          slot(name="lang-append")
 
           template(v-if="cta")
             z-button(
@@ -67,6 +75,8 @@
             component(v-else :is="cta.component" v-bind="cta.props")
 
       .z-website-nav__content--mobile(:class="mobileClass")
+          slot(name="links-prepend")
+
         .z-website-nav__mobile-link(v-for="(item, i) in flattenItems")
           z-link(
             :key="'link-'+i"
@@ -74,12 +84,15 @@
             :to="item.to"
           )
             h6.z-website-nav__link {{ item.text }}
+          slot(name="links-append")
 
         z-lang-picker.z-website-nav__link(
           v-if="langItems"
           :lang="lang"
           :items="langItems"
         )
+
+          slot(name="lang-append")
 
         z-layout.py-2(v-if="cta" justify="center")
           z-button.z-website-nav__button--mobile(
