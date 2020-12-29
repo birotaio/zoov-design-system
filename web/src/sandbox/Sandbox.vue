@@ -147,6 +147,18 @@
             h3 ZLabel
             z-label Label
 
+          z-divider
+          .sandbox__section
+            h3 ZTag
+            .sandbox__flex.neutral--dark-3.pa-1
+              z-tag Default
+              template(v-for="color in colorList")
+                z-tag(:color="color") {{ color }}
+            .sandbox__flex.pa-1
+              z-tag Default
+              template(v-for="color in colorList")
+                z-tag(:color="color") {{ color }}
+
         //- Stateful components
         //----------------------------------------------------------------------------------------------------
         .sandbox__content
@@ -390,7 +402,6 @@
                   span Slot toggle
                   z-icon hamburger
               p Aute aliqua ullamco magna anim. Eu eiusmod nisi ea nulla quis Lorem laborum et dolore eiusmod consequat. Do nulla est incididunt proident labore culpa pariatur proident eiusmod.
-
 
           //- TODO: complete this
           z-divider
