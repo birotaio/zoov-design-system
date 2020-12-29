@@ -365,6 +365,10 @@ export default {
       type: Array,
       default: null,
     },
+    langMenuRight: {
+      type: Boolean,
+      default: false,
+    },
     items: {
       type: Array,
       default: () => [],
