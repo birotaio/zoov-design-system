@@ -44,7 +44,7 @@
       outline 0
 
   &__content
-    min-width size(24)
+    min-width size(20)
     position absolute
     z-index 1
 
