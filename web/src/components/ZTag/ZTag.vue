@@ -31,6 +31,8 @@
     opacity 0.1
 
 .z-tag__content
+  display flex
+  place-content center
   position relative
   z-index 1
 </style>
