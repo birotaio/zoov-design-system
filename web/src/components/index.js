@@ -29,3 +29,4 @@ export { ZSpacer } from './ZSpacer';
 export { ZLangPicker } from './ZLangPicker';
 export { ZWebsiteNav } from './ZWebsiteNav';
 export { ZLink } from './ZLink';
+export { ZTag } from './ZTag';
