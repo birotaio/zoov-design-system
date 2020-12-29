@@ -7,7 +7,17 @@
         :items="navItems"
         :cta="navCta"
         logo-href="/"
+        lang-menu-right
       )
+        template(v-if="!$zds.breakpoint.sm" slot="links-append")
+          z-divider(vertical :height="4")
+          z-button.ml-1.mr-2(icon ghost)
+            z-icon search
+
+        template(v-else slot="lang-append")
+          z-divider
+          z-button.ml-neg-1(icon ghost)
+            z-icon search
       .sandbox
         .sandbox__title
           p.mb-0 Zoov Design System – {{ version }}
