@@ -1,5 +1,16 @@
 # Changelog
 
+## dev (Unreleased)
+
+### Features
+
+  * Read stylus color file and expose colors theme to JS $zds instance
+  * Support for hreflang in ZLink and ZLangPicker
+
+### Fix
+
+  * Fix sizes of icons in ZButtons
+
 ## 0.3.1 (December 15, 2020)
 
 ### Features

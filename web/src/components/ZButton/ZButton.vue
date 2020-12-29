@@ -118,7 +118,7 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
 
   // icon inside
   .z-icon
-    square(2.5)
+    square(3)
 
   // icon positionning
   &:not(.z-button--icon)
@@ -160,7 +160,7 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
     font-size size(2.25)
 
     .z-icon
-      square(3)
+      square(3.25)
 
     &.z-button--left
       margin-left -1 * size(3)
@@ -173,7 +173,7 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
     font-size size(1.5)
 
     .z-icon
-      square(2.25)
+      square(2.5)
 
     &:not(.z-button--icon)
       .z-icon
