@@ -1,6 +1,6 @@
 # Changelog
 
-## dev (Unreleased)
+## 0.4.0 (December 29, 2020)
 
 ### Features
 
