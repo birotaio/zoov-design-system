@@ -433,6 +433,12 @@
                     span activate on click
                 span Tooltip
 
+          z-divider
+          .sandbox__section
+            h3 ZLink
+            .sandbox__flex
+              z-link(href="https://www.google.fr" target="_blank") Google
+
         //- Layout & structural components
         //----------------------------------------------------------------------------------------------------
         .sandbox__content
