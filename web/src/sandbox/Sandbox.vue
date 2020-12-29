@@ -7,6 +7,9 @@
         :items="navItems"
         :cta="navCta"
         logo-href="/"
+        lang-menu-right
+        search-button
+        @click-search="clickSearchHandler"
       )
       .sandbox
         .sandbox__title
@@ -40,17 +43,34 @@
 
           z-divider
           .sandbox__section
+            h3.mb-2 Colors
+            h4 Background
+            z-layout(:gutter="2")
+              z-col(v-for="(colors, i) in chunkedColors" :key="i" xxs12 xs6 sm4 md3 lg2)
+                template(v-for="color in colors")
+                  div
+                    span {{ color }}
+                    div(:class="color" :style="{ width: '48px', height: '24px' }")
+
+            h4.mt-2 Text
+            z-layout(:gutter="2")
+              z-col(v-for="(colors, i) in chunkedColors" :key="i" xxs12 xs6 sm4 md3 lg2)
+                template(v-for="color in colors")
+                  div(:class="'text--' + color") {{ 'text--' + color }}
+
+          z-divider
+          .sandbox__section
             h3.mb-2 Elevations
             .sandbox__flex
               .px-3.pt-4
-                p.my-1.py-3(v-for="z in elevations") {{ 'elevation-' + z }}
+                p.my-2.py-2(v-for="z in elevations") {{ 'elevation-' + z }}
 
               template(v-for="name in ['light', 'dark'].concat(colorList)")
                 .ma-0
                   p.my-1.text--center --{{ name }}
-                  .px-3.py-1(:class="name === 'light' ? 'neutral--light-4' : name === 'dark' ? 'neutral--dark-4' : name")
+                  .px-2.py-1(:class="name === 'light' ? 'neutral--light-4' : name === 'dark' ? 'neutral--dark-4' : name")
                     template(v-for="z in elevations")
-                      z-card.my-4.px-5.py-3(:class="'elevation-' + z + '--' + name")
+                      z-card.my-3.px-3.py-1(:class="'elevation-' + z + '--' + name")
 
         //- Stateless components
         //----------------------------------------------------------------------------------------------------
@@ -129,6 +149,18 @@
           .sandbox__section
             h3 ZLabel
             z-label Label
+
+          z-divider
+          .sandbox__section
+            h3 ZTag
+            .sandbox__flex.neutral--dark-3.pa-1
+              z-tag Default
+              template(v-for="color in colorList")
+                z-tag(:color="color") {{ color }}
+            .sandbox__flex.pa-1
+              z-tag Default
+              template(v-for="color in colorList")
+                z-tag(:color="color") {{ color }}
 
         //- Stateful components
         //----------------------------------------------------------------------------------------------------
@@ -374,7 +406,6 @@
                   z-icon hamburger
               p Aute aliqua ullamco magna anim. Eu eiusmod nisi ea nulla quis Lorem laborum et dolore eiusmod consequat. Do nulla est incididunt proident labore culpa pariatur proident eiusmod.
 
-
           //- TODO: complete this
           z-divider
           .sandbox__section
@@ -415,6 +446,12 @@
                   z-button(@click="activate")
                     span activate on click
                 span Tooltip
+
+          z-divider
+          .sandbox__section
+            h3 ZLink
+            .sandbox__flex
+              z-link(href="https://www.google.fr" target="_blank") Google
 
         //- Layout & structural components
         //----------------------------------------------------------------------------------------------------
@@ -542,7 +579,7 @@
 
 <script>
 import iconList from './utils/icon-list';
-import colorList from './utils/color-list';
+import chunkArray from './utils/chunk-array';
 import { version } from '../../package.json';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -553,7 +590,6 @@ export default {
       version,
       elevations: ['inset', 0, 1, 2, 3, 4, 5, 6],
       iconList,
-      colorList,
       buttonSizes: [
         { giant: true },
         { large: true },
@@ -593,13 +629,31 @@ export default {
       navCta: { href: '/', text: 'CTA' },
     };
   },
-  watch: {
-    // checkboxValue() {
-    //   console.log(this.checkboxValue);
-    // },
-    // radios1() {
-    //   console.log(this.radios1);
-    // },
+  computed: {
+    colorList() {
+      return Object.keys(this.$zds.theme);
+    },
+    allColors() {
+      return Object.entries(this.$zds.theme).reduce(
+        (colors, [colorName, colorShades]) => {
+          return colors.concat(
+            Object.keys(colorShades).map(
+              shadeName =>
+                colorName + (shadeName !== 'base' ? '--' + shadeName : '')
+            )
+          );
+        },
+        []
+      );
+    },
+    chunkedColors() {
+      return chunkArray(this.allColors, Math.floor(this.allColors.length / 6));
+    },
+  },
+  methods: {
+    clickSearchHandler() {
+      console.log('clicked search');
+    },
   },
 };
 </script>

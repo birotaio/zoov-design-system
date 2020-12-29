@@ -18,6 +18,9 @@
         .spacer
 
         .z-website-nav__links.sm-and-up
+
+          slot(name="links-prepend")
+
           template(v-for="(item, i) in items")
             z-link(
               v-if="!item.group"
@@ -47,12 +50,22 @@
                 )
                   h6.z-website-nav__link {{ subItem.text }}
 
+          slot(name="links-append")
+
+          template(v-if="searchButton")
+            z-divider(vertical :height="4")
+            z-button.ml-1.mr-2(icon ghost @click="$emit('click-search')")
+              z-icon search
+
           z-lang-picker.z-website-nav__link(
             v-if="langItems"
             :lang="lang"
             :items="langItems"
+            :right="langMenuRight"
             hover
           )
+
+          slot(name="lang-append")
 
           template(v-if="cta")
             z-button(
@@ -67,19 +80,38 @@
             component(v-else :is="cta.component" v-bind="cta.props")
 
       .z-website-nav__content--mobile(:class="mobileClass")
+
+        .z-website-nav__link(:style="transitionDelayStyle(-1)")
+          slot(name="links-prepend")
+
         .z-website-nav__mobile-link(v-for="(item, i) in flattenItems")
           z-link(
             :key="'link-'+i"
             :href="item.href"
             :to="item.to"
           )
-            h6.z-website-nav__link {{ item.text }}
+            h6.z-website-nav__link(:style="transitionDelayStyle(i)") {{ item.text }}
+
+        .z-website-nav__link(:style="transitionDelayStyle(flattenItems.length)")
+          slot(name="links-append")
 
         z-lang-picker.z-website-nav__link(
           v-if="langItems"
           :lang="lang"
           :items="langItems"
+          :style="transitionDelayStyle(flattenItems.length + 1)"
         )
+
+        .z-website-nav__link(:style="transitionDelayStyle(flattenItems.length + 2)")
+          slot(name="lang-append")
+
+        .z-website-nav__link(
+          v-if="searchButton"
+          :style="transitionDelayStyle(flattenItems.length + 3)"
+        )
+          z-divider
+          z-button.ml-neg-1(icon ghost @click="$emit('click-search')")
+            z-icon search
 
         z-layout.py-2(v-if="cta" justify="center")
           z-button.z-website-nav__button--mobile(
@@ -122,7 +154,6 @@ $easing-4 := cubic-bezier(0.76, 0.00, 0.24, 1.00)
 .z-website-nav
   position absolute
   width 100%
-  elevation-transition()
 
 .z-website-nav--elevation.z-website-nav--not-faded,
 .no-script .z-website-nav--elevation.z-website-nav--faded
@@ -288,17 +319,6 @@ html:not(.no-script)
         transform scale(1)
         transition-delay 0.12s
 
-      for $n in 0 1 2 3 4
-        .z-website-nav__mobile-link:nth-child({$n + 1})
-          .z-website-nav__link
-            $delay = $n * 0.03s + 0.25
-            transition-delay $delay
-
-        .z-lang-picker.z-website-nav__link
-          $delay = 4 * 0.03s + 0.25
-          transition-delay $delay
-
-
 @keyframes slide-y
   0%
     height 0%
@@ -358,6 +378,10 @@ export default {
       type: Array,
       default: null,
     },
+    langMenuRight: {
+      type: Boolean,
+      default: false,
+    },
     items: {
       type: Array,
       default: () => [],
@@ -373,6 +397,10 @@ export default {
     logoHref: {
       type: String,
       default: '/',
+    },
+    searchButton: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -485,9 +513,12 @@ export default {
         this.mobileMenuOpen = true;
         await sleep(menuDuration);
         this.curtainClass = null;
-        this.navClass = 'z-website-nav--elevation elevation-transition';
+        this.navClass = 'z-website-nav--elevation overflow--hidden elevation-transition';
         //
         this.mobileMenuAnimating = false;
+        // reset overflow after a while
+        await sleep(menuDuration);
+        this.navClass = 'z-website-nav--elevation elevation-transition';
       } else {
         this.mobileMenuAnimating = true;
         // close animation timeline
@@ -500,16 +531,22 @@ export default {
         this.curtainClass =
           'z-website-nav__curtain--grow z-website-nav__curtain--reverse';
         this.navContentClass = !this.faded ? 'z-website-nav--elevation' : '';
-        this.navClass = 'overflow--hidden';
+        this.navClass = 'overflow--hidden elevation-transition';
         this.mobileMenuOpen = false;
         setTimeout(() => (this.mobileMenuIcon = 'hamburger'), 380);
         await sleep(menuDuration);
         this.mobileClass = null;
-        this.navClass = 'z-website-nav--elevation overflow--hidden';
+        this.navClass = 'z-website-nav--elevation overflow--hidden elevation-transition';
         this.curtainClass = null;
         //
         this.mobileMenuAnimating = false;
+        // reset overflow after a while
+        await sleep(menuDuration);
+        this.navClass = 'z-website-nav--elevation elevation-transition';
       }
+    },
+    transitionDelayStyle(index) {
+      return { 'transition-delay': (index * 0.03 + 0.25) + 's' }
     },
   },
   watch: {

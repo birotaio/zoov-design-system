@@ -1,14 +1,26 @@
 # Changelog
 
-## dev (Unreleased)
+## 0.4.0 (December 29, 2020)
 
 ### Features
 
+  * Add slots to ZWebsiteNav, add `right` option for language menu, add `search-button` option
+  * Add ZTag component
   * Read stylus color file and expose colors theme to JS $zds instance
   * Support for hreflang in ZLink and ZLangPicker
+  * Update sandbox:
+    - use colors from exposed theme
+    - add background and text colors examples
+    - update elevation example
+    - update checkbox example
+    - add ZLink example
+    - add ZTag example
+    - update ZWebsiteNav example search button
 
 ### Fix
 
+  * Fix ZWebsiteNav behavior in mobile (overflow, elevation transition, transition delays)
+  * Fix ZCheckbox style for white color
   * Fix sizes of icons in ZButtons
 
 ## 0.3.1 (December 15, 2020)

@@ -1,5 +1,10 @@
 <template lang="pug">
-  z-menu.z-lang-picker(:hover="hover" :noscript-href="langNoscriptHref" focusable)
+  z-menu.z-lang-picker(
+    :hover="hover"
+    :noscript-href="langNoscriptHref"
+    focusable
+    :right="right"
+  )
     template(v-slot:activator)
       .z-lang-picker__menu-activator
         z-icon.mr-1(:size="2" flag) {{ lang }}
@@ -43,6 +48,10 @@ export default {
       default: null,
     },
     hover: {
+      type: Boolean,
+      default: false,
+    },
+    right: {
       type: Boolean,
       default: false,
     },
