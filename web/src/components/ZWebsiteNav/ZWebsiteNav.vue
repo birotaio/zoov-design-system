@@ -141,7 +141,6 @@ $easing-4 := cubic-bezier(0.76, 0.00, 0.24, 1.00)
 .z-website-nav
   position absolute
   width 100%
-  elevation-transition()
 
 .z-website-nav--elevation.z-website-nav--not-faded,
 .no-script .z-website-nav--elevation.z-website-nav--faded
@@ -493,9 +492,12 @@ export default {
         this.mobileMenuOpen = true;
         await sleep(menuDuration);
         this.curtainClass = null;
-        this.navClass = 'z-website-nav--elevation elevation-transition';
+        this.navClass = 'z-website-nav--elevation overflow--hidden elevation-transition';
         //
         this.mobileMenuAnimating = false;
+        // reset overflow after a while
+        await sleep(menuDuration);
+        this.navClass = 'z-website-nav--elevation elevation-transition';
       } else {
         this.mobileMenuAnimating = true;
         // close animation timeline
@@ -508,15 +510,18 @@ export default {
         this.curtainClass =
           'z-website-nav__curtain--grow z-website-nav__curtain--reverse';
         this.navContentClass = !this.faded ? 'z-website-nav--elevation' : '';
-        this.navClass = 'overflow--hidden';
+        this.navClass = 'overflow--hidden elevation-transition';
         this.mobileMenuOpen = false;
         setTimeout(() => (this.mobileMenuIcon = 'hamburger'), 380);
         await sleep(menuDuration);
         this.mobileClass = null;
-        this.navClass = 'z-website-nav--elevation overflow--hidden';
+        this.navClass = 'z-website-nav--elevation overflow--hidden elevation-transition';
         this.curtainClass = null;
         //
         this.mobileMenuAnimating = false;
+        // reset overflow after a while
+        await sleep(menuDuration);
+        this.navClass = 'z-website-nav--elevation elevation-transition';
       }
     },
     transitionDelayStyle(index) {
