@@ -1,11 +1,12 @@
   .z-tag.px-1(:style="{ 'background': background, 'color': color }")
-    p.z-tag__text {{ text }}
 <template lang="pug" functional>
 .z-tag(
   :ref="data.ref"
   :style="[data.style, data.staticStyle]"
   v-on="listeners"
 )
+  small.z-tag__content
+    slot
 </template>
 
 <style lang="stylus">
@@ -20,10 +21,6 @@
 export default {
   name: 'Ztag',
   props: {
-    text: {
-      type: String,
-      default: 'default',
-    },
     background: {
       type: String,
       default: 'white',
