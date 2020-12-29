@@ -60,14 +60,14 @@
             h3.mb-2 Elevations
             .sandbox__flex
               .px-3.pt-4
-                p.my-1.py-3(v-for="z in elevations") {{ 'elevation-' + z }}
+                p.my-2.py-2(v-for="z in elevations") {{ 'elevation-' + z }}
 
               template(v-for="name in ['light', 'dark'].concat(colorList)")
                 .ma-0
                   p.my-1.text--center --{{ name }}
-                  .px-3.py-1(:class="name === 'light' ? 'neutral--light-4' : name === 'dark' ? 'neutral--dark-4' : name")
+                  .px-2.py-1(:class="name === 'light' ? 'neutral--light-4' : name === 'dark' ? 'neutral--dark-4' : name")
                     template(v-for="z in elevations")
-                      z-card.my-4.px-5.py-3(:class="'elevation-' + z + '--' + name")
+                      z-card.my-3.px-3.py-1(:class="'elevation-' + z + '--' + name")
 
         //- Stateless components
         //----------------------------------------------------------------------------------------------------
