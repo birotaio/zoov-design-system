@@ -542,7 +542,7 @@
 
 <script>
 import iconList from './utils/icon-list';
-import colorList from './utils/color-list';
+import chunkArray from './utils/chunk-array';
 import { version } from '../../package.json';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -553,7 +553,6 @@ export default {
       version,
       elevations: ['inset', 0, 1, 2, 3, 4, 5, 6],
       iconList,
-      colorList,
       buttonSizes: [
         { giant: true },
         { large: true },
@@ -592,6 +591,27 @@ export default {
       ],
       navCta: { href: '/', text: 'CTA' },
     };
+  },
+  computed: {
+    colorList() {
+      return Object.keys(this.$zds.theme);
+    },
+    allColors() {
+      return Object.entries(this.$zds.theme).reduce(
+        (colors, [colorName, colorShades]) => {
+          return colors.concat(
+            Object.keys(colorShades).map(
+              shadeName =>
+                colorName + (shadeName !== 'base' ? '--' + shadeName : '')
+            )
+          );
+        },
+        []
+      );
+    },
+    chunkedColors() {
+      return chunkArray(this.allColors, Math.floor(this.allColors.length / 6));
+    },
   },
   watch: {
     // checkboxValue() {
