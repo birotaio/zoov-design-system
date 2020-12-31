@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.2 (December 31, 2020)
+
+### Fix
+
+  * Make sure link style is not overriden by .zds
+
 ## 0.4.1 (December 31, 2020)
 
 ### Fix

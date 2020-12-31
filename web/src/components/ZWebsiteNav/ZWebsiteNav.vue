@@ -1,6 +1,6 @@
 <template lang="pug">
   .z-website-nav__wrapper(:style="navWrapperStyle")
-    .z-website-nav.zds(:class="classes")
+    .z-website-nav(:class="classes")
       .z-website-nav__curtain(:class="curtainClass")
       z-button.z-website-nav__burger.sm-and-down(
         icon ghost large
@@ -269,21 +269,22 @@ html:not(.no-script)
       color: $colors.primary.base
       transition color 0.2s ease
 
-.z-website-nav__link, h6.z-website-nav__link
-  margin-right size(4)
-  white-space nowrap
-  position relative
+.z-website-nav
+  .z-website-nav__link, h6.z-website-nav__link
+    margin-right size(4)
+    white-space nowrap
+    position relative
 
-  &--active
-    &::after
-      content ''
-      display block
-      rounded(0.75)
-      background-color: $colors.primary.base
-      position absolute
-      left 50%
-      bottom -10px
-      transform translateX(-3px)
+    &--active
+      &::after
+        content ''
+        display block
+        rounded(0.75)
+        background-color: $colors.primary.base
+        position absolute
+        left 50%
+        bottom -10px
+        transform translateX(-3px)
 
 .z-website-nav__link__menu-activator
   display flex
