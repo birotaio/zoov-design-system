@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.1 (December 31, 2020)
+
+### Fix
+
+  * Fix margin of lang picker in ZWebsiteNav without CTA
+
 ## 0.4.0 (December 29, 2020)
 
 ### Features

@@ -59,6 +59,7 @@
 
           z-lang-picker.z-website-nav__link(
             v-if="langItems"
+            :class="{ 'mr-1': !cta }"
             :lang="lang"
             :items="langItems"
             :right="langMenuRight"
