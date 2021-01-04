@@ -617,7 +617,7 @@ export default {
       navItems: [
         { to: '/', text: 'Link 1' },
         {
-          text: 'Links group',
+          icon: 'dots-three',
           noscriptHref: '#',
           group: [
             { href: '/', text: 'Link 2' },

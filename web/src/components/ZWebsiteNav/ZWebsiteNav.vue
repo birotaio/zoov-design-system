@@ -39,7 +39,8 @@
             )
               .z-website-nav__link__menu-activator(slot="activator")
                 h6 {{ item.text }}
-                z-icon.ml-1(:size="2") chevron-down
+                z-icon(v-if="item.icon") {{ item.icon }}
+                z-icon.ml-1(v-else :size="2") chevron-down
 
               template(v-for="(subItem, j) in item.group")
                 z-divider.my-0(v-if="j > 0" :key="'divider-'+i+'-'+j")
