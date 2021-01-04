@@ -167,7 +167,7 @@
   .z-input__message
     height 0
     overflow visible
-    typography-rules($typography.caption);
+    typography('caption');
 
   &--readonly
     .z-input__label

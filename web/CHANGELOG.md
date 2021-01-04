@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.5 (January 4, 2020)
+
+### Feature
+
+  * Define and use a simpler `typography` mixin
+
 ## 0.4.4 (January 4, 2020)
 
 ### Feature
