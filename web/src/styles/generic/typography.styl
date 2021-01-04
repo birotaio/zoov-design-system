@@ -30,32 +30,32 @@ html, body
     font-style italic
 
 .typography--display-3, .zds h1
-  typography-rules($typography.display-3)
+  typography('display-3')
 
 .typography--display-2, .zds h2
-  typography-rules($typography.display-2)
+  typography('display-2')
 
 .typography--display-1, .zds h3
-  typography-rules($typography.display-1)
+  typography('display-1')
 
 .typography--heading, .zds h4
-  typography-rules($typography.heading)
+  typography('heading')
 
 .typography--title, .zds h5
-  typography-rules($typography.title)
+  typography('title')
 
 .typography--subheading, .zds h6, .zds input
-  typography-rules($typography.subheader)
+  typography('subheader')
 
 .typography--body, .zds p, .zds ul, .zds li, .zds label
-  typography-rules($typography.body)
+  typography('body')
 
 .typography--caption, .zds small, .zds caption
-  typography-rules($typography.caption)
+  typography('caption')
 
 .typography--button, .zds button, .zds input[type=submit]
   text-transform uppercase
-  typography-rules($typography.button)
+  typography('button')
 
 generate-weights()
   for $weight_name, $weight_value in $weights

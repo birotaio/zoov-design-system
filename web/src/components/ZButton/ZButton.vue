@@ -30,7 +30,7 @@ $ease-ripple-in := cubic-bezier(0.56, 0, 0.84, 0.17);
 $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
 
 .z-button, a.z-button
-  typography-rules($typography.button)
+  typography('button')
   bg-color($colors.neutral.dark-3)
   text-color($colors.white.base)
   transition background-color $background-duration
