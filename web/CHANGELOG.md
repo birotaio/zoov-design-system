@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.3 (January 4, 2020)
+
+### Feature
+
+  * Add "dots-three" icon
+
 ## 0.4.2 (December 31, 2020)
 
 ### Fix

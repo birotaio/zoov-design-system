@@ -49,6 +49,7 @@ export default [
   'cross-hexagon',
   'cross-square',
   'directions',
+  'dots-three',
   'exclamation-triangle',
   'external-link',
   'eye-slash',
