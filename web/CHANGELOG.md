@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.4 (January 4, 2020)
+
+### Feature
+
+  * Add `icon` option for nav link group
+
 ## 0.4.3 (January 4, 2020)
 
 ### Feature
