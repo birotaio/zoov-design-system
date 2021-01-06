@@ -3,6 +3,7 @@
     :ref="data.ref"
     :class="[data.class, data.staticClass, $options.methods.computeClasses(props)]"
     :style="[data.style, data.staticStyle, $options.methods.computeStyle(props)]"
+    :key="data.key"
     v-on="listeners"
   )
 </template>
