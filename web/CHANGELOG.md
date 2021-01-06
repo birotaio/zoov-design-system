@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.6 (January 6, 2020)
+
+### Fix
+
+  * Pass down `:key="data.key"` to functional components
+
 ## 0.4.5 (January 4, 2020)
 
 ### Feature

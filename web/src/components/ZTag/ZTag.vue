@@ -3,6 +3,7 @@
   :ref="data.ref"
   :class="[data.class, data.staticClass, props.color ? 'text--' + props.color : '']"
   :style="[data.style, data.staticStyle]"
+  :key="data.key"
   v-on="listeners"
 )
   .z-tag__background(:class="[props.color, props.color ? 'z-tag__background--colored' : '']")

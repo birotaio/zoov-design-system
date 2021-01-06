@@ -3,6 +3,7 @@
     :ref="data.ref"
     :class="[data.class, data.staticClass, { 'z-card--dense': props.dense }]"
     :style="[data.style, data.staticStyle]"
+    :key="data.key"
     v-on="listeners"
   )
     .z-card__header

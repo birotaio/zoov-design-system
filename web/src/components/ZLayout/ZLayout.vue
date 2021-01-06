@@ -3,6 +3,7 @@
     :ref="data.ref"
     :class="[data.class, data.staticClass]"
     :style="[data.style, data.staticStyle]"
+    :key="data.key"
     v-on="listeners"
   )
     .z-layout__container(:class="$options.methods.classes(props)")

@@ -3,6 +3,7 @@
     :ref="data.ref"
     :class="[data.class, data.staticClass, props]"
     :style="[data.style, data.staticStyle]"
+    :key="data.key"
     v-on="listeners"
   )
     slot
