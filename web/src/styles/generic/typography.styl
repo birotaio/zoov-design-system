@@ -1,3 +1,6 @@
+$list-spacing-bullet = 17px
+$list-spacing-numeric = 24px
+
 html, body
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
@@ -17,11 +20,23 @@ html, body
     text-align inherit
     width 100%
 
-  ul, li
-    list-style-type disc
-
   ul
-    margin-left 17px
+    list-style-type disc
+    margin-left $list-spacing-bullet
+
+  ol
+    margin-left $list-spacing-numeric
+    list-style none
+    counter-reset zds-counter
+
+    li
+      counter-increment zds-counter
+      position relative
+
+      &::before
+        content counter(zds-counter) '.'
+        position absolute
+        left -1 * $list-spacing-numeric
 
   b, strong
     font-weight 700
