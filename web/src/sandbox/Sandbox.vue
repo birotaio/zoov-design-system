@@ -35,7 +35,9 @@
             button Button (Button)
             p Paragraph (Body)
             ul
-              li List (Body)
+              li List bulleted (Body)
+            ol
+              li List numeric (Body)
             label Label (Body)
             z-spacer
             small Small (Caption)
@@ -235,6 +237,8 @@
                 z-icon birdie
               z-button(icon ghost color="tertiary" hover-color="info")
                 z-icon birdie
+              z-card.neutral--dark-3
+                z-button(color="white" dark-text) white on dark
 
             h6 States
             .sandbox__flex

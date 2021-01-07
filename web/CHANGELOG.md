@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.7 (January 7, 2020)
+
+### Fix
+
+  * Properly format mumeric lists (`<ol>`)
+
 ## 0.4.6 (January 6, 2020)
 
 ### Fix
