@@ -182,7 +182,7 @@ for $breakpoint_name in $breakpoints
   .z-menu
     .z-website-nav__link
       padding size(2) 0
-      color $colors.neutral.dark-3
+      color: $colors.neutral.dark-3
 
 html:not(.no-script)
   .z-website-nav--faded
@@ -227,7 +227,7 @@ html:not(.no-script)
   left -5%
   right -5%
   height 0
-  background-color $colors.secondary.base
+  background-color: $colors.secondary.base
   display none
 
   &--grow
@@ -271,7 +271,7 @@ html:not(.no-script)
     margin-right 0
 
     &:hover
-      color $colors.primary.base
+      color: $colors.primary.base
       transition color 0.2s ease
 
 .z-website-nav
@@ -285,7 +285,7 @@ html:not(.no-script)
         content ''
         display block
         rounded(0.75)
-        background-color $colors.primary.base
+        background-color: $colors.primary.base
         position absolute
         left 50%
         bottom -10px
