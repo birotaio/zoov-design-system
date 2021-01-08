@@ -1,146 +1,152 @@
 <template lang="pug">
-  .z-website-nav__wrapper(:style="navWrapperStyle")
-    .z-website-nav(:class="classes")
-      .z-website-nav__curtain(:class="curtainClass")
-      z-button.z-website-nav__burger.sm-and-down(
-        icon ghost large
-        @click="onClickBurger"
-        :prevent-click="mobileMenuAnimating"
-      )
-        z-icon(:color="burgerColor") {{ mobileMenuIcon }}
-      .z-website-nav__content(:class="navContentClass")
-        .spacer.sm-and-down
+.z-website-nav__wrapper(:style='navWrapperStyle')
+  .z-website-nav(:class='classes')
+    .z-website-nav__curtain(:class='curtainClass')
+    z-button.z-website-nav__burger.sm-and-down(
+      icon,
+      ghost,
+      large,
+      @click='onClickBurger',
+      :prevent-click='mobileMenuAnimating'
+    )
+      z-icon(:color='burgerColor') {{ mobileMenuIcon }}
+    .z-website-nav__content(:class='navContentClass')
+      .spacer.sm-and-down
 
-        z-link.z-website-nav__logo__wrapper(:href="logoHref")
-          z-logo.z-website-nav__logo.z-website-nav__logo--desktop(outline slanted width="84px" :color="logoColor")
-          z-logo.z-website-nav__logo.z-website-nav__logo--mobile(outline slanted width="56px" :color="logoColor")
+      z-link.z-website-nav__logo__wrapper(:href='logoHref')
+        z-logo.z-website-nav__logo.z-website-nav__logo--desktop(
+          outline,
+          slanted,
+          width='84px',
+          :color='logoColor'
+        )
+        z-logo.z-website-nav__logo.z-website-nav__logo--mobile(
+          outline,
+          slanted,
+          width='56px',
+          :color='logoColor'
+        )
 
-        .spacer
+      .spacer
 
-        .z-website-nav__links.sm-and-up
+      .z-website-nav__links.sm-and-up
+        slot(name='links-prepend')
 
-          slot(name="links-prepend")
+        template(v-for='(item, i) in items')
+          z-link(
+            v-if='!item.group',
+            :key='"link-" + i',
+            :href='item.href',
+            :to='item.to'
+          )
+            h6.z-website-nav__link {{ item.text }}
 
-          template(v-for="(item, i) in items")
-            z-link(
-              v-if="!item.group"
-              :key="'link-'+i"
-              :href="item.href"
-              :to="item.to"
-            )
-              h6.z-website-nav__link {{ item.text }}
-
-            z-menu.z-website-nav__link.z-website-nav__link--group(
-              v-else
-              :key="'group-'+i"
-              :noscript-href="item.noscriptHref"
-              focusable
-              hover
-            )
-              .z-website-nav__link__menu-activator(slot="activator")
-                h6 {{ item.text }}
-                z-icon(v-if="item.icon") {{ item.icon }}
-                z-icon.ml-1(v-else :size="2") chevron-down
-
-              template(v-for="(subItem, j) in item.group")
-                z-divider.my-0(v-if="j > 0" :key="'divider-'+i+'-'+j")
-                z-link(
-                  :key="'link-'+i+'-'+j"
-                  :href="subItem.href"
-                  :to="subItem.to"
-                )
-                  h6.z-website-nav__link {{ subItem.text }}
-
-          slot(name="links-append")
-
-          template(v-if="searchButton")
-            z-divider(vertical :height="4")
-            z-button.ml-1.mr-2(icon ghost @click="$emit('click-search')")
-              z-icon search
-
-          z-lang-picker.z-website-nav__link(
-            v-if="langItems"
-            :class="{ 'mr-1': !cta }"
-            :lang="lang"
-            :items="langItems"
-            :right="langMenuRight"
+          z-menu.z-website-nav__link.z-website-nav__link--group(
+            v-else,
+            :key='"group-" + i',
+            :noscript-href='item.noscriptHref',
+            focusable,
             hover
           )
+            .z-website-nav__link__menu-activator(slot='activator')
+              h6 {{ item.text }}
+              z-icon(v-if='item.icon') {{ item.icon }}
+              z-icon.ml-1(v-else, :size='2') chevron-down
 
-          slot(name="lang-append")
+            template(v-for='(subItem, j) in item.group')
+              z-divider.my-0(v-if='j > 0', :key='"divider-" + i + "-" + j')
+              z-link(
+                :key='"link-" + i + "-" + j',
+                :href='subItem.href',
+                :to='subItem.to'
+              )
+                h6.z-website-nav__link {{ subItem.text }}
 
-          template(v-if="cta")
-            z-button(
-              v-if="!cta.component"
-              :color="cta.color || 'primary'"
-              :href="cta.href"
-              v-bind="cta.props"
-              large
-            )
-              z-icon(v-if="cta.icon") {{ cta.icon }}
-              span {{ cta.text }}
-            component(v-else :is="cta.component" v-bind="cta.props")
+        slot(name='links-append')
 
-      .z-website-nav__content--mobile(:class="mobileClass")
-
-        .z-website-nav__link(:style="transitionDelayStyle(-1)")
-          slot(name="links-prepend")
-
-        .z-website-nav__mobile-link(v-for="(item, i) in flattenItems")
-          z-link(
-            :key="'link-'+i"
-            :href="item.href"
-            :to="item.to"
-          )
-            h6.z-website-nav__link(:style="transitionDelayStyle(i)") {{ item.text }}
-
-        .z-website-nav__link(:style="transitionDelayStyle(flattenItems.length)")
-          slot(name="links-append")
-
-        z-lang-picker.z-website-nav__link(
-          v-if="langItems"
-          :lang="lang"
-          :items="langItems"
-          :style="transitionDelayStyle(flattenItems.length + 1)"
-        )
-
-        .z-website-nav__link(:style="transitionDelayStyle(flattenItems.length + 2)")
-          slot(name="lang-append")
-
-        .z-website-nav__link(
-          v-if="searchButton"
-          :style="transitionDelayStyle(flattenItems.length + 3)"
-        )
-          z-divider
-          z-button.ml-neg-1(icon ghost @click="$emit('click-search')")
+        template(v-if='searchButton')
+          z-divider(vertical, :height='4')
+          z-button.ml-1.mr-2(icon, ghost, @click='$emit("click-search")')
             z-icon search
 
-        z-layout.py-2(v-if="cta" justify="center")
-          z-button.z-website-nav__button--mobile(
-            v-if="!cta.component"
-            :color="cta.color || 'primary'"
-            :href="cta.href"
-            v-bind="cta.props"
+        z-lang-picker.z-website-nav__link(
+          v-if='langItems',
+          :class='{ "mr-1": !cta }',
+          :lang='lang',
+          :items='langItems',
+          :right='langMenuRight',
+          hover
+        )
+
+        slot(name='lang-append')
+
+        template(v-if='cta')
+          z-button(
+            v-if='!cta.component',
+            :color='cta.color || "primary"',
+            :href='cta.href',
+            v-bind='cta.props',
             large
           )
-            z-icon(v-if="cta.icon") {{ cta.icon }}
+            z-icon(v-if='cta.icon') {{ cta.icon }}
             span {{ cta.text }}
-          component(v-else :is="cta.component" v-bind="cta.props")
+          component(v-else, :is='cta.component', v-bind='cta.props')
 
+    .z-website-nav__content--mobile(:class='mobileClass')
+      .z-website-nav__link(:style='transitionDelayStyle(-1)')
+        slot(name='links-prepend')
+
+      .z-website-nav__mobile-link(v-for='(item, i) in flattenItems')
+        z-link(:key='"link-" + i', :href='item.href', :to='item.to')
+          h6.z-website-nav__link(:style='transitionDelayStyle(i)' @click='onClickBurger()') {{ item.text }}
+
+      .z-website-nav__link(:style='transitionDelayStyle(flattenItems.length)')
+        slot(name='links-append')
+
+      z-lang-picker.z-website-nav__link(
+        v-if='langItems',
+        :lang='lang',
+        :items='langItems',
+        :style='transitionDelayStyle(flattenItems.length + 1)'
+      )
+
+      .z-website-nav__link(
+        :style='transitionDelayStyle(flattenItems.length + 2)'
+      )
+        slot(name='lang-append')
+
+      .z-website-nav__link(
+        v-if='searchButton',
+        :style='transitionDelayStyle(flattenItems.length + 3)'
+      )
+        z-divider
+        z-button.ml-neg-1(icon, ghost, @click='$emit("click-search"); onClickBurger();')
+          z-icon search
+
+      z-layout.py-2(v-if='cta', justify='center')
+        z-button.z-website-nav__button--mobile(
+          v-if='!cta.component',
+          :color='cta.color || "primary"',
+          :href='cta.href',
+          v-bind='cta.props',
+          large
+        )
+          z-icon(v-if='cta.icon') {{ cta.icon }}
+          span {{ cta.text }}
+        component(v-else, :is='cta.component', v-bind='cta.props')
 </template>
 
 <style lang="stylus">
-@import '../../styles/components.styl';
+@import '../../styles/components.styl'
 
-$duration-1 := 0.5s
-$duration-2 := 0.25s
-$angle := -8deg
-$appear-right-distance := 100px
-
-$easing-1 := cubic-bezier(0.17, 0.84, 0.44, 1.00)
-$easing-2 := cubic-bezier(0.32, 0.94, 0.60, 1.00)
-$easing-3 := cubic-bezier(0.17, 0.00, 0.83, 1.00)
-$easing-4 := cubic-bezier(0.76, 0.00, 0.24, 1.00)
+$duration-1 ?= 0.5s
+$duration-2 ?= 0.25s
+$angle ?= -8deg
+$appear-right-distance ?= 100px
+$easing-1 ?= cubic-bezier(0.17, 0.84, 0.44, 1)
+$easing-2 ?= cubic-bezier(0.32, 0.94, 0.6, 1)
+$easing-3 ?= cubic-bezier(0.17, 0, 0.83, 1)
+$easing-4 ?= cubic-bezier(0.76, 0, 0.24, 1)
 
 .z-website-nav__wrapper
   position fixed
@@ -149,7 +155,7 @@ $easing-4 := cubic-bezier(0.76, 0.00, 0.24, 1.00)
   left 0
   right 0
 
-@supports (position: sticky)
+@supports (position sticky)
   .z-website-nav__wrapper
     position sticky
 
@@ -157,8 +163,7 @@ $easing-4 := cubic-bezier(0.76, 0.00, 0.24, 1.00)
   position absolute
   width 100%
 
-.z-website-nav--elevation.z-website-nav--not-faded,
-.no-script .z-website-nav--elevation.z-website-nav--faded
+.z-website-nav--elevation.z-website-nav--not-faded, .no-script .z-website-nav--elevation.z-website-nav--faded
   elevation-shadow-light(3)
 
 for $breakpoint_name in $breakpoints
@@ -199,8 +204,7 @@ html:not(.no-script)
   z-index 2
 
 .no-script
-  .z-button.z-website-nav__burger:focus + .z-website-nav__content + .z-website-nav__content--mobile,
-  .z-website-nav__content--mobile:hover
+  .z-button.z-website-nav__burger:focus + .z-website-nav__content + .z-website-nav__content--mobile, .z-website-nav__content--mobile:hover
     display block
 
     .z-website-nav__link
@@ -222,7 +226,7 @@ html:not(.no-script)
   width 110%
   left -5%
   right -5%
-  height 0%
+  height 0
   background-color: $colors.secondary.base
   display none
 
@@ -324,7 +328,7 @@ html:not(.no-script)
 
 @keyframes slide-y
   0%
-    height 0%
+    height 0
 
   100%
     height 100%
@@ -335,7 +339,7 @@ html:not(.no-script)
     height 100%
 
   100%
-    height 0%
+    height 0
 
 @keyframes skew-1
   0%
@@ -516,7 +520,8 @@ export default {
         this.mobileMenuOpen = true;
         await sleep(menuDuration);
         this.curtainClass = null;
-        this.navClass = 'z-website-nav--elevation overflow--hidden elevation-transition';
+        this.navClass =
+          'z-website-nav--elevation overflow--hidden elevation-transition';
         //
         this.mobileMenuAnimating = false;
         // reset overflow after a while
@@ -539,7 +544,8 @@ export default {
         setTimeout(() => (this.mobileMenuIcon = 'hamburger'), 380);
         await sleep(menuDuration);
         this.mobileClass = null;
-        this.navClass = 'z-website-nav--elevation overflow--hidden elevation-transition';
+        this.navClass =
+          'z-website-nav--elevation overflow--hidden elevation-transition';
         this.curtainClass = null;
         //
         this.mobileMenuAnimating = false;
@@ -549,7 +555,7 @@ export default {
       }
     },
     transitionDelayStyle(index) {
-      return { 'transition-delay': (index * 0.03 + 0.25) + 's' }
+      return { 'transition-delay': index * 0.03 + 0.25 + 's' };
     },
   },
   watch: {

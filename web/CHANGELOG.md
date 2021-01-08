@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.8 (January 8, 2020)
+
+### Feature
+
+  * Close nav on click link and search on mobile
+
 ## 0.4.7 (January 7, 2020)
 
 ### Fix
