@@ -13,28 +13,17 @@
     .z-website-nav__content(:class='navContentClass')
       .spacer.sm-and-down
 
-      z-link.z-website-nav__logo__wrapper(v-if="!breadcrumb" :href='logoHref')
-        z-logo.z-website-nav__logo.z-website-nav__logo--desktop(
-          outline,
-          slanted,
-          width='84px',
-          :color='logoColor'
-        )
-        z-logo.z-website-nav__logo.z-website-nav__logo--mobile(
-          outline,
-          slanted,
-          width='56px',
-          :color='logoColor'
-        )
-      .z-website-nav__logo__content(v-else)
+      .z-website-nav__logo__content
         z-link.z-website-nav__logo__wrapper(:href='logoHref')
           z-logo.z-website-nav__logo.z-website-nav__logo--desktop(
             outline,
+            :slanted="!breadcrumb",
             width='84px',
             :color='logoColor'
           )
           z-logo.z-website-nav__logo.z-website-nav__logo--mobile(
             outline,
+            :slanted="!breadcrumb",
             width='56px',
             :color='logoColor'
           )
