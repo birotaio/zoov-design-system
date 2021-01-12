@@ -13,7 +13,7 @@
     .z-website-nav__content(:class='navContentClass')
       .spacer.sm-and-down
 
-      z-link.z-website-nav__logo__wrapper(:href='logoHref')
+      z-link.z-website-nav__logo__wrapper(v-if="!breadcrumb" :href='logoHref')
         z-logo.z-website-nav__logo.z-website-nav__logo--desktop(
           outline,
           slanted,
@@ -26,6 +26,21 @@
           width='56px',
           :color='logoColor'
         )
+      .z-website-nav__logo__content(v-else)
+        z-link.z-website-nav__logo__wrapper(:href='logoHref')
+          z-logo.z-website-nav__logo.z-website-nav__logo--desktop(
+            outline,
+            width='84px',
+            :color='logoColor'
+          )
+          z-logo.z-website-nav__logo.z-website-nav__logo--mobile(
+            outline,
+            width='56px',
+            :color='logoColor'
+          )
+        .z-website-nav__separator(v-if="breadcrumb")
+        z-link.z-website-nav__logo.z-website-nav__logo--blog(:href='breadcrumbLink')
+          | {{ breadcrumb }}
 
       .spacer
 
@@ -214,8 +229,24 @@ html:not(.no-script)
     .z-website-nav__button--mobile
       transform scale(1)
 
+.z-website-nav__separator
+  height size(4)
+  width size(.2)
+  background: $colors.neutral.dark-3
+  border-radius size(.5)
+
+.z-website-nav__logo__content
+  display flex
+  align-items center
+
 .z-website-nav__logo__wrapper, .z-website-nav__logo
   z-index
+
+.z-website-nav__logo
+  margin size(1)
+.z-website-nav
+  .z-website-nav__logo--blog
+    font-size size(3)
 
 .z-website-nav__logo--mobile
   display none
@@ -296,6 +327,9 @@ html:not(.no-script)
   align-items center
 
 +media-down('sm')
+  .z-website-nav
+    .z-website-nav__logo--blog
+      font-size size(2)
   .z-website-nav__logo--mobile
     display flex
 
@@ -408,6 +442,14 @@ export default {
     searchButton: {
       type: Boolean,
       default: false,
+    },
+    breadcrumb: {
+      type: String,
+      default: '',
+    },
+    breadcrumbLink: {
+      type: String,
+      default: '/',
     },
   },
   data() {
