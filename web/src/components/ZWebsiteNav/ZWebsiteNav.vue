@@ -28,7 +28,7 @@
             :color='logoColor'
           )
         .z-website-nav__separator(v-if="breadcrumb")
-        z-link.z-website-nav__logo.z-website-nav__logo--blog(:href='breadcrumbLink')
+        z-link.z-website-nav__logo.z-website-nav__breadcrumb(:href='breadcrumbLink')
           | {{ breadcrumb }}
 
       .spacer
@@ -234,7 +234,7 @@ html:not(.no-script)
 .z-website-nav__logo
   margin size(1)
 .z-website-nav
-  .z-website-nav__logo--blog
+  .z-website-nav__breadcrumb
     font-size size(3)
 
 .z-website-nav__logo--mobile
