@@ -27,9 +27,17 @@
             width='56px',
             :color='logoColor'
           )
-        z-divider.z-website-nav__separator(vertical, :height='4')
-        z-link.z-website-nav__logo.z-website-nav__breadcrumb(:href='breadcrumbLink')
-          | {{ breadcrumb }}
+        z-divider.z-website-nav__separator(
+          v-if="breadcrumb"
+          vertical,
+          :height='4'
+        )
+        z-link.z-website-nav__logo.z-website-nav__breadcrumb(
+          v-if="breadcrumb"
+          :to="breadcrumb.to"
+          :href='breadcrumb.href'
+        )
+          | {{ breadcrumb.text }}
 
       .spacer
 
@@ -427,12 +435,8 @@ export default {
       default: false,
     },
     breadcrumb: {
-      type: String,
-      default: '',
-    },
-    breadcrumbLink: {
-      type: String,
-      default: '/',
+      type: Object,
+      default: null,
     },
   },
   data() {
