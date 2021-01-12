@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.9 (January 12, 2020)
+
+### Feature
+
+  * Add the management of a breadcrumb in the nav
+
 ## 0.4.8 (January 8, 2020)
 
 ### Feature

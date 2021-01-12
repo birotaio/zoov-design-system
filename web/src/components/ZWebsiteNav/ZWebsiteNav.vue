@@ -13,19 +13,31 @@
     .z-website-nav__content(:class='navContentClass')
       .spacer.sm-and-down
 
-      z-link.z-website-nav__logo__wrapper(:href='logoHref')
-        z-logo.z-website-nav__logo.z-website-nav__logo--desktop(
-          outline,
-          slanted,
-          width='84px',
-          :color='logoColor'
+      .z-website-nav__logo__content
+        z-link.z-website-nav__logo__wrapper(:href='logoHref')
+          z-logo.z-website-nav__logo.z-website-nav__logo--desktop(
+            outline,
+            :slanted="!breadcrumb",
+            width='84px',
+            :color='logoColor'
+          )
+          z-logo.z-website-nav__logo.z-website-nav__logo--mobile(
+            outline,
+            :slanted="!breadcrumb",
+            width='56px',
+            :color='logoColor'
+          )
+        z-divider.z-website-nav__separator(
+          v-if="breadcrumb"
+          vertical,
+          :height='4'
         )
-        z-logo.z-website-nav__logo.z-website-nav__logo--mobile(
-          outline,
-          slanted,
-          width='56px',
-          :color='logoColor'
+        z-link.z-website-nav__logo.z-website-nav__breadcrumb(
+          v-if="breadcrumb"
+          :to="breadcrumb.to"
+          :href='breadcrumb.href'
         )
+          | {{ breadcrumb.text }}
 
       .spacer
 
@@ -214,8 +226,18 @@ html:not(.no-script)
     .z-website-nav__button--mobile
       transform scale(1)
 
+.z-website-nav__logo__content
+  display flex
+  align-items center
+
 .z-website-nav__logo__wrapper, .z-website-nav__logo
   z-index
+
+.z-website-nav__logo
+  margin size(1)
+.z-website-nav
+  .z-website-nav__breadcrumb
+    font-size size(3)
 
 .z-website-nav__logo--mobile
   display none
@@ -296,6 +318,9 @@ html:not(.no-script)
   align-items center
 
 +media-down('sm')
+  .z-website-nav
+    .z-website-nav__logo--blog
+      font-size size(2)
   .z-website-nav__logo--mobile
     display flex
 
@@ -408,6 +433,10 @@ export default {
     searchButton: {
       type: Boolean,
       default: false,
+    },
+    breadcrumb: {
+      type: Object,
+      default: null,
     },
   },
   data() {
