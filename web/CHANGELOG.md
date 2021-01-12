@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.9 (January 12, 2020)
+
+  * Add the management of a breadcrumb in the nav
+
+### Feature
+
+  * Close nav on click link and search on mobile
+
 ## 0.4.8 (January 8, 2020)
 
 ### Feature
