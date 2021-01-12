@@ -27,7 +27,7 @@
             width='56px',
             :color='logoColor'
           )
-        .z-website-nav__separator(v-if="breadcrumb")
+        z-divider.z-website-nav__separator(vertical, :height='4')
         z-link.z-website-nav__logo.z-website-nav__breadcrumb(:href='breadcrumbLink')
           | {{ breadcrumb }}
 
@@ -217,12 +217,6 @@ html:not(.no-script)
 
     .z-website-nav__button--mobile
       transform scale(1)
-
-.z-website-nav__separator
-  height size(4)
-  width size(.2)
-  background: $colors.neutral.dark-3
-  border-radius size(.5)
 
 .z-website-nav__logo__content
   display flex
