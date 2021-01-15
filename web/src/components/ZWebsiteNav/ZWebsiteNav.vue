@@ -118,6 +118,7 @@
       z-lang-picker.z-website-nav__link(
         v-if='langItems',
         :lang='lang',
+        @close-nav="onClickBurger()"
         :items='langItems',
         :style='transitionDelayStyle(flattenItems.length + 1)'
       )
