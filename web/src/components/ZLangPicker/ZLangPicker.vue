@@ -33,8 +33,8 @@ z-menu.z-lang-picker(
 .zds h6.z-lang-picker__lang-link
   margin size(2) 0
 
-  color $colors.neutral.dark-3, &:hover
-    color $colors.primary.base
+  color: $colors.neutral.dark-3, &:hover
+    color: $colors.primary.base
     transition color 0.2s ease
 </style>
 
