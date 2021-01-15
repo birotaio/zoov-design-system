@@ -20,7 +20,7 @@ z-menu.z-lang-picker(
       :href="item.href"
       :hreflang="item.lang"
     )
-      h6.z-lang-picker__lang-link(@click="closeNav") {{ item.text }}
+      h6.z-lang-picker__lang-link(@click="clickItem") {{ item.text }}
 </template>
 
 <style lang="stylus">
@@ -73,8 +73,8 @@ export default {
     },
   },
   methods: {
-    closeNav() {
-      this.$emit('close-nav', 'null');
+    clickItem() {
+      this.$emit('click-item', 'null');
     },
   },
 };
