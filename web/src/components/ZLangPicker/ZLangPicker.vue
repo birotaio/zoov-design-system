@@ -17,10 +17,11 @@ z-menu.z-lang-picker(
     z-divider.my-0(v-if="i !== 0")
     z-link(
       :to="item.to"
+      @click.native="clickItem"
       :href="item.href"
       :hreflang="item.lang"
     )
-      h6.z-lang-picker__lang-link(@click="clickItem") {{ item.text }}
+      h6.z-lang-picker__lang-link {{ item.text }}
 </template>
 
 <style lang="stylus">
@@ -32,8 +33,9 @@ z-menu.z-lang-picker(
 
 .zds h6.z-lang-picker__lang-link
   margin size(2) 0
+  color: $colors.neutral.dark-3
 
-  color: $colors.neutral.dark-3, &:hover
+  &:hover
     color: $colors.primary.base
     transition color 0.2s ease
 </style>
