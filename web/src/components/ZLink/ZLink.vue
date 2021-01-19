@@ -1,6 +1,12 @@
 <template lang="pug">
-  component.z-link(:is="component" :class="classes" :hreflang="hreflang" v-bind="props")
-    slot
+component.z-link(
+  :is="component"
+  :class="classes"
+  :hreflang="hreflang"
+  :target="target"
+  v-bind="props"
+)
+  slot
 </template>
 
 <style lang="stylus">
@@ -46,6 +52,10 @@ export default {
       default: false,
     },
     hreflang: {
+      type: String,
+      default: null,
+    },
+    target: {
       type: String,
       default: null,
     },
