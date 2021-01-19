@@ -164,6 +164,16 @@
               z-tag Default
               template(v-for="color in colorList")
                 z-tag(:color="color") {{ color }}
+            h6 Sizes
+            .sandbox__flex
+              z-tag(color="primary" small) Small
+              z-tag(color="primary") Normal
+
+            h6 Links
+            .sandbox__flex
+              z-tag(color="primary" to="/" small) To
+              z-tag(color="primary" href="http://google.com" target="_blank") Href
+
 
         //- Stateful components
         //----------------------------------------------------------------------------------------------------
@@ -624,6 +634,7 @@ export default {
         {
           icon: 'dots-three',
           noscriptHref: '#',
+          menuProps: { right: true },
           group: [
             { href: '/', text: 'Link 2' },
             { href: '/', text: 'Link 3' },
