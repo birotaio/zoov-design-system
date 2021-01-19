@@ -1,151 +1,185 @@
 <template lang="pug">
-.z-website-nav__wrapper(:style='navWrapperStyle')
-  .z-website-nav(:class='classes')
-    .z-website-nav__curtain(:class='curtainClass')
+.z-website-nav__wrapper(:style="navWrapperStyle")
+  .z-website-nav(:class="classes")
+    .z-website-nav__curtain(:class="curtainClass")
     z-button.z-website-nav__burger.sm-and-down(
-      icon,
-      ghost,
-      large,
-      @click='onClickBurger',
-      :prevent-click='mobileMenuAnimating'
+      icon
+      ghost
+      large
+      @click="onClickBurger"
+      :prevent-click="mobileMenuAnimating"
     )
-      z-icon(:color='burgerColor') {{ mobileMenuIcon }}
-    .z-website-nav__content(:class='navContentClass')
+      z-icon(:color="burgerColor") {{ mobileMenuIcon }}
+    .z-website-nav__content(:class="navContentClass")
       .spacer.sm-and-down
 
       .z-website-nav__logo__content
-        z-link.z-website-nav__logo__wrapper(:href='logoHref')
+        z-link.z-website-nav__logo__wrapper(:href="logoHref")
           z-logo.z-website-nav__logo.z-website-nav__logo--desktop(
-            outline,
-            :slanted="!breadcrumb",
-            width='84px',
-            :color='logoColor'
+            outline
+            :slanted="!breadcrumb"
+            width="84px"
+            :color="logoColor"
           )
           z-logo.z-website-nav__logo.z-website-nav__logo--mobile(
-            outline,
-            :slanted="!breadcrumb",
-            width='56px',
-            :color='logoColor'
+            outline
+            :slanted="!breadcrumb"
+            width="56px"
+            :color="logoColor"
           )
         z-divider.z-website-nav__separator(
           v-if="breadcrumb"
-          vertical,
-          :height='4'
+          vertical
+          :height="4"
         )
         z-link.z-website-nav__logo.z-website-nav__breadcrumb(
           v-if="breadcrumb"
           :to="breadcrumb.to"
-          :href='breadcrumb.href'
+          :href="breadcrumb.href"
         )
           | {{ breadcrumb.text }}
 
       .spacer
 
       .z-website-nav__links.sm-and-up
-        slot(name='links-prepend')
+        slot(name="links-prepend")
 
-        template(v-for='(item, i) in items')
+        template(v-for="(item, i) in items")
           z-link(
-            v-if='!item.group',
-            :key='"link-" + i',
-            :href='item.href',
-            :to='item.to'
+            v-if="!item.group"
+            :key="'link-' + i"
+            :href="item.href"
+            :to="item.to"
           )
             h6.z-website-nav__link {{ item.text }}
 
           z-menu.z-website-nav__link.z-website-nav__link--group(
-            v-else,
-            :key='"group-" + i',
-            :noscript-href='item.noscriptHref',
-            focusable,
+            v-else
+            :key="'group-' + i"
+            :noscript-href="item.noscriptHref"
+            focusable
             hover
           )
-            .z-website-nav__link__menu-activator(slot='activator')
+            .z-website-nav__link__menu-activator(slot="activator")
               h6 {{ item.text }}
-              z-icon(v-if='item.icon') {{ item.icon }}
-              z-icon.ml-1(v-else, :size='2') chevron-down
+              z-icon(v-if="item.icon") {{ item.icon }}
+              z-icon.ml-1(
+                v-else
+                :size="2"
+              ) chevron-down
 
-            template(v-for='(subItem, j) in item.group')
-              z-divider.my-0(v-if='j > 0', :key='"divider-" + i + "-" + j')
+            template(v-for="(subItem, j) in item.group")
+              z-divider.my-0(
+                v-if="j > 0"
+                :key="'divider-' + i + '-' + j"
+              )
               z-link(
-                :key='"link-" + i + "-" + j',
-                :href='subItem.href',
-                :to='subItem.to'
+                :key="'link-' + i + '-' + j"
+                :href="subItem.href"
+                :to="subItem.to"
               )
                 h6.z-website-nav__link {{ subItem.text }}
 
-        slot(name='links-append')
+        slot(name="links-append")
 
-        template(v-if='searchButton')
-          z-divider(vertical, :height='4')
-          z-button.ml-1.mr-2(icon, ghost, @click='$emit("click-search")')
+        template(v-if="searchButton")
+          z-divider(
+            vertical
+            :height="4"
+          )
+          z-button.ml-1.mr-2(
+            icon
+            ghost
+            @click="$emit('click-search')"
+          )
             z-icon search
 
         z-lang-picker.z-website-nav__link(
-          v-if='langItems',
-          :class='{ "mr-1": !cta }',
-          :lang='lang',
-          :items='langItems',
-          :right='langMenuRight',
+          v-if="langItems"
+          :class="{ 'mr-1': !cta }"
+          :lang="lang"
+          :items="langItems"
+          :right="langMenuRight"
           hover
         )
 
-        slot(name='lang-append')
+        slot(name="lang-append")
 
-        template(v-if='cta')
+        template(v-if="cta")
           z-button(
-            v-if='!cta.component',
-            :color='cta.color || "primary"',
-            :href='cta.href',
-            v-bind='cta.props',
+            v-if="!cta.component"
+            :color="cta.color || 'primary'"
+            :href="cta.href"
+            v-bind="cta.props"
             large
           )
-            z-icon(v-if='cta.icon') {{ cta.icon }}
+            z-icon(v-if="cta.icon") {{ cta.icon }}
             span {{ cta.text }}
-          component(v-else, :is='cta.component', v-bind='cta.props')
+          component(
+            v-else
+            :is="cta.component"
+            v-bind="cta.props"
+          )
 
-    .z-website-nav__content--mobile(:class='mobileClass')
-      .z-website-nav__link(:style='transitionDelayStyle(-1)')
-        slot(name='links-prepend')
+    .z-website-nav__content--mobile(:class="mobileClass")
+      .z-website-nav__link(:style="transitionDelayStyle(-1)")
+        slot(name="links-prepend")
 
-      .z-website-nav__mobile-link(v-for='(item, i) in flattenItems')
-        z-link(:key='"link-" + i', :href='item.href', :to='item.to')
-          h6.z-website-nav__link(:style='transitionDelayStyle(i)' @click='onClickBurger()') {{ item.text }}
+      .z-website-nav__mobile-link(v-for="(item, i) in flattenItems")
+        z-link(
+          :key="'link-' + i"
+          :href="item.href"
+          :to="item.to"
+          @click.native="onClickBurger"
+        )
+          h6.z-website-nav__link(:style="transitionDelayStyle(i)") {{ item.text }}
 
-      .z-website-nav__link(:style='transitionDelayStyle(flattenItems.length)')
-        slot(name='links-append')
+      .z-website-nav__link(:style="transitionDelayStyle(flattenItems.length)")
+        slot(name="links-append")
 
       z-lang-picker.z-website-nav__link(
-        v-if='langItems',
-        :lang='lang',
-        :items='langItems',
-        :style='transitionDelayStyle(flattenItems.length + 1)'
+        v-if="langItems"
+        :lang="lang"
+        @click-item="onClickBurger()"
+        :items="langItems"
+        :style="transitionDelayStyle(flattenItems.length + 1)"
       )
 
       .z-website-nav__link(
-        :style='transitionDelayStyle(flattenItems.length + 2)'
+        :style="transitionDelayStyle(flattenItems.length + 2)"
       )
-        slot(name='lang-append')
+        slot(name="lang-append")
 
       .z-website-nav__link(
-        v-if='searchButton',
-        :style='transitionDelayStyle(flattenItems.length + 3)'
+        v-if="searchButton"
+        :style="transitionDelayStyle(flattenItems.length + 3)"
       )
         z-divider
-        z-button.ml-neg-1(icon, ghost, @click='$emit("click-search"); onClickBurger();')
+        z-button.ml-neg-1(
+          icon
+          ghost
+          @click="$emit('click-search'); onClickBurger()"
+        )
           z-icon search
 
-      z-layout.py-2(v-if='cta', justify='center')
+      z-layout.py-2(
+        v-if="cta"
+        justify="center"
+      )
         z-button.z-website-nav__button--mobile(
-          v-if='!cta.component',
-          :color='cta.color || "primary"',
-          :href='cta.href',
-          v-bind='cta.props',
+          v-if="!cta.component"
+          :color="cta.color || 'primary'"
+          :href="cta.href"
+          v-bind="cta.props"
           large
         )
-          z-icon(v-if='cta.icon') {{ cta.icon }}
+          z-icon(v-if="cta.icon") {{ cta.icon }}
           span {{ cta.text }}
-        component(v-else, :is='cta.component', v-bind='cta.props')
+        component(
+          v-else
+          :is="cta.component"
+          v-bind="cta.props"
+        )
 </template>
 
 <style lang="stylus">
@@ -235,6 +269,7 @@ html:not(.no-script)
 
 .z-website-nav__logo
   margin size(1)
+
 .z-website-nav
   .z-website-nav__breadcrumb
     font-size size(3)
@@ -321,6 +356,7 @@ html:not(.no-script)
   .z-website-nav
     .z-website-nav__logo--blog
       font-size size(2)
+
   .z-website-nav__logo--mobile
     display flex
 

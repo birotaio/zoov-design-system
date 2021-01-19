@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.10 (January 12, 2020)
+
+### Feature
+
+  * Close nav on click lang on mobile
+
 ## 0.4.9 (January 12, 2020)
 
 ### Feature

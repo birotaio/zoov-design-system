@@ -9,6 +9,7 @@
         logo-href="/"
         lang-menu-right
         search-button
+        :breadcrumb="{ text: 'blog', to: '/' + this.lang + '/blog' }"
         @click-search="clickSearchHandler"
       )
       .sandbox
