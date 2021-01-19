@@ -22,8 +22,8 @@ component.z-tag(
   padding 0 size(1)
   max-width max-content
   text-transform uppercase
-  color: $colors.neutral.dark-4
   typgraphy('title')
+  color: $colors.neutral.dark-4
   height size(3)
   border-radius size(1.5)
 
@@ -33,6 +33,7 @@ component.z-tag(
 
   &--small
     typography('caption')
+    color: $colors.neutral.dark-4
     height size(2)
     border-radius size(1)
 

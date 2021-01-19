@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.1 (January 19, 2020)
+
+### Fix
+
+  * Fix ZTag color override
+
 ## 0.5.0 (January 19, 2020)
 
 ### Features
