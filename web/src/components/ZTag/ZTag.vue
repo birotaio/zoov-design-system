@@ -1,9 +1,11 @@
 <template lang="pug" functional>
-.z-tag(
+component.z-tag(
   :ref="data.ref"
   :class="[data.class, data.staticClass, $options.methods.computeClasses(props)]"
   :style="[data.style, data.staticStyle]"
   :key="data.key"
+  :is="props.to || props.href ? 'z-link' : 'div'"
+  v-bind="['to', 'href', 'hreflang', 'target'].reduce((p, key) => (p[key] = props[key]) && p || p, {})"
   v-on="listeners"
 )
   .z-tag__background(:class="[props.color]")
@@ -12,7 +14,7 @@
 </template>
 
 <style lang="stylus">
-@import '../../styles/components.styl';
+@import '../../styles/components.styl'
 
 .z-tag
   position relative
@@ -36,6 +38,12 @@
 
     .z-tag__background
       border-radius size(1)
+
+  &--link
+    elevation-transition(true)
+
+    &:hover
+      elevation-shadow-light(2)
 
 .z-tag__background
   absolute-full()
@@ -62,6 +70,23 @@ export default {
       type: Boolean,
       default: false,
     },
+    to: {
+      type: String,
+      default: null,
+    },
+    href: {
+      type: String,
+      default: null,
+    },
+    hreflang: {
+      type: String,
+      default: null,
+    },
+    target: {
+      type: String,
+      default: null,
+    },
+  },
   methods: {
     computeClasses(props) {
       const classes = [];
@@ -70,6 +95,7 @@ export default {
         classes.push('z-tag--colored');
       }
       if (props.small) classes.push('z-tag--small');
+      if (props.to || props.href) classes.push('z-tag--link');
       return classes;
     },
   },
