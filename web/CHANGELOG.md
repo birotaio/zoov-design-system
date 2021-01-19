@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0 (January 19, 2020)
+
+### Features
+
+  * Allow binding additional menu properties to nav links group menu
+  * Add caption styling for `figcaption` tag too
+  * Add link props to ZTag to conditionnaly render ZLink with elevation on hover
+  * Update ZTag default to size bigger and add a `small` prop to ZTag rendering the small version
+  * Add `target` props to ZLink to handle `target="_blank"` attribute
+
 ## 0.4.10 (January 12, 2020)
 
 ### Feature

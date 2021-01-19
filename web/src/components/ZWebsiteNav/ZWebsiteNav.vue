@@ -59,6 +59,7 @@
             :noscript-href="item.noscriptHref"
             focusable
             hover
+            v-bind="item.menuProps"
           )
             .z-website-nav__link__menu-activator(slot="activator")
               h6 {{ item.text }}
