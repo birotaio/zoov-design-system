@@ -275,6 +275,9 @@ html:not(.no-script)
   .z-website-nav__breadcrumb
     font-size size(3)
 
+    +media-down('sm')
+      font-size size(2.5)
+
 .z-website-nav__logo--mobile
   display none
 
