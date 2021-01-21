@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.2 (January 21, 2020)
+
+### Fix
+
+  * Fix ZTag color overriden by ZLink
+
 ## 0.5.1 (January 19, 2020)
 
 ### Fix
