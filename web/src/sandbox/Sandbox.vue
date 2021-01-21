@@ -25,12 +25,12 @@
           z-divider
           .sandbox__section
             h3.mb-2 Elements
-            h1 Heading 1 (Display 3)
-            h2 Heading 2 (Display 2)
-            h3 Heading 3 (Display 1)
-            h4 Heading 4 (Heading)
-            h5 Heading 5 (Title)
-            h6 Heading 6 (Subheader)
+            h1 H1 (Display 3)
+            h2 H2 (Display 2)
+            h3 H3 (Display 1)
+            h4 H4 (Heading)
+            h5 H5 (Title)
+            h6 H6 (Subheader)
             input(value="Input (Subheader)")
             z-spacer
             button Button (Button)
