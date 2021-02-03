@@ -9,7 +9,7 @@ IMAGE_NAME := zoov-design-system
 IMAGE_VERSION = $(shell cat package.json | grep "\"version\"" | cut -d\" -f4)
 
 # shortcuts
-all: tag sandbox publish
+all: tag publish sandbox
 
 # utils
 name:
@@ -39,7 +39,7 @@ publish:
 ### SANDBOX
 ###
 
-sandbox: version build-sandbox image-sandbox push-sandbox
+sandbox: version build-sandbox image-sandbox push-sandbox deploy-sandbox
 
 # build sandbox
 build-sandbox:
@@ -70,4 +70,12 @@ push-sandbox:
 	docker push $(IMAGES_REPO_NAME)/$(IMAGE_NAME):$(IMAGE_VERSION); \
 	docker push $(IMAGES_REPO_NAME)/$(IMAGE_NAME):latest
 
-.PHONY: clean-sandbox
+# deploy
+deploy-sandbox:
+	@cd ../../platform-helm-charts/scripts; \
+	./deploy.sh -e prod -s $(IMAGE_NAME) -v $(IMAGE_VERSION); \
+	cd ..; \
+	helm upgrade $(IMAGE_NAME)-prod -f prod/$(IMAGE_NAME).yaml charts/$(IMAGE_NAME); \
+	cd $(WORKING_DIR);
+
+.PHONY: clean-sandbox deploy
