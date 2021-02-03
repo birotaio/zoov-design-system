@@ -106,11 +106,11 @@ export default {
           // TODO: For better tree-shaking, declare an icon file per icon...
           if (props.flag) {
             svgMarkup = require('../../assets/flags/flag-24x24-' +
-              iconName +
+              iconName.trim() +
               '.svg');
           } else {
             svgMarkup = require('../../assets/icons/icon-24x24-' +
-              iconName +
+              iconName.trim() +
               '.svg');
           }
         }

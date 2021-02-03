@@ -10,7 +10,7 @@
       :prevent-click="mobileMenuAnimating"
     )
       z-icon(:color="burgerColor") {{ mobileMenuIcon }}
-    .z-website-nav__content(:class="navContentClass")
+    .z-website-nav__container(:class="navContentClass")
       .spacer.sm-and-down
 
       .z-website-nav__logo__content
@@ -38,6 +38,8 @@
           :href="breadcrumb.href"
         )
           | {{ breadcrumb.text }}
+
+        .z-website-nav__logo__mask
 
       .spacer
 
@@ -83,12 +85,13 @@
 
         slot(name="links-append")
 
+      .z-website-nav__tools.sm-and-up
         template(v-if="searchButton")
           z-divider(
             vertical
             :height="4"
           )
-          z-button.ml-1.mr-2(
+          z-button.ml-1(
             icon
             ghost
             @click="$emit('click-search')"
@@ -97,7 +100,7 @@
 
         z-lang-picker.z-website-nav__link(
           v-if="langItems"
-          :class="{ 'mr-1': !cta }"
+          :class="cta ? 'mr-4' : 'mr-3'"
           :lang="lang"
           :items="langItems"
           :right="langMenuRight"
@@ -122,7 +125,7 @@
             v-bind="cta.props"
           )
 
-    .z-website-nav__content--mobile(:class="mobileClass")
+    .z-website-nav__container--mobile(:class="mobileClass")
       .z-website-nav__link(:style="transitionDelayStyle(-1)")
         slot(name="links-prepend")
 
@@ -218,7 +221,7 @@ for $breakpoint_name in $breakpoints
     .no-script .z-website-nav--elevation.z-website-nav--faded--{$breakpoint_name}
       elevation-shadow-light(3)
 
-.z-website-nav__content
+.z-website-nav__container
   height size(10)
   display flex
   background-color white
@@ -233,14 +236,14 @@ for $breakpoint_name in $breakpoints
 
 html:not(.no-script)
   .z-website-nav--faded
-    .z-website-nav__content
+    .z-website-nav__container
       background-color transparent
       color white
 
   for $breakpoint_name in $breakpoints
     +media-down($breakpoint_name)
       .z-website-nav--faded--{$breakpoint_name}
-        .z-website-nav__content
+        .z-website-nav__container
           background-color transparent
           color white
 
@@ -251,7 +254,7 @@ html:not(.no-script)
   z-index 2
 
 .no-script
-  .z-button.z-website-nav__burger:focus + .z-website-nav__content + .z-website-nav__content--mobile, .z-website-nav__content--mobile:hover
+  .z-button.z-website-nav__burger:focus + .z-website-nav__container + .z-website-nav__container--mobile, .z-website-nav__container--mobile:hover
     display block
 
     .z-website-nav__link
@@ -264,6 +267,10 @@ html:not(.no-script)
 .z-website-nav__logo__content
   display flex
   align-items center
+  position absolute
+  height 100%
+  background-color white
+  z-index 1
 
 .z-website-nav__logo__wrapper, .z-website-nav__logo
   z-index
@@ -275,8 +282,19 @@ html:not(.no-script)
   .z-website-nav__breadcrumb
     font-size size(3)
 
+    +media-down('sm')
+      font-size size(2.5)
+
 .z-website-nav__logo--mobile
   display none
+
+.z-website-nav__logo__mask
+  width size(6)
+  min-width size(6)
+  height 100%
+  background-image linear-gradient(90deg, white 50%, transparent 100%)
+  z-index 1
+  margin-right size(-4)
 
 .z-website-nav__curtain
   position absolute
@@ -301,13 +319,12 @@ html:not(.no-script)
   &--reverse
     animation-direction reverse
 
-.z-website-nav__content--mobile
+.z-website-nav__container--mobile
   background-color white
   padding size(2) size(3)
   display none
 
   .z-website-nav__link
-    margin-bottom size(2)
     opacity 0
     transform translateX($appear-right-distance)
     transition opacity $duration-1 $easing-2, transform $duration-1 $easing-2
@@ -317,24 +334,34 @@ html:not(.no-script)
     transition transform $duration-1 $easing-1 !important
     transition-delay 0.4s
 
+.z-website-nav__tools
+  display flex
+  align-items center
+
 .z-website-nav__links
   display flex
   align-items center
+  justify-content flex-end
+  padding-left size(1)
+  padding-right size(2)
+  height 100%
 
   a
     text-decoration none
 
-.z-website-nav__link--group
-  h6.z-website-nav__link
-    margin-right 0
+.z-website-nav
+  .z-website-nav__link--group
+    h6.z-website-nav__link
+      margin-left 0
+      margin-right 0
 
-    &:hover
-      color: $colors.primary.base
-      transition color 0.2s ease
+      &:hover
+        color: $colors.primary.base
+        transition color 0.2s ease
 
 .z-website-nav
   .z-website-nav__link, h6.z-website-nav__link
-    margin-right size(4)
+    margin 0 size(2)
     white-space nowrap
     position relative
 
@@ -358,13 +385,20 @@ html:not(.no-script)
     .z-website-nav__logo--blog
       font-size size(2)
 
+    .z-website-nav__link, h6.z-website-nav__link
+      margin-left 0
+      margin-bottom size(2)
+
+  .z-website-nav__logo__content
+    position static
+
   .z-website-nav__logo--mobile
     display flex
 
   .z-website-nav__logo--desktop
     display none
 
-  .z-website-nav__content
+  .z-website-nav__container
     height size(8)
     padding 0 size(2)
 

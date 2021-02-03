@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.3 (February 3, 2020)
+
+### Fix
+
+  * Fix matching of icons (trim name)
+  * Garefully handle overflowing content in Nav Bar
+
 ## 0.5.2 (January 21, 2020)
 
 ### Fix
