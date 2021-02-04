@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.4 (February 4, 2020)
+
+### Fix
+
+  * Fix margin of nav language picker when no CTA
+
 ## 0.5.3 (February 3, 2020)
 
 ### Fix

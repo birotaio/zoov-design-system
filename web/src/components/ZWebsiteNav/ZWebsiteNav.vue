@@ -100,7 +100,7 @@
 
         z-lang-picker.z-website-nav__link(
           v-if="langItems"
-          :class="cta ? 'mr-4' : 'mr-3'"
+          :class="cta ? 'mr-4' : 'mr-1'"
           :lang="lang"
           :items="langItems"
           :right="langMenuRight"
