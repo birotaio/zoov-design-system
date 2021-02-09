@@ -1,37 +1,37 @@
 # Changelog
 
-## 0.5.5 (February 9, 2020)
+## 0.5.5 (February 9, 2021)
 
 ### Fix
 
   * Fix appearance & colors of Nav in faded mode
 
-## 0.5.4 (February 4, 2020)
+## 0.5.4 (February 4, 2021)
 
 ### Fix
 
   * Fix margin of nav language picker when no CTA
 
-## 0.5.3 (February 3, 2020)
+## 0.5.3 (February 3, 2021)
 
 ### Fix
 
   * Fix matching of icons (trim name)
   * Gracefully handle overflowing content in Nav Bar
 
-## 0.5.2 (January 21, 2020)
+## 0.5.2 (January 21, 2021)
 
 ### Fix
 
   * Fix ZTag color overriden by ZLink
 
-## 0.5.1 (January 19, 2020)
+## 0.5.1 (January 19, 2021)
 
 ### Fix
 
   * Fix ZTag color override
 
-## 0.5.0 (January 19, 2020)
+## 0.5.0 (January 19, 2021)
 
 ### Features
 
@@ -41,49 +41,49 @@
   * Update ZTag default to size bigger and add a `small` prop to ZTag rendering the small version
   * Add `target` props to ZLink to handle `target="_blank"` attribute
 
-## 0.4.10 (January 12, 2020)
+## 0.4.10 (January 12, 2021)
 
 ### Feature
 
   * Close nav on click lang on mobile
 
-## 0.4.9 (January 12, 2020)
+## 0.4.9 (January 12, 2021)
 
 ### Feature
 
   * Add the management of a breadcrumb in the nav
 
-## 0.4.8 (January 8, 2020)
+## 0.4.8 (January 8, 2021)
 
 ### Feature
 
   * Close nav on click link and search on mobile
 
-## 0.4.7 (January 7, 2020)
+## 0.4.7 (January 7, 2021)
 
 ### Fix
 
   * Properly format mumeric lists (`<ol>`)
 
-## 0.4.6 (January 6, 2020)
+## 0.4.6 (January 6, 2021)
 
 ### Fix
 
   * Pass down `:key="data.key"` to functional components
 
-## 0.4.5 (January 4, 2020)
+## 0.4.5 (January 4, 2021)
 
 ### Feature
 
   * Define and use a simpler `typography` mixin
 
-## 0.4.4 (January 4, 2020)
+## 0.4.4 (January 4, 2021)
 
 ### Feature
 
   * Add `icon` option for nav link group
 
-## 0.4.3 (January 4, 2020)
+## 0.4.3 (January 4, 2021)
 
 ### Feature
 
