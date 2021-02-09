@@ -2,6 +2,7 @@ import { throttle, isClient, getClientWidth } from './modules/utils';
 import theme from './theme';
 import directives from './directives';
 import './styles/index.styl';
+import { version } from '../package.json';
 
 export default {
   install: function(Vue, options = {}) {
@@ -12,7 +13,7 @@ export default {
     /*
      * zds instance
      */
-    const zds = {};
+    const zds = { version };
     Vue.util.defineReactive(zds, 'client', isClient);
 
     /*

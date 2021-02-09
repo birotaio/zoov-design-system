@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.5 (February 9, 2020)
+
+### Fix
+
+  * Fix appearance & colors of Nav in faded mode
+
 ## 0.5.4 (February 4, 2020)
 
 ### Fix
