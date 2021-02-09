@@ -30,6 +30,7 @@
         z-divider.z-website-nav__separator(
           v-if="breadcrumb"
           vertical
+          :light="faded"
           :height="4"
         )
         z-link.z-website-nav__logo.z-website-nav__breadcrumb(
@@ -89,6 +90,7 @@
         template(v-if="searchButton")
           z-divider(
             vertical
+            :light="faded"
             :height="4"
           )
           z-button.ml-1(
@@ -96,7 +98,7 @@
             ghost
             @click="$emit('click-search')"
           )
-            z-icon search
+            z-icon(:color="faded ? 'white' : ''") search
 
         z-lang-picker.z-website-nav__link(
           v-if="langItems"
@@ -240,6 +242,12 @@ html:not(.no-script)
       background-color transparent
       color white
 
+    .z-website-nav__logo__content
+      background-color transparent
+
+    .z-website-nav__logo__mask
+      display none
+
   for $breakpoint_name in $breakpoints
     +media-down($breakpoint_name)
       .z-website-nav--faded--{$breakpoint_name}
@@ -272,6 +280,9 @@ html:not(.no-script)
   background-color white
   z-index 1
 
+  +media-down('sm')
+    background-color transparent
+
 .z-website-nav__logo__wrapper, .z-website-nav__logo
   z-index
 
@@ -295,6 +306,9 @@ html:not(.no-script)
   background-image linear-gradient(90deg, white 50%, transparent 100%)
   z-index 1
   margin-right size(-4)
+
+  +media-down('sm')
+    background-image none
 
 .z-website-nav__curtain
   position absolute
