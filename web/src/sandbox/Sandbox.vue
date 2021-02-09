@@ -9,11 +9,12 @@
         logo-href="/"
         lang-menu-right
         search-button
+        fade
         :breadcrumb="{ text: 'blog', to: '/' + this.lang + '/blog' }"
         @click-search="clickSearchHandler"
       )
       .sandbox
-        .sandbox__title
+        .sandbox__title.text--neutral--light-2
           p.mb-0 Zoov Design System – {{ version }}
           h3 Sandbox
 
@@ -554,7 +555,7 @@
 
 .sandbox
   padding 96px 16px 16px
-  background-color #eee
+  background-color #222
 
   &__title
     text-align center
@@ -562,7 +563,7 @@
 
   &__content
     margin-top size(2)
-    background-color #fff
+    background-color #f2f2f2
     padding size(4)
     border-radius size(1)
 
@@ -630,15 +631,15 @@ export default {
         { lang: 'en', text: 'English', to: '/' },
       ],
       navItems: [
-        ...[1, 2, 3, 4, 5, 6, 7, 8].map(i => ({ to: '/', text: 'Link ' + i })),
+        ...[1, 2, 3, 4].map(i => ({ to: '/', text: 'Link ' + i })),
         {
           icon: 'dots-three',
           noscriptHref: '#',
           menuProps: { right: true },
           group: [
-            { href: '/', text: 'Link 2' },
-            { href: '/', text: 'Link 3' },
-            { href: '/', text: 'Link 4' },
+            { href: '/', text: 'Link 5' },
+            { href: '/', text: 'Link 6' },
+            { href: '/', text: 'Link 7' },
           ],
         },
       ],
