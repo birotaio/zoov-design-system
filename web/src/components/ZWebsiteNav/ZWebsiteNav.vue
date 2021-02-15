@@ -244,9 +244,11 @@ html:not(.no-script)
 
     .z-website-nav__logo__content
       background-color transparent
+      transition background-color 0s 0s
 
     .z-website-nav__logo__mask
-      display none
+      opacity 0
+      transition-delay 0s
 
   for $breakpoint_name in $breakpoints
     +media-down($breakpoint_name)
@@ -278,6 +280,7 @@ html:not(.no-script)
   position absolute
   height 100%
   background-color white
+  transition background-color 0s 0.3s
   z-index 1
 
   +media-down('sm')
@@ -306,6 +309,8 @@ html:not(.no-script)
   background-image linear-gradient(90deg, white 50%, transparent 100%)
   z-index 1
   margin-right size(-4)
+  opacity 1
+  transition-delay 0.3s
 
   +media-down('sm')
     background-image none
