@@ -313,7 +313,7 @@ html:not(.no-script)
   transition-delay 0.3s
 
   +media-down('sm')
-    background-image none
+    display none
 
 .z-website-nav__curtain
   position absolute

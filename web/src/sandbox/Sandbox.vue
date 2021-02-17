@@ -10,7 +10,7 @@
         lang-menu-right
         search-button
         fade
-        :breadcrumb="{ text: 'blog', to: '/' + this.lang + '/blog' }"
+        :breadcrumb="{ text: 'blog', to: '/' }"
         @click-search="clickSearchHandler"
       )
       .sandbox

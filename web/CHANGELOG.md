@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.6 (February 17, 2021)
+
+### Fix
+
+  * Make sure Nav logo in perfectly centered in mobile
+
 ## 0.5.5 (February 9, 2021)
 
 ### Fix
