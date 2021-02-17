@@ -26,7 +26,7 @@
 <style lang="stylus">
 @import '../../styles/components.styl';
 
-$ease-ripple-in := cubic-bezier(0.56, 0, 0.84, 0.17);
+$ease-ripple-in := cubic-bezier(.85,0,.78,1);
 $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
 
 .z-button, a.z-button
@@ -41,7 +41,8 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
   user-select none
   outline 0
   border 0
-
+  overflow hidden
+  cursor pointer
   display inline-flex
   justify-content center
   vertical-align middle
@@ -61,22 +62,22 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
     bg-color(alpha($colors.neutral.dark-3, 15%), true)
     text-color($colors.neutral.base, true)
 
-  &.z-button--prevent-click
+  &.z-button--prevent-click, &.z-button--loading, &.z-button--disabled, &.z-button--prevent-click, &.z-button--shapeless
     cursor default
 
-  &:not(.z-button--loading):not(.z-button--disabled):not(.z-button--icon):not(.z-button--prevent-click):not(.z-button--shapeless)
-    make-interactive()
-    cursor pointer
+    .z-button__ripple
+      display none
+      transition none
 
   .z-button__ripple
     background-color $focus-background
     position absolute
     width 100%
-    height 100%
+    padding-top 100%
     border-radius 50%
     z-index 0
     transform scale(0)
-    transition transform 0.1s $ease-ripple-in, background-color 0.2s
+    transition transform 0.2s $ease-ripple-in, background-color 0.2s
 
   .z-button__loader
     position absolute
@@ -97,13 +98,6 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
   &.z-button--outline, &.z-button--ghost
     bg-color(transparent)
     text-color($colors.neutral.dark-3)
-
-    &:not(.z-button--loading):not(.z-button--disabled):not(.z-button--icon):not(.z-button--prevent-click):not(.z-button--shapeless)
-      &:hover
-        background-image linear-gradient($focus-background, $focus-background)
-
-      &:active
-        background-image linear-gradient($active-background, $active-background)
 
   &.z-button--outline
     border: 1px solid $colors.neutral.dark-3
@@ -224,14 +218,17 @@ $ease-ripple-out := cubic-bezier(0.17, 0.84, 0.44, 1.00);
     &.z-button--tiny
       width size(3)
 
-    &:hover, &:focus
-      .z-button__ripple
-        transform scale(1)
-        transition transform 0.25s $ease-ripple-out, background-color 0.2s
+    .z-button__ripple
+      transition transform 0.1s $ease-ripple-in, background-color 0.2s
 
-    &:active
-      .z-button__ripple
-        background-color $active-background
+  &:hover, &:focus
+    .z-button__ripple
+      transform scale(1)
+      transition transform 0.25s $ease-ripple-out, background-color 0.2s
+
+  &:active
+    .z-button__ripple
+      background-color $active-background
 
   &:focus
     outline 0
