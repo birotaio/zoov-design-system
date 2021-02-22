@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.7 (February 22, 2021)
+
+### Fix
+
+  * Add 4 icons to the design system
+
 ## 0.5.6 (February 17, 2021)
 
 ### Fix
