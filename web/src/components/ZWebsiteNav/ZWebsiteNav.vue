@@ -257,6 +257,29 @@ html:not(.no-script)
           background-color transparent
           color white
 
+  .z-website-nav--faded--sm
+    +media-down('sm')
+      .z-website-nav__logo__content
+        transition background-color 0s 0s
+
+      .z-website-nav__logo__mask
+        opacity 0
+
+    +media-up('sm')
+      .z-website-nav__logo__content
+        transition background-color 0.1s 0.2s
+
+      .z-website-nav__logo__mask
+        opacity 0
+        animation mask-on 0.3s 0.2s forwards
+
+@keyframes mask-on
+  0%
+    opacity 0
+
+  100%
+    opacity 1
+
 .z-button.z-website-nav__burger
   position absolute
   left size(1)
@@ -280,7 +303,7 @@ html:not(.no-script)
   position absolute
   height 100%
   background-color white
-  transition background-color 0s 0.3s
+  transition background-color 0.1s 0.2s
   z-index 1
 
   +media-down('sm')
