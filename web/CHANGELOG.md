@@ -1,8 +1,15 @@
 # Changelog
 
-## 0.5.7 (February 22, 2021)
+## 0.5.8 (February 25, 2021)
 
 ### Fix
+
+  * Fix inconsistent breakpoint computation JS side vs CSS side
+  * Fix transitional fade state on fade mode in sm breakpoint
+
+## 0.5.7 (February 22, 2021)
+
+### Feature
 
   * Add 4 icons to the design system
 
