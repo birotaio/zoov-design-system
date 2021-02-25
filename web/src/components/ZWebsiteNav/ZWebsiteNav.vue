@@ -274,9 +274,6 @@ html:not(.no-script)
         animation mask-on 0.3s 0.2s forwards
 
 @keyframes mask-on
-  0%
-    opacity 0
-
   100%
     opacity 1
 
