@@ -12,7 +12,6 @@
         fade="sm"
         :breadcrumb="{ text: 'blog', to: '/' }"
         @click-search="clickSearchHandler"
-        :destkopHideWidth="1060"
       )
       .sandbox
         .sandbox__title.text--neutral--light-2
@@ -632,7 +631,11 @@ export default {
         { lang: 'en', text: 'English', to: '/' },
       ],
       navItems: [
-        ...[1, 2, 3, 4, 5, 6, 7].map(i => ({ to: '/', text: 'Link ' + i })),
+        ...[1, 2, 3, 4, 5, 6, 7].map(i => ({
+          to: '/',
+          text: 'Link ' + i,
+          destkopHideWidth: 1060,
+        })),
         {
           icon: 'dots-three',
           noscriptHref: '#',

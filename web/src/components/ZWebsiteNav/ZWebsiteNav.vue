@@ -53,7 +53,7 @@
             :key="'link-' + i"
             :href="item.href"
             :to="item.to"
-            v-show="$zds.clientWidth >= destkopHideWidth"
+            v-show="$zds.clientWidth >= item.destkopHideWidth"
             :class="{ hide : item.hide }"
           )
             h6.z-website-nav__link {{ item.text }}
@@ -551,10 +551,6 @@ export default {
     breadcrumb: {
       type: Object,
       default: null,
-    },
-    destkopHideWidth: {
-      type: Number,
-      default: 0,
     },
   },
   data() {
