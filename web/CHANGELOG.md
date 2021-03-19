@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.9 (March 19, 2021)
+
+### Feature
+
+  * Add `desktopHideWidth` property to the nav elements
+
 ## 0.5.8 (February 25, 2021)
 
 ### Fix
