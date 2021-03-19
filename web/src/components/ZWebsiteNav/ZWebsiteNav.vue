@@ -53,6 +53,7 @@
             :key="'link-' + i"
             :href="item.href"
             :to="item.to"
+            v-show="!item.desktopHideWidth || $zds.clientWidth >= item.desktopHideWidth"
           )
             h6.z-website-nav__link {{ item.text }}
 
@@ -418,6 +419,8 @@ html:not(.no-script)
 .z-website-nav__link__menu-activator
   display flex
   align-items center
+
+// .z-link .z-link--exact-active z-link--active hide
 
 +media-down('sm')
   .z-website-nav

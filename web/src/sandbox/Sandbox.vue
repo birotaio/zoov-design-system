@@ -631,7 +631,23 @@ export default {
         { lang: 'en', text: 'English', to: '/' },
       ],
       navItems: [
-        ...[1, 2, 3, 4, 5, 6, 7].map(i => ({ to: '/', text: 'Link ' + i })),
+        {
+          to: '/',
+          text: 'Blog',
+          desktopHideWidth: 1060,
+        },
+        {
+          to: '/',
+          text: 'ElectricBike',
+        },
+        [1, 2, 3, 4, 5, 6, 7].map(i => ({
+          to: '/',
+          text: 'Link ' + i,
+        })),
+        {
+          to: '/',
+          text: 'Link',
+        },
         {
           icon: 'dots-three',
           noscriptHref: '#',
