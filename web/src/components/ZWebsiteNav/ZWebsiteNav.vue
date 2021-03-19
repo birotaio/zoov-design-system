@@ -53,6 +53,7 @@
             :key="'link-' + i"
             :href="item.href"
             :to="item.to"
+            :class="{ display : item.class }"
           )
             h6.z-website-nav__link {{ item.text }}
 

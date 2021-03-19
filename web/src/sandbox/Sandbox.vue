@@ -631,7 +631,11 @@ export default {
         { lang: 'en', text: 'English', to: '/' },
       ],
       navItems: [
-        ...[1, 2, 3, 4, 5, 6, 7].map(i => ({ to: '/', text: 'Link ' + i })),
+        ...[1, 2, 3, 4, 5, 6, 7].map(i => ({
+          to: '/',
+          text: 'Link ' + i,
+          class: true,
+        })),
         {
           icon: 'dots-three',
           noscriptHref: '#',
