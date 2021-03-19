@@ -53,7 +53,7 @@
             :key="'link-' + i"
             :href="item.href"
             :to="item.to"
-            v-show="$zds.clientWidth >= item.destkopHideWidth"
+            v-show="!item.desktopHideWidth || $zds.clientWidth >= item.desktopHideWidth"
           )
             h6.z-website-nav__link {{ item.text }}
 
