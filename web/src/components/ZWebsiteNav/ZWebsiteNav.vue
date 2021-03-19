@@ -54,7 +54,6 @@
             :href="item.href"
             :to="item.to"
             v-show="$zds.clientWidth >= item.destkopHideWidth"
-            :class="{ hide : item.hide }"
           )
             h6.z-website-nav__link {{ item.text }}
 
