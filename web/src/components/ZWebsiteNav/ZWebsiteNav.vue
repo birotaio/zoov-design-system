@@ -53,6 +53,7 @@
             :key="'link-' + i"
             :href="item.href"
             :to="item.to"
+            v-show="$zds.clientWidth >= destkopHideWidth"
             :class="{ hide : item.hide }"
           )
             h6.z-website-nav__link {{ item.text }}
@@ -422,10 +423,6 @@ html:not(.no-script)
 
 // .z-link .z-link--exact-active z-link--active hide
 
-@media (max-width:1060px) and (min-width:960px)
-  .hide
-    display none
-
 +media-down('sm')
   .z-website-nav
     .z-website-nav__logo--blog
@@ -554,6 +551,10 @@ export default {
     breadcrumb: {
       type: Object,
       default: null,
+    },
+    destkopHideWidth: {
+      type: Number,
+      default: 0,
     },
   },
   data() {
