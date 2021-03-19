@@ -53,7 +53,7 @@
             :key="'link-' + i"
             :href="item.href"
             :to="item.to"
-            :class="{ display : item.class }"
+            :class="{ hide : item.hide }"
           )
             h6.z-website-nav__link {{ item.text }}
 
@@ -419,6 +419,12 @@ html:not(.no-script)
 .z-website-nav__link__menu-activator
   display flex
   align-items center
+
+// .z-link .z-link--exact-active z-link--active hide
+
+@media (max-width:1060px) and (min-width:960px)
+  .hide
+    display none
 
 +media-down('sm')
   .z-website-nav

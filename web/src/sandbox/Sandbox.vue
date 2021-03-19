@@ -634,7 +634,7 @@ export default {
         ...[1, 2, 3, 4, 5, 6, 7].map(i => ({
           to: '/',
           text: 'Link ' + i,
-          class: true,
+          hide: true,
         })),
         {
           icon: 'dots-three',
