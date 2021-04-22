@@ -1,6 +1,6 @@
 <template lang="pug">
   .z-dialog
-    .z-dialog__activator(@click.stop="onClickActivator")
+    .z-dialog__activator
       slot(name="activator" :activate="onClickActivator")
     z-overlay(:value="proxy__value")
     transition(name="zt-fade")

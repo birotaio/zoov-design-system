@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.10 (April 22, 2021)
+
+### Fix
+
+  * Remove the click event in ZDialog
+
 ## 0.5.9 (March 19, 2021)
 
 ### Feature
