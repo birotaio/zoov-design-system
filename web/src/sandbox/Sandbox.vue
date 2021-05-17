@@ -345,6 +345,8 @@
             .sandbox__flex
               z-checkbox(label="Label" v-model="checkboxValue")
             .sandbox__flex
+              z-checkbox(label="<p>Label with <b>HTML CONTENT</b></p>" html)
+            .sandbox__flex
               z-checkbox(label="Already checked" :value="true")
             .sandbox__flex
               z-checkbox(label="Indeterminate" :indeterminate.sync="checkboxIndeterminate1")

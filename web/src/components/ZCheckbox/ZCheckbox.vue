@@ -18,7 +18,8 @@
         @focus="onFocus"
         @blur="onBlur"
       )
-    z-label(@click="check" :class="{ 'text--neutral--dark-1': disabled }") {{ label }}
+    label.ml-1(v-if="html" v-html="label" @click="check" :class="{ 'text--neutral--dark-1': disabled }")
+    z-label(v-else @click="check" :class="{ 'text--neutral--dark-1': disabled }") {{ label }}
 </template>
 
 <style lang="stylus">
@@ -154,6 +155,10 @@ export default {
     label: {
       type: String,
       default: '',
+    },
+    html: {
+      type: Boolean,
+      default: false,
     },
     color: {
       type: String,
