@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.10 (May 18, 2021)
+
+### Feature
+
+  [Checkbox] Handle html content in label
+
 ## 0.5.9 (March 19, 2021)
 
 ### Feature
