@@ -19,7 +19,9 @@
         @blur="onBlur"
       )
     z-label(@click="check" :class="{ 'text--neutral--dark-1': disabled }")
-      div(v-html="label")
+      slot(v-if="hasLabelSlot" name="label")
+      div(v-else v-html="label")
+
 </template>
 
 <style lang="stylus">
@@ -183,6 +185,9 @@ export default {
     };
   },
   computed: {
+    hasLabelSlot() {
+      return !!this.$slots.label;
+    },
     checked() {
       return this.proxy__value;
     },
