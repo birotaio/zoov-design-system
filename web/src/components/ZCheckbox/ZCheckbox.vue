@@ -20,7 +20,7 @@
       )
     z-label(@click="check" :class="{ 'text--neutral--dark-1': disabled }")
       slot(v-if="hasLabelSlot" name="label")
-      div(v-else v-html="label")
+      span(v-else v-html="label")
 
 </template>
 
