@@ -344,6 +344,9 @@
             h3 ZCheckbox
             .sandbox__flex
               z-checkbox(label="Label" v-model="checkboxValue")
+                template(v-slot:label) slotLabel
+            .sandbox__flex
+              z-checkbox(label="<p>Label with <b>HTML CONTENT</b></p>" html)
             .sandbox__flex
               z-checkbox(label="Already checked" :value="true")
             .sandbox__flex
