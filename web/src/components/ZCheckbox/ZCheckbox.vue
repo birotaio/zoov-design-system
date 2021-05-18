@@ -18,8 +18,8 @@
         @focus="onFocus"
         @blur="onBlur"
       )
-    label.ml-1(v-if="html" v-html="label" @click="check" :class="{ 'text--neutral--dark-1': disabled }")
-    z-label(v-else @click="check" :class="{ 'text--neutral--dark-1': disabled }") {{ label }}
+    z-label(@click="check" :class="{ 'text--neutral--dark-1': disabled }")
+      div(v-html="label")
 </template>
 
 <style lang="stylus">
