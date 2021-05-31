@@ -33,10 +33,6 @@
     .z-label
       cursor pointer
 
-    caption
-      margin-bottom 0
-      text-color($colors.neutral.dark-1)
-
   .z-select__value
     height size(6)
     position relative
