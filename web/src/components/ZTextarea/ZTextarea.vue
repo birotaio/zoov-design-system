@@ -20,7 +20,7 @@
 .z-textarea
   display flex
   flex-direction column
-  padding-bottom size(2)
+  padding size(1) 0
   width 100%
 
   .z-textarea__label
@@ -28,8 +28,8 @@
     justify-content space-between
     margin-bottom size(1)
 
-  > label
-    margin-bottom size(1)
+  .z-textarea__caption
+    color: $colors.neutral.base
 
   > .z-textarea__textarea
     padding size(0.5) size(2)
