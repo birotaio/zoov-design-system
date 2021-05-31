@@ -5,6 +5,9 @@
 ### Features
 
   [Nav] Handle new corpo form
+  [Component]
+    - Add ZSelect component
+    - Add ZTextarea component
 
 ## 0.5.10 (May 18, 2021)
 
