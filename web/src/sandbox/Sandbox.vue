@@ -349,6 +349,12 @@
 
           z-divider
           .sandbox__section
+            h3 ZTextarea
+            z-textarea(label="Input label" v-model="textareaValue")
+            z-textarea(color="primary")
+
+          z-divider
+          .sandbox__section
             h3 ZCheckbox
             .sandbox__flex
               z-checkbox(label="Label" v-model="checkboxValue")
@@ -616,6 +622,7 @@ export default {
     return {
       version,
       selectValue: '',
+      textareaValue: '',
       elevations: ['inset', 0, 1, 2, 3, 4, 5, 6],
       iconList,
       buttonSizes: [
