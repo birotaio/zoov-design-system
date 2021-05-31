@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.11 (May 31, 2021)
+## 0.6.0 (May 31, 2021)
 
 ### Features
 
