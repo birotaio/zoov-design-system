@@ -182,6 +182,12 @@
         )
           z-icon(v-if="cta.icon") {{ cta.icon }}
           span {{ cta.text }}
+        z-button.z-website-nav__button--mobile(
+          v-else-if="cta.form"
+          :color="cta.color || 'primary'"
+          @click="$emit('activate-form');"
+          large
+        )
         component(
           v-else
           :is="cta.component"

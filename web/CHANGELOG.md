@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.11 (May 31, 2021)
+
+### Features
+
+  [Nav] Handle new corpo form
+
 ## 0.5.10 (May 18, 2021)
 
 ### Feature

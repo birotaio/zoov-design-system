@@ -30,3 +30,4 @@ export { ZLangPicker } from './ZLangPicker';
 export { ZWebsiteNav } from './ZWebsiteNav';
 export { ZLink } from './ZLink';
 export { ZTag } from './ZTag';
+export { ZSelect } from './ZSelect';

@@ -341,6 +341,14 @@
 
           z-divider
           .sandbox__section
+            h3 ZSelect
+            z-select(label="Input label" v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']")
+            z-layout.mt-3(align="end" gutter)
+              z-col(xxs12 sm6 md3)
+                z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']")
+
+          z-divider
+          .sandbox__section
             h3 ZCheckbox
             .sandbox__flex
               z-checkbox(label="Label" v-model="checkboxValue")
@@ -607,6 +615,7 @@ export default {
   data() {
     return {
       version,
+      selectValue: '',
       elevations: ['inset', 0, 1, 2, 3, 4, 5, 6],
       iconList,
       buttonSizes: [
