@@ -3,16 +3,32 @@
   .z-select__label(v-if="label")
     z-label {{ label }}
   .z-select__value(@click="openMenu = !openMenu")
-    p {{ optionSelected }}
+    input(
+      readonly="readonly"
+      type="text"
+      aria-readonly="false"
+      autocomplete="off"
+      :value="selectedOption"
+      @focus="inputFocus = true"
+      @blur="inputFocus = false"
+    )
     .z-select__arrows
       z-icon(:size="2") chevron-up
       z-icon(:size="2") chevron-down
+  //- .z-select__value(@click="openMenu = !openMenu")
+  //- p {{ selectedOption }}
+  //- .z-select__arrows
+  //- z-icon(:size="2") chevron-up
+  //- z-icon(:size="2") chevron-down
 
   ul.z-select__options(:class="{ active: openMenu }")
     li.z-select__option(
-      v-for="option in options"
+      v-for="(option, index) in options"
+      @mouseover="listFocus = true; hoverIndex = null"
+      @mouseout="listFocus = false"
       @click="proxy__value = option; openMenu = false"
-      :style="{ 'font-weight': optionSelected === option ? 'bold' : 'normal' }"
+      :class="{ hover : hoverIndex === index }"
+      :style="{ 'font-weight': selectedOption === option ? 'bold' : 'normal' }"
     ) {{ option }}
 </template>
 
@@ -37,10 +53,19 @@
     height size(6)
     position relative
     background white
-    border-radius size(1)
+    border-radius size(0.5)
     display flex
     align-items center
-    padding-left size(2)
+    > input
+      padding-left size(2)
+      width 100%
+      height 100%
+
+    input:hover
+      cursor auto
+
+    input:focus
+      outline none
 
   .z-select__arrows
     position absolute
@@ -54,7 +79,7 @@
     margin-top size(1)
     list-style-type none
     margin-left 0
-    border-radius size(1)
+    border-radius size(0.5)
     opacity 0
     pointer-events none
     overflow hidden
@@ -70,6 +95,9 @@
 
       &:hover
         background: $colors.primary.light-2
+
+    .z-select__option.hover
+      background: $colors.primary.light-2
 
   .z-select__options.active
     opacity 1
@@ -100,11 +128,58 @@ export default {
   data() {
     return {
       openMenu: false,
+      inputFocus: false,
+      listFocus: false,
+      hoverIndex: this.value ? this.options.indexOf(this.value) : 0,
     };
   },
   computed: {
-    optionSelected() {
+    selectedOption() {
       return this.value || this.options[0];
+    },
+  },
+  mounted() {
+    window.addEventListener('keydown', this.handleKeys);
+  },
+  beforeDestroy() {
+    window.removeEventListener('keydown', this.handleKeys);
+  },
+  methods: {
+    handleKeys(e) {
+      if (this.openMenu) {
+        if (['ArrowUp', 'ArrowDown', 'Space'].indexOf(e.code) > -1) {
+          e.preventDefault();
+        }
+        switch (e.code) {
+          case 'ArrowDown':
+            if (this.hoverIndex === null) {
+              this.hoverIndex = 0;
+            } else if (this.hoverIndex < this.options.length - 1) {
+              this.hoverIndex++;
+            }
+            break;
+          case 'ArrowUp':
+            if (this.hoverIndex === null) {
+              this.hoverIndex = this.options.length - 1;
+            } else if (this.hoverIndex > 0) {
+              this.hoverIndex--;
+            }
+            break;
+          case 'Enter':
+          case 'Space':
+            this.proxy__value = this.options[this.hoverIndex];
+            this.openMenu = false;
+            break;
+        }
+      }
+    },
+  },
+  watch: {
+    inputFocus(value) {
+      if (!value && !this.listFocus) this.openMenu = false;
+    },
+    openMenu(value) {
+      if (!value) this.hoverIndex = this.options.indexOf(this.value);
     },
   },
 };

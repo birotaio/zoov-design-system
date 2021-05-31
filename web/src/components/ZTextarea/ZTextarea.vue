@@ -32,7 +32,7 @@
     color: $colors.neutral.base
 
   > .z-textarea__textarea
-    padding size(0.5) size(2)
+    padding size(1) size(2)
     color: $colors.neutral.dark-3
     border: 1px solid $colors.neutral.light-3
     background white

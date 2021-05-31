@@ -621,7 +621,7 @@ export default {
   data() {
     return {
       version,
-      selectValue: '',
+      selectValue: 'Alvin',
       textareaValue: '',
       elevations: ['inset', 0, 1, 2, 3, 4, 5, 6],
       iconList,
