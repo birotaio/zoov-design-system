@@ -342,8 +342,10 @@
           z-divider
           .sandbox__section
             h3 ZSelect
-            z-select(label="Input label" v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']")
+            z-select(label="Input label" :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
             z-layout.mt-3(align="end" gutter)
+              z-col(xxs12 sm6 md3)
+                z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
               z-col(xxs12 sm6 md3)
                 z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']")
 
@@ -621,7 +623,7 @@ export default {
   data() {
     return {
       version,
-      selectValue: 'Alvin',
+      selectValue: '',
       textareaValue: '',
       elevations: ['inset', 0, 1, 2, 3, 4, 5, 6],
       iconList,

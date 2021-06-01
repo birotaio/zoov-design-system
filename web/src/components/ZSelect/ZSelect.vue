@@ -2,33 +2,32 @@
 .z-select
   .z-select__label(v-if="label")
     z-label {{ label }}
-  .z-select__value(@click="openMenu = !openMenu")
+  .z-select__value(@click="openMenu = !openMenu" :class="{ invalid }")
     input(
       readonly="readonly"
       type="text"
       aria-readonly="false"
       autocomplete="off"
-      :value="selectedOption"
+      v-bind="inputAttrs"
+      v-model="proxy__value"
+      :placeholder="placeholder"
+      :required="required"
+      @invalid.prevent="invalid = true"
       @focus="inputFocus = true"
       @blur="inputFocus = false"
     )
     .z-select__arrows
       z-icon(:size="2") chevron-up
       z-icon(:size="2") chevron-down
-  //- .z-select__value(@click="openMenu = !openMenu")
-  //- p {{ selectedOption }}
-  //- .z-select__arrows
-  //- z-icon(:size="2") chevron-up
-  //- z-icon(:size="2") chevron-down
 
-  ul.z-select__options(:class="{ active: openMenu }")
+  ul.z-select__options.elevation-4(:class="{ active: openMenu }")
     li.z-select__option(
       v-for="(option, index) in options"
-      @mouseover="listFocus = true; hoverIndex = null"
-      @mouseout="listFocus = false"
+      @mouseover="listFocus = true; hoverIndex = index"
+      @mouseout="listFocus = false; hoverIndex = null"
       @click="proxy__value = option; openMenu = false"
       :class="{ hover : hoverIndex === index }"
-      :style="{ 'font-weight': selectedOption === option ? 'bold' : 'normal' }"
+      :style="{ 'font-weight': proxy__value === option ? 'bold' : 'normal' }"
     ) {{ option }}
 </template>
 
@@ -56,16 +55,29 @@
     border-radius size(0.5)
     display flex
     align-items center
+    margin size(.5) 0
+    border: 1px solid white
+    transition border .2s ease
+
+    &.invalid
+      border: 1px solid $colors.danger.base
+
     > input
       padding-left size(2)
       width 100%
       height 100%
 
-    input:hover
-      cursor auto
+      &::placeholder
+        color: $colors.neutral.dark-1
 
-    input:focus
-      outline none
+      &:hover
+        cursor auto
+
+      &:focus
+        outline none
+
+    input.placeholder
+      color: $colors.neutral.base
 
   .z-select__arrows
     position absolute
@@ -93,9 +105,6 @@
       align-items center
       padding size(2) 0 size(2) size(2)
 
-      &:hover
-        background: $colors.primary.light-2
-
     .z-select__option.hover
       background: $colors.primary.light-2
 
@@ -112,15 +121,33 @@ import proxy from '../../mixins/proxy';
 export default {
   name: 'ZSelect',
   components: { ZLabel, ZIcon },
-  mixins: [proxy('value')],
+  mixins: [
+    proxy('value', 'input', function(value) {
+      if (value) this.invalid = false;
+      return value;
+    }),
+  ],
   props: {
     options: {
       type: Array,
       default: () => [],
     },
+    placeholder: {
+      type: String,
+      default: '',
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    },
     label: {
       type: String,
       default: '',
+    },
+    // additional native input attributes
+    inputAttrs: {
+      type: Object,
+      default: () => ({}),
     },
     // any type
     value: null,
@@ -130,15 +157,12 @@ export default {
       openMenu: false,
       inputFocus: false,
       listFocus: false,
+      invalid: false,
       hoverIndex: this.value ? this.options.indexOf(this.value) : 0,
     };
   },
-  computed: {
-    selectedOption() {
-      return this.value || this.options[0];
-    },
-  },
   mounted() {
+    if (!this.value && !this.placeholder) this.proxy__value = this.options[0];
     window.addEventListener('keydown', this.handleKeys);
   },
   beforeDestroy() {
