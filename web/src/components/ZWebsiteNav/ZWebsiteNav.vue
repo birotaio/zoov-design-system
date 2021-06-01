@@ -117,17 +117,12 @@
             v-if="!cta.component"
             :color="cta.color || 'primary'"
             :href="cta.href"
+            @click="$emit('click-cta')"
             v-bind="cta.props"
             large
           )
             z-icon(v-if="cta.icon") {{ cta.icon }}
             span {{ cta.text }}
-          z-button(
-            v-else-if="cta.emit"
-            :color="cta.color || 'primary'"
-            @click="$emit('click-cta')"
-            large
-          )
           component(
             v-else
             :is="cta.component"
@@ -183,17 +178,12 @@
           v-if="!cta.component"
           :color="cta.color || 'primary'"
           :href="cta.href"
+          @click="$emit('click-cta')"
           v-bind="cta.props"
           large
         )
           z-icon(v-if="cta.icon") {{ cta.icon }}
           span {{ cta.text }}
-        z-button.z-website-nav__button--mobile(
-          v-else-if="cta.emit"
-          :color="cta.color || 'primary'"
-          @click="$emit('click-cta');"
-          large
-        )
         component(
           v-else
           :is="cta.component"
