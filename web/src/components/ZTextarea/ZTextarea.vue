@@ -53,6 +53,7 @@
     background white
     border-radius size(0.5)
     outline none
+    transition border 0.2s ease
 
     &::placeholder
       color: $colors.neutral.dark-1

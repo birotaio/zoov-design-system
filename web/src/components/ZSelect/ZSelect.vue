@@ -4,9 +4,10 @@
     z-label {{ label }}
   .z-select__value(
     @click="openMenu = !openMenu"
-    :class="{ 'z-select__value--invalid' : invalid }"
+    :class="{ 'z-select__value--invalid': invalid }"
   )
     input(
+      ref="select"
       readonly="readonly"
       type="text"
       aria-readonly="false"
@@ -31,7 +32,7 @@
       @mouseover="listFocus = true; hoverIndex = index"
       @mouseout="listFocus = false; hoverIndex = null"
       @click="proxy__value = option; openMenu = false"
-      :class=" {'z-select__option--hover' : hoverIndex === index, 'z-select__option--active' : proxy__value === option} "
+      :class="{ 'z-select__option--hover': hoverIndex === index, 'z-select__option--active': proxy__value === option }"
     ) {{ option }}
 </template>
 
@@ -59,12 +60,12 @@
     border-radius size(0.5)
     display flex
     align-items center
-    margin size(.5) 0
-    border: 1px solid white
-    transition border .2s ease
+    margin size(0.5) 0
+    border: 1px solid $colors.neutral.light-3
+    transition border 0.2s ease
 
     &--invalid
-      border: 1px solid $colors.danger.base
+      border 1px solid $colors.danger.base
 
     > input
       padding-left size(2)
@@ -176,6 +177,9 @@ export default {
     window.removeEventListener('keydown', this.handleKeys);
   },
   methods: {
+    focus() {
+      this.$refs.select && this.$refs.select.focus();
+    },
     handleKeys(e) {
       if (this.openMenu) {
         if (['ArrowUp', 'ArrowDown', 'Space'].indexOf(e.code) > -1) {
@@ -196,12 +200,19 @@ export default {
               this.hoverIndex--;
             }
             break;
+          case 'Escape':
+            this.openMenu = false;
+            break;
           case 'Enter':
           case 'Space':
             this.proxy__value = this.options[this.hoverIndex];
             this.openMenu = false;
-            break;
         }
+      } else if (
+        (e.code === 'Enter' || e.code === 'Space') &&
+        this.inputFocus
+      ) {
+        this.openMenu = true;
       }
     },
   },
