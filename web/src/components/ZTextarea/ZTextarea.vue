@@ -7,6 +7,7 @@
     :placeholder="placeholder"
     :disabled="disabled"
     :required="required"
+    :readonly="readonly"
     :class="textareaClasses"
     v-model="proxy__value"
     v-bind="textareaAttrs"
@@ -102,6 +103,10 @@ export default {
       default: '',
     },
     required: {
+      type: Boolean,
+      default: false,
+    },
+    readonly: {
       type: Boolean,
       default: false,
     },

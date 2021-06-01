@@ -355,6 +355,7 @@
             z-textarea(label="Input label" v-model="textareaValue")
             z-textarea(color="primary" caption="(*) Champs requis" required)
             z-textarea(label="Disabled with placeholder" placeholder="Placeholder" disabled)
+            z-textarea(label="Readonly" value="You cannot change me" readonly)
 
           z-divider
           .sandbox__section
