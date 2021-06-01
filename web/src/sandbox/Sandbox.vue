@@ -353,7 +353,8 @@
           .sandbox__section
             h3 ZTextarea
             z-textarea(label="Input label" v-model="textareaValue")
-            z-textarea(color="primary" caption="(*) Champs requis")
+            z-textarea(color="primary" caption="(*) Champs requis" required)
+            z-textarea(label="Disabled with placeholder" placeholder="Placeholder" disabled)
 
           z-divider
           .sandbox__section

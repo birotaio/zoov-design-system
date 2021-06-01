@@ -2,13 +2,16 @@
 .z-select
   .z-select__label(v-if="label")
     z-label {{ label }}
-  .z-select__value(@click="openMenu = !openMenu" :class="{ invalid }")
+  .z-select__value(
+    @click="openMenu = !openMenu"
+    :class="{ 'z-select__value--invalid' : invalid }"
+  )
     input(
       readonly="readonly"
       type="text"
       aria-readonly="false"
       autocomplete="off"
-      v-bind="inputAttrs"
+      v-bind="selectAttrs"
       v-model="proxy__value"
       :placeholder="placeholder"
       :required="required"
@@ -20,14 +23,15 @@
       z-icon(:size="2") chevron-up
       z-icon(:size="2") chevron-down
 
-  ul.z-select__options.elevation-4(:class="{ active: openMenu }")
+  ul.z-select__options.elevation-4(
+    :class="{ 'z-select__options--active': openMenu }"
+  )
     li.z-select__option(
       v-for="(option, index) in options"
       @mouseover="listFocus = true; hoverIndex = index"
       @mouseout="listFocus = false; hoverIndex = null"
       @click="proxy__value = option; openMenu = false"
-      :class="{ hover : hoverIndex === index }"
-      :style="{ 'font-weight': proxy__value === option ? 'bold' : 'normal' }"
+      :class=" {'z-select__option--hover' : hoverIndex === index, 'z-select__option--active' : proxy__value === option} "
     ) {{ option }}
 </template>
 
@@ -59,7 +63,7 @@
     border: 1px solid white
     transition border .2s ease
 
-    &.invalid
+    &--invalid
       border: 1px solid $colors.danger.base
 
     > input
@@ -98,6 +102,10 @@
     position absolute
     transition opacity 0.1s linear
 
+    &--active
+      opacity 1
+      pointer-events auto
+
     .z-select__option
       background white
       height size(6)
@@ -105,12 +113,11 @@
       align-items center
       padding size(2) 0 size(2) size(2)
 
-    .z-select__option.hover
-      background: $colors.primary.light-2
+      &--active
+        font-weight bold
 
-  .z-select__options.active
-    opacity 1
-    pointer-events auto
+      &--hover
+        background: $colors.primary.light-2
 </style>
 
 <script>
@@ -144,8 +151,8 @@ export default {
       type: String,
       default: '',
     },
-    // additional native input attributes
-    inputAttrs: {
+    // additional native select attributes
+    selectAttrs: {
       type: Object,
       default: () => ({}),
     },
