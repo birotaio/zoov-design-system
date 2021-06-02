@@ -343,7 +343,7 @@
           z-divider
           .sandbox__section
             h3 ZSelect
-              z-select(label="Input label" :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
+              z-select(label="Input label" :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder" message="test")
               z-layout.mt-3(align="end" gutter)
                 z-col(xxs12 sm6 md3)
                   z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
