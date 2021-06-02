@@ -1,11 +1,20 @@
 # Changelog
 
-## 0.6.0 (May 31, 2021)
+## 0.6.1 (Jun 02, 2021)
+
+### Fixes
+
+  [Component] ZSelect:
+    - Fix margin and width
+    - Add the right value when selecting an option with `enter`
+    - Handle html content
+
+## 0.6.0 (Jun 02, 2021)
 
 ### Features
 
   [Nav] Handle new corpo form
-  [Component]
+  [Components]
     - Add ZSelect component
     - Add ZTextarea component
 
