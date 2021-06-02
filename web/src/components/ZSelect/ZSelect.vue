@@ -170,8 +170,8 @@ export default {
       default: false,
     },
     message: {
-      type: Boolean,
-      default: false,
+      type: String,
+      default: '',
     },
     label: {
       type: String,
