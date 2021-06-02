@@ -289,6 +289,7 @@
                   z-input(
                     label="With submit button"
                     placeholder="Input with submit button"
+                    caption="Input with submit button"
                     type="email"
                     submit-button
                     required
@@ -342,12 +343,13 @@
           z-divider
           .sandbox__section
             h3 ZSelect
-            z-select(label="Input label" :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
-            z-layout.mt-3(align="end" gutter)
-              z-col(xxs12 sm6 md3)
-                z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
-              z-col(xxs12 sm6 md3)
-                z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']")
+            z-form(@submit.prevent="console")
+              z-select(label="Input label" :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
+              z-layout.mt-3(align="end" gutter)
+                z-col(xxs12 sm6 md3)
+                  z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
+                z-col(xxs12 sm6 md3)
+                  z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']")
 
           z-divider
           .sandbox__section
@@ -707,6 +709,9 @@ export default {
     },
   },
   methods: {
+    console(e) {
+      console.log('e => ', e);
+    },
     clickSearchHandler() {
       console.log('clicked search');
     },

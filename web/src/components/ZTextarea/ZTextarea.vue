@@ -2,6 +2,8 @@
 .z-textarea
   .z-textarea__label(v-if="label")
     z-label {{ label }}
+  .z-textarea__caption(v-if="caption")
+    small(v-html="caption")
   textarea.z-textarea__textarea(
     :name="name"
     :placeholder="placeholder"
@@ -15,10 +17,12 @@
     @focus="focused = true"
     @blur="focused = false"
   )
-  .z-textarea__caption
-    small(v-html="caption")
   transition(name="zt-fade")
-    .z-textarea__message(v-if="validationMessage" v-html="validationMessage")
+    .z-textarea__message(
+      v-if="textareaMessage"
+      v-html="textareaMessage"
+      :class="{ 'z-textarea__message--error' : validationMessage }"
+    )
 </template>
 
 <style lang="stylus">
@@ -28,7 +32,6 @@
   display flex
   flex-direction column
   padding size(1) 0
-  margin size(.5) 0
   width 100%
 
   .z-textarea__label
@@ -40,13 +43,16 @@
     color: $colors.neutral.base
 
   .z-textarea__message
-    color: $colors.danger.base
     font-size size(1.5)
     line-height size(2)
     overflow visible
     height 0
 
+    &--error
+      color: $colors.danger.base
+
   > .z-textarea__textarea
+    margin size(.5) 0
     padding size(1) size(2)
     color: $colors.neutral.dark-3
     border: 1px solid $colors.neutral.light-3
@@ -99,6 +105,10 @@ export default {
       type: String,
       default: '',
     },
+    message: {
+      type: String,
+      default: '',
+    },
     placeholder: {
       type: String,
       default: '',
@@ -133,6 +143,9 @@ export default {
     };
   },
   computed: {
+    textareaMessage() {
+      return this.validationMessage || this.message;
+    },
     textareaClasses() {
       const classes = [];
       if (this.color) classes.push('border--' + this.color);

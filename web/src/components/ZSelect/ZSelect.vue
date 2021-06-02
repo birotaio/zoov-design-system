@@ -8,7 +8,6 @@
   )
     input(
       ref="select"
-      readonly="readonly"
       type="text"
       aria-readonly="false"
       autocomplete="off"
@@ -16,7 +15,8 @@
       v-model="proxy__value"
       :placeholder="placeholder"
       :required="required"
-      @invalid.prevent="invalid = true"
+      @input="proxy__value = lastOptionSelected"
+      @invalid.prevent="onInvalid"
       @focus="inputFocus = true"
       @blur="inputFocus = false"
     )
@@ -31,9 +31,16 @@
       v-for="(option, index) in options"
       @mouseover="listFocus = true; hoverIndex = index"
       @mouseout="listFocus = false; hoverIndex = null"
-      @click="proxy__value = option; openMenu = false"
+      @click="proxy__value = option; lastOptionSelected = option; openMenu = false"
       :class="{ 'z-select__option--hover': hoverIndex === index, 'z-select__option--active': proxy__value === option }"
     ) {{ option }}
+
+  transition(name="zt-fade")
+    .z-select__message(
+      v-if="selectMessage"
+      v-html="selectMessage"
+      :class="{ 'z-select__message--error' : validationMessage }"
+    )
 </template>
 
 <style lang="stylus">
@@ -53,6 +60,15 @@
     .z-label
       cursor pointer
 
+  .z-select__message
+    font-size size(1.5)
+    line-height size(2)
+    overflow visible
+    height 0
+
+    &--error
+      color: $colors.danger.base
+
   .z-select__value
     height size(6)
     position relative
@@ -71,6 +87,8 @@
       padding-left size(2)
       width 100%
       height 100%
+      cursor default !important
+      caret-color transparent
 
       &::placeholder
         color: $colors.neutral.dark-1
@@ -131,7 +149,10 @@ export default {
   components: { ZLabel, ZIcon },
   mixins: [
     proxy('value', 'input', function(value) {
-      if (value) this.invalid = false;
+      if (value) {
+        this.invalid = false;
+        this.validationMessage = '';
+      }
       return value;
     }),
   ],
@@ -145,6 +166,10 @@ export default {
       default: '',
     },
     required: {
+      type: Boolean,
+      default: false,
+    },
+    message: {
       type: Boolean,
       default: false,
     },
@@ -162,12 +187,19 @@ export default {
   },
   data() {
     return {
+      lastOptionSelected: '',
+      validationMessage: '',
       openMenu: false,
       inputFocus: false,
       listFocus: false,
       invalid: false,
       hoverIndex: this.value ? this.options.indexOf(this.value) : 0,
     };
+  },
+  computed: {
+    selectMessage() {
+      return this.validationMessage || this.message;
+    },
   },
   mounted() {
     if (!this.value && !this.placeholder) this.proxy__value = this.options[0];
@@ -177,8 +209,9 @@ export default {
     window.removeEventListener('keydown', this.handleKeys);
   },
   methods: {
-    focus() {
-      this.$refs.select && this.$refs.select.focus();
+    onInvalid(e) {
+      this.invalid = true;
+      this.validationMessage = e.target.validationMessage;
     },
     handleKeys(e) {
       if (this.openMenu) {
