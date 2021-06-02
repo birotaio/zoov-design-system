@@ -289,6 +289,7 @@
                   z-input(
                     label="With submit button"
                     placeholder="Input with submit button"
+                    caption="Input with submit button"
                     type="email"
                     submit-button
                     required
@@ -338,6 +339,24 @@
                   suffix=".suffix"
                   hatched
                 )
+
+          z-divider
+          .sandbox__section
+            h3 ZSelect
+              z-select(label="Input label" :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
+              z-layout.mt-3(align="end" gutter)
+                z-col(xxs12 sm6 md3)
+                  z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
+                z-col(xxs12 sm6 md3)
+                  z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']")
+
+          z-divider
+          .sandbox__section
+            h3 ZTextarea
+            z-textarea(label="Input label" v-model="textareaValue")
+            z-textarea(color="primary" caption="(*) Champs requis" required)
+            z-textarea(label="Disabled with placeholder" placeholder="Placeholder" disabled)
+            z-textarea(label="Readonly" value="You cannot change me" readonly)
 
           z-divider
           .sandbox__section
@@ -607,6 +626,8 @@ export default {
   data() {
     return {
       version,
+      selectValue: '',
+      textareaValue: '',
       elevations: ['inset', 0, 1, 2, 3, 4, 5, 6],
       iconList,
       buttonSizes: [

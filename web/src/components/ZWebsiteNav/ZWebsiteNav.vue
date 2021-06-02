@@ -117,6 +117,7 @@
             v-if="!cta.component"
             :color="cta.color || 'primary'"
             :href="cta.href"
+            @click="$emit('click-cta')"
             v-bind="cta.props"
             large
           )
@@ -177,6 +178,7 @@
           v-if="!cta.component"
           :color="cta.color || 'primary'"
           :href="cta.href"
+          @click="$emit('click-cta')"
           v-bind="cta.props"
           large
         )

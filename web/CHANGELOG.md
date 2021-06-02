@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0 (May 31, 2021)
+
+### Features
+
+  [Nav] Handle new corpo form
+  [Component]
+    - Add ZSelect component
+    - Add ZTextarea component
+
 ## 0.5.10 (May 18, 2021)
 
 ### Feature
