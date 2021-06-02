@@ -6,10 +6,12 @@
     @click="menuOpen = !menuOpen"
     :class="selectClasses"
   )
+    p(v-html="value")
     input(
       ref="select"
       type="text"
       aria-readonly="false"
+      spellcheck="false"
       autocomplete="off"
       v-bind="selectAttrs"
       v-model="proxy__value"
@@ -29,6 +31,7 @@
   )
     li.z-select__option(
       v-for="(option, index) in options"
+      v-html="option"
       @mouseover="listFocused = true; hoverIndex = index"
       @mouseout="listFocused = false; hoverIndex = null"
       @click="proxy__value = option; lastSelectedOption = option; menuOpen = false"
@@ -49,14 +52,11 @@
 .z-select
   position relative
   padding size(1) 0
-  display flex
-  flex-direction column
 
   .z-select__label
     display flex
     justify-content space-between
     align-items baseline
-    margin-bottom size(1)
 
     .z-label
       cursor pointer
@@ -77,9 +77,13 @@
     border-radius size(0.5)
     display flex
     align-items center
-    margin size(0.5) 0
+    margin size(1.5) 0 size(0.5)
     border: 1px solid $colors.neutral.light-3
     transition border 0.2s ease
+
+    p
+      padding-left size(2)
+      font-size size(2)
 
     &--invalid
       border 1px solid $colors.danger.base
@@ -88,10 +92,10 @@
       border: 1px solid $colors.neutral.base
 
     > input
-      padding-left size(2)
       width 100%
       height 100%
       cursor default !important
+      color transparent
       caret-color transparent
 
       &::placeholder

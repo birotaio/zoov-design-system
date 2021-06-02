@@ -4,9 +4,10 @@
 
 ### Fixes
 
-  [Component]
-    - Fix ZSelect margin and width
-    - Add the right value in ZSelect when selecting an option with `enter`
+  [Component] ZSelect:
+    - Fix margin and width
+    - Add the right value when selecting an option with `enter`
+    - Handle html content
 
 ## 0.6.0 (Jun 02, 2021)
 
