@@ -343,7 +343,6 @@
           z-divider
           .sandbox__section
             h3 ZSelect
-            z-form(@submit.prevent="console")
               z-select(label="Input label" :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
               z-layout.mt-3(align="end" gutter)
                 z-col(xxs12 sm6 md3)
@@ -709,9 +708,6 @@ export default {
     },
   },
   methods: {
-    console(e) {
-      console.log('e => ', e);
-    },
     clickSearchHandler() {
       console.log('clicked search');
     },
