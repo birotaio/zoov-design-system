@@ -14,7 +14,7 @@
 ### Features
 
   [Nav] Handle new corpo form
-  [Component]
+  [Components]
     - Add ZSelect component
     - Add ZTextarea component
 
