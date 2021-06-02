@@ -3,8 +3,8 @@
   .z-select__label(v-if="label")
     z-label {{ label }}
   .z-select__value(
-    @click="openMenu = !openMenu"
-    :class="{ 'z-select__value--invalid': invalid }"
+    @click="menuOpen = !menuOpen"
+    :class="selectClasses"
   )
     input(
       ref="select"
@@ -15,23 +15,23 @@
       v-model="proxy__value"
       :placeholder="placeholder"
       :required="required"
-      @input="proxy__value = lastOptionSelected"
+      @input="proxy__value = lastSelectedOption"
       @invalid.prevent="onInvalid"
-      @focus="inputFocus = true"
-      @blur="inputFocus = false"
+      @focus="onFocus"
+      @blur="inputFocused = false"
     )
     .z-select__arrows
       z-icon(:size="2") chevron-up
       z-icon(:size="2") chevron-down
 
   ul.z-select__options.elevation-4(
-    :class="{ 'z-select__options--active': openMenu }"
+    :class="{ 'z-select__options--active': menuOpen }"
   )
     li.z-select__option(
       v-for="(option, index) in options"
-      @mouseover="listFocus = true; hoverIndex = index"
-      @mouseout="listFocus = false; hoverIndex = null"
-      @click="proxy__value = option; lastOptionSelected = option; openMenu = false"
+      @mouseover="listFocused = true; hoverIndex = index"
+      @mouseout="listFocused = false; hoverIndex = null"
+      @click="proxy__value = option; lastSelectedOption = option; menuOpen = false"
       :class="{ 'z-select__option--hover': hoverIndex === index, 'z-select__option--active': proxy__value === option }"
     ) {{ option }}
 
@@ -82,6 +82,9 @@
 
     &--invalid
       border 1px solid $colors.danger.base
+
+    &--focused
+      border: 1px solid $colors.neutral.base
 
     > input
       padding-left size(2)
@@ -187,16 +190,22 @@ export default {
   },
   data() {
     return {
-      lastOptionSelected: '',
+      lastSelectedOption: '',
       validationMessage: '',
-      openMenu: false,
-      inputFocus: false,
-      listFocus: false,
+      menuOpen: false,
+      inputFocused: false,
+      listFocused: false,
       invalid: false,
       hoverIndex: this.value ? this.options.indexOf(this.value) : 0,
     };
   },
   computed: {
+    selectClasses() {
+      const classes = [];
+      if (this.invalid) classes.push('z-select__value--invalid');
+      if (this.inputFocused) classes.push('z-select__value--focused');
+      return classes;
+    },
     selectMessage() {
       return this.validationMessage || this.message;
     },
@@ -209,12 +218,16 @@ export default {
     window.removeEventListener('keydown', this.handleKeys);
   },
   methods: {
+    onFocus(e) {
+      this.inputFocused = true;
+      e.target.selectionEnd = 0;
+    },
     onInvalid(e) {
       this.invalid = true;
       this.validationMessage = e.target.validationMessage;
     },
     handleKeys(e) {
-      if (this.openMenu) {
+      if (this.menuOpen) {
         if (['ArrowUp', 'ArrowDown', 'Space'].indexOf(e.code) > -1) {
           e.preventDefault();
         }
@@ -234,26 +247,26 @@ export default {
             }
             break;
           case 'Escape':
-            this.openMenu = false;
+            this.menuOpen = false;
             break;
           case 'Enter':
           case 'Space':
             this.proxy__value = this.options[this.hoverIndex];
-            this.openMenu = false;
+            this.menuOpen = false;
         }
       } else if (
         (e.code === 'Enter' || e.code === 'Space') &&
-        this.inputFocus
+        this.inputFocused
       ) {
-        this.openMenu = true;
+        this.menuOpen = true;
       }
     },
   },
   watch: {
-    inputFocus(value) {
-      if (!value && !this.listFocus) this.openMenu = false;
+    inputFocused(value) {
+      if (!value && !this.listFocused) this.menuOpen = false;
     },
-    openMenu(value) {
+    menuOpen(value) {
       if (!value) this.hoverIndex = this.options.indexOf(this.value);
     },
   },
