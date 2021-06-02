@@ -47,9 +47,10 @@
 @import '../../styles/components.styl'
 
 .z-select
-  width 100%
   position relative
   padding size(1) 0
+  display flex
+  flex-direction column
 
   .z-select__label
     display flex
@@ -252,6 +253,7 @@ export default {
           case 'Enter':
           case 'Space':
             this.proxy__value = this.options[this.hoverIndex];
+            this.lastSelectedOption = this.options[this.hoverIndex];
             this.menuOpen = false;
         }
       } else if (

@@ -1,6 +1,14 @@
 # Changelog
 
-## 0.6.0 (May 31, 2021)
+## 0.6.1 (Jun 02, 2021)
+
+### Fixes
+
+  [Component]
+    - Fix ZSelect margin and width
+    - Add the right value in ZSelect when selecting an option with `enter`
+
+## 0.6.0 (Jun 02, 2021)
 
 ### Features
 

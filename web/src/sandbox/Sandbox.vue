@@ -346,7 +346,7 @@
               z-select(label="Input label" :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
               z-layout.mt-3(align="end" gutter)
                 z-col(xxs12 sm6 md3)
-                  z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']" placeholder="Placeholder")
+                  z-select(v-model="selectValue", label="Effectif" :options="['Lorem', 'Alvin', 'R&amp;D', 'ipsum']" placeholder="Placeholder")
                 z-col(xxs12 sm6 md3)
                   z-select(v-model="selectValue", :options="['Lorem', 'Alvin', 'ipsum']")
 
