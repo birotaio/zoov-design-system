@@ -11,6 +11,7 @@
         search-button
         fade="sm"
         :breadcrumb="{ text: 'blog', to: '/' }"
+        @click-cta="clickCtaHandler"
         @click-search="clickSearchHandler"
       )
       .sandbox
@@ -683,7 +684,7 @@ export default {
           ],
         },
       ],
-      navCta: { href: '/', text: 'CTA' },
+      navCta: { href: 'mailto:contact@zoov.eu', text: 'CTA', prevent: true },
     };
   },
   computed: {
@@ -708,6 +709,9 @@ export default {
     },
   },
   methods: {
+    clickCtaHandler() {
+      console.log('clicked cta');
+    },
     clickSearchHandler() {
       console.log('clicked search');
     },

@@ -7,6 +7,7 @@
     :target="target"
     :rel="rel"
     :class="classes"
+    :prevent="prevent"
     v-bind="href ? {} : { type: submit && !loading && !disabled ? 'submit' : 'button' }"
     @focus.stop="$emit('focus')"
     @blur.stop="$emit('blur')"
@@ -339,6 +340,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    prevent: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     classes() {
@@ -382,7 +387,9 @@ export default {
   methods: {
     onClick(e, blur) {
       if (blur && !this.preventBlurOnClick) {
-        this.$refs.button && this.$refs.button.blur();
+        this.$refs.button &&
+          this.$refs.button.tagName === 'BUTTON' &&
+          this.$refs.button.blur();
       }
       if (!this.href && !this.submit) e.preventDefault();
       if (!this.loading && !this.disabled && !this.preventClick) {
