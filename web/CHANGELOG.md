@@ -1,10 +1,19 @@
 # Changelog
 
+## 0.6.2 (Jun 03, 2021)
+
+### Fixes
+
+  * [Component]
+    - Handle mails in cta of ZWebsiteNav
+    - Fix text style in ZSelect
+
+
 ## 0.6.1 (Jun 02, 2021)
 
 ### Fixes
 
-  [Component] ZSelect:
+  * [Component] ZSelect:
     - Fix margin and width
     - Add the right value when selecting an option with `enter`
     - Handle html content
@@ -13,8 +22,8 @@
 
 ### Features
 
-  [Nav] Handle new corpo form
-  [Components]
+  * [Nav] Handle new corpo form
+  * [Components]
     - Add ZSelect component
     - Add ZTextarea component
 
@@ -22,7 +31,7 @@
 
 ### Feature
 
-  [Checkbox] Handle html content in label
+  * [Checkbox] Handle html content in label
 
 ## 0.5.9 (March 19, 2021)
 
