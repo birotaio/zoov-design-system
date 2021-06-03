@@ -1,13 +1,14 @@
 <template lang="pug">
   component.z-button(
     ref="button"
-    :is="(to || href) && !submit ? 'z-link' : 'button'"
+    :is="isLink ? 'z-link' : 'button'"
     :to="to"
     :href="href"
     :target="target"
     :rel="rel"
     :class="classes"
-    v-bind="href ? { prevent } : { prevent, type: submit && !loading && !disabled ? 'submit' : 'button' }"
+    :prevent="prevent"
+    v-bind="href ? { } : { type: submit && !loading && !disabled ? 'submit' : 'button' }"
     @focus.stop="$emit('focus')"
     @blur.stop="$emit('blur')"
     @keydown.enter.space.stop="onClick($event, false)"
@@ -345,6 +346,9 @@ export default {
     },
   },
   computed: {
+    isLink() {
+      return (this.to || this.href) && !this.submit;
+    },
     classes() {
       const classes = [];
       // color (depends on style )
@@ -385,10 +389,8 @@ export default {
   },
   methods: {
     onClick(e, blur) {
-      if (blur && !this.preventBlurOnClick) {
-        this.$refs.button &&
-          this.$refs.button.tagName === 'BUTTON' &&
-          this.$refs.button.blur();
+      if (blur && !this.preventBlurOnClick && !this.isLink) {
+        this.$refs.button && this.$refs.button.blur();
       }
       if (!this.href && !this.submit) e.preventDefault();
       if (!this.loading && !this.disabled && !this.preventClick) {
