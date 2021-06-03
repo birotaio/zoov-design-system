@@ -5,7 +5,7 @@
 ### Fixes
 
   * [Component]
-    - Handle mails in cta of ZWebsiteNav
+    - Add a condition to send a mail or display a form on click in the cta of ZWebsiteNav
     - Fix text style in ZSelect
 
 

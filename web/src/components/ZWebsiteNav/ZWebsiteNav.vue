@@ -117,8 +117,15 @@
             v-if="!cta.component"
             :color="cta.color || 'primary'"
             :href="cta.href"
-            @click.prevent="$emit('click-cta')"
             v-bind="cta.props"
+            large
+          )
+            z-icon(v-if="cta.icon") {{ cta.icon }}
+            span {{ cta.text }}
+          z-button(
+            v-else-if="cta.form"
+            :color="cta.color || 'primary'"
+            @click.prevent="$emit('click-cta')"
             large
           )
             z-icon(v-if="cta.icon") {{ cta.icon }}
@@ -178,12 +185,19 @@
           v-if="!cta.component"
           :color="cta.color || 'primary'"
           :href="cta.href"
-          @click.prevent="$emit('click-cta')"
           v-bind="cta.props"
           large
         )
           z-icon(v-if="cta.icon") {{ cta.icon }}
           span {{ cta.text }}
+        z-button.z-website-nav__button--mobile(
+            v-else-if="cta.form"
+            :color="cta.color || 'primary'"
+            @click.prevent="$emit('click-cta')"
+            large
+          )
+            z-icon(v-if="cta.icon") {{ cta.icon }}
+            span {{ cta.text }}
         component(
           v-else
           :is="cta.component"
