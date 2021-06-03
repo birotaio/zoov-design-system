@@ -114,18 +114,18 @@
 
         template(v-if="cta")
           z-button(
-            v-if="!cta.component"
+            v-if="cta.form"
             :color="cta.color || 'primary'"
-            :href="cta.href"
-            v-bind="cta.props"
+            @click="$emit('click-cta')"
             large
           )
             z-icon(v-if="cta.icon") {{ cta.icon }}
             span {{ cta.text }}
           z-button(
-            v-else-if="cta.form"
+            v-else-if="!cta.component"
             :color="cta.color || 'primary'"
-            @click="$emit('click-cta')"
+            :href="cta.href"
+            v-bind="cta.props"
             large
           )
             z-icon(v-if="cta.icon") {{ cta.icon }}
@@ -182,7 +182,15 @@
         justify="center"
       )
         z-button.z-website-nav__button--mobile(
-          v-if="!cta.component"
+            v-if="cta.form"
+            :color="cta.color || 'primary'"
+            @click="$emit('click-cta')"
+            large
+          )
+            z-icon(v-if="cta.icon") {{ cta.icon }}
+            span {{ cta.text }}
+        z-button.z-website-nav__button--mobile(
+          v-else-if="!cta.component"
           :color="cta.color || 'primary'"
           :href="cta.href"
           v-bind="cta.props"
@@ -190,14 +198,6 @@
         )
           z-icon(v-if="cta.icon") {{ cta.icon }}
           span {{ cta.text }}
-        z-button.z-website-nav__button--mobile(
-            v-else-if="cta.form"
-            :color="cta.color || 'primary'"
-            @click="$emit('click-cta')"
-            large
-          )
-            z-icon(v-if="cta.icon") {{ cta.icon }}
-            span {{ cta.text }}
         component(
           v-else
           :is="cta.component"
