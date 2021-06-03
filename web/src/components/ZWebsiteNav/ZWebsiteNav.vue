@@ -125,7 +125,7 @@
           z-button(
             v-else-if="cta.form"
             :color="cta.color || 'primary'"
-            @click.prevent="$emit('click-cta')"
+            @click="$emit('click-cta')"
             large
           )
             z-icon(v-if="cta.icon") {{ cta.icon }}
@@ -193,7 +193,7 @@
         z-button.z-website-nav__button--mobile(
             v-else-if="cta.form"
             :color="cta.color || 'primary'"
-            @click.prevent="$emit('click-cta')"
+            @click="$emit('click-cta')"
             large
           )
             z-icon(v-if="cta.icon") {{ cta.icon }}
