@@ -116,8 +116,9 @@
           z-button(
             v-if="!cta.component"
             :color="cta.color || 'primary'"
-            :href="cta.href"
             @click="$emit('click-cta')"
+            :prevent="cta.prevent"
+            :href="cta.href"
             v-bind="cta.props"
             large
           )
@@ -177,8 +178,9 @@
         z-button.z-website-nav__button--mobile(
           v-if="!cta.component"
           :color="cta.color || 'primary'"
-          :href="cta.href"
           @click="$emit('click-cta')"
+          :prevent="cta.prevent"
+          :href="cta.href"
           v-bind="cta.props"
           large
         )

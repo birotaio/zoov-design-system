@@ -84,6 +84,8 @@
     p
       padding-left size(2)
       font-size size(2)
+      position absolute
+      pointer-events none
 
     &--invalid
       border 1px solid $colors.danger.base
@@ -92,6 +94,7 @@
       border: 1px solid $colors.neutral.base
 
     > input
+      padding-left size(2)
       width 100%
       height 100%
       cursor default !important

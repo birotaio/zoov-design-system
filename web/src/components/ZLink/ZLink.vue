@@ -4,6 +4,7 @@ component.z-link(
   :class="classes"
   :hreflang="hreflang"
   :target="target"
+  @click="onClick"
   v-bind="props"
 )
   slot
@@ -59,6 +60,10 @@ export default {
       type: String,
       default: null,
     },
+    prevent: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     isNuxtLink() {
@@ -94,6 +99,12 @@ export default {
       const classes = [];
       if (this.inline) classes.push('z-link--inline');
       return classes;
+    },
+  },
+  methods: {
+    onClick(e) {
+      if (this.prevent) e.preventDefault();
+      this.$emit('click', e);
     },
   },
 };
