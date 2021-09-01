@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.3 (Sep 01, 2021)
+
+### Feature
+
+  * [Nav] Add text color support for nav CTA
+
 ## 0.6.2 (Jun 03, 2021)
 
 ### Fixes
