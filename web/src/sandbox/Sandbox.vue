@@ -10,6 +10,7 @@
       lang-menu-right
       search-button
       fade="md"
+      faded-link-hover-color="danger"
       :breadcrumb="{ text: 'blog', to: '/' }"
       @click-cta="clickCtaHandler"
       @click-search="clickSearchHandler"
@@ -68,6 +69,25 @@
                     :style="{ width: '48px', height: '24px' }"
                   )
 
+          h4.mt-2 Background Hover
+          z-layout(:gutter="2")
+            z-col(
+              v-for="(colors, i) in chunkedColors"
+              :key="i"
+              xxs12
+              xs6
+              sm4
+              md3
+              lg2
+            )
+              template(v-for="color in colors")
+                div
+                  span {{ color }}--hover
+                  div.neutral--light-3(
+                    :class="color + '--hover'"
+                    :style="{ width: '48px', height: '24px' }"
+                  )
+
           h4.mt-2 Text
           z-layout(:gutter="2")
             z-col(
@@ -81,6 +101,20 @@
             )
               template(v-for="color in colors")
                 div(:class="'text--' + color") {{ 'text--' + color }}
+
+          h4.mt-2 Text Hover
+          z-layout(:gutter="2")
+            z-col(
+              v-for="(colors, i) in chunkedColors"
+              :key="i"
+              xxs12
+              xs6
+              sm4
+              md3
+              lg2
+            )
+              template(v-for="color in colors")
+                div(:class="'text--' + color + '--hover'") text--{{ color }}--hover
 
         z-divider
         .sandbox__section
@@ -977,7 +1011,7 @@
 
 .sandbox
   padding 96px 16px 16px
-  background-color #222
+  background-image linear-gradient(to right, #1EE3CF 0%, #4CADFF 100%)
 
   &__title
     text-align center
@@ -1065,14 +1099,10 @@ export default {
           to: '/',
           text: 'ElectricBike',
         },
-        [1, 2, 3, 4, 5, 6, 7].map(i => ({
+        ...[1, 2, 3, 4, 5, 6, 7].map(i => ({
           to: '/',
           text: 'Link ' + i,
         })),
-        {
-          to: '/',
-          text: 'Link',
-        },
         {
           icon: 'dots-three',
           noscriptHref: '#',
