@@ -9,7 +9,7 @@
       logo-href="/"
       lang-menu-right
       search-button
-      fade="sm"
+      fade="md"
       :breadcrumb="{ text: 'blog', to: '/' }"
       @click-cta="clickCtaHandler"
       @click-search="clickSearchHandler"
@@ -1088,8 +1088,8 @@ export default {
         href: 'mailto:contact@zoov.eu',
         text: 'CTA',
         prevent: true,
-        color: 'danger',
-        textColor: 'danger--light-2',
+        fadedColor: 'danger',
+        fadedTextColor: 'danger--light-2',
       },
     };
   },
