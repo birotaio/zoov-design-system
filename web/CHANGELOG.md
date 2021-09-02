@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.4 (Sep 02, 2021)
+
+### Feature
+
+  * [Nav] Add colors support for nav CTA in faded mode
+  * [Nav] Fix faded mode based on a breakpoint
+  * [Icons] Add 'paperplane' and 'battery-big-swap' icons
+
 ## 0.6.3 (Sep 01, 2021)
 
 ### Feature

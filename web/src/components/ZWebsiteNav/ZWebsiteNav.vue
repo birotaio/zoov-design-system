@@ -115,8 +115,8 @@
         template(v-if="cta")
           z-button(
             v-if="!cta.component"
-            :color="cta.color || 'primary'"
-            :text-color="cta.textColor"
+            :color="faded && cta.fadedColor || cta.color || 'primary'"
+            :text-color="faded && cta.fadedTextColor || cta.textColor"
             @click="$emit('click-cta')"
             :prevent="cta.prevent"
             :href="cta.href"
@@ -178,8 +178,8 @@
       )
         z-button.z-website-nav__button--mobile(
           v-if="!cta.component"
-          :color="cta.color || 'primary'"
-          :text-color="cta.textColor"
+          :color="faded && cta.fadedColor || cta.color || 'primary'"
+          :text-color="faded && cta.fadedTextColor || cta.textColor"
           @click="$emit('click-cta')"
           :prevent="cta.prevent"
           :href="cta.href"
@@ -258,27 +258,27 @@ html:not(.no-script)
       transition-delay 0s
 
   for $breakpoint_name in $breakpoints
-    +media-down($breakpoint_name)
-      .z-website-nav--faded--{$breakpoint_name}
+    .z-website-nav--faded--{$breakpoint_name}
+      +media-down($breakpoint_name)
         .z-website-nav__container
           background-color transparent
           color white
 
-  .z-website-nav--faded--sm
-    +media-down('sm')
-      .z-website-nav__logo__content
-        transition background-color 0s 0s
+        .z-website-nav__logo__content
+          background-color transparent
+          transition background-color 0s 0s
 
-      .z-website-nav__logo__mask
-        opacity 0
+        .z-website-nav__logo__mask
+          transition opacity 0s 0s
+          opacity 0
 
-    +media-up('sm')
-      .z-website-nav__logo__content
-        transition background-color 0.1s 0.2s
+      +media-up($breakpoint_name)
+        .z-website-nav__logo__content
+          transition background-color 0.1s 0.2s
 
-      .z-website-nav__logo__mask
-        opacity 0
-        animation mask-on 0.3s 0.2s forwards
+        .z-website-nav__logo__mask
+          opacity 0
+          animation mask-on 0.3s 0.2s forwards
 
 @keyframes mask-on
   100%
@@ -572,23 +572,27 @@ export default {
     };
   },
   created() {
-    // faded (to be handled server side too for no-script support)
-    if (this.fade) this.faded = true;
+    // Prepare fade mode by making it always true regardless breakpoint
+    // so that in SSR the shipped navbar is consistent with no-script mode
+     this.faded = !!this.fade;
   },
   mounted() {
     this.supportsSticky = supports.sticky();
-    // fade-in on scroll mode
+    // Fade mode
     if (this.fade) {
+      // Adjust fade when mounted (breakpoint is set front-side)
+      this.setFadeOn();
+      // fade-in on scroll mode
       window.addEventListener('scroll', this.onScroll, { passive: true });
+      // and watch resize to adjust dynamic breakpoint fade mode
+      window.addEventListener('resize', this.onResize);
     }
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
   },
   computed: {
-    sm() {
-      return this.$zds.breakpoint.sm;
-    },
     client() {
       return this.$zds.client;
     },
@@ -639,14 +643,25 @@ export default {
     },
   },
   methods: {
+    setFadeOn() {
+      if (typeof this.fade === 'string') {
+        this.faded = this.$zds.breakpoint[this.fade];
+      } else {
+        this.faded = !!this.fade;
+      }
+    },
     onScroll() {
       const rect = this.$el.getBoundingClientRect();
       if (rect.top > 0) {
-        this.faded = true;
+        this.setFadeOn();
       } else {
         if (window.scrollY > 0) this.faded = false;
-        else this.faded = true;
+        else this.setFadeOn();
       }
+    },
+    onResize() {
+      // Call the same handler
+      this.onScroll();
     },
     async onClickBurger() {
       if (this.mobileMenuAnimating) return;
