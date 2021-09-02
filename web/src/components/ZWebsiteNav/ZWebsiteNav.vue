@@ -37,6 +37,7 @@
           v-if="breadcrumb"
           :to="breadcrumb.to"
           :href="breadcrumb.href"
+          :class="faded && fadedLinkHoverColor ? 'text--' + fadedLinkHoverColor + '--hover' : ''"
         )
           | {{ breadcrumb.text }}
 
@@ -53,6 +54,7 @@
             :key="'link-' + i"
             :href="item.href"
             :to="item.to"
+            :class="faded && fadedLinkHoverColor ? 'text--' + fadedLinkHoverColor + '--hover' : ''"
             v-show="!item.desktopHideWidth || $zds.clientWidth >= item.desktopHideWidth"
           )
             h6.z-website-nav__link {{ item.text }}
@@ -544,6 +546,10 @@ export default {
     fade: {
       type: [Boolean, String],
       default: false,
+    },
+    fadedLinkHoverColor: {
+      type: String,
+      default: null,
     },
     logoHref: {
       type: String,
