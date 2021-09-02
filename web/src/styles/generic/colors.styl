@@ -9,6 +9,13 @@ global-color($color_name, $color_value)
     background-color $color_value !important
     border-color $color_value !important
 
+  .{$color_name}--hover
+    transition background-color 0.12s ease, border-color 0.12s ease
+
+    &:hover
+      background-color $color_value !important
+      border-color $color_value !important
+
   .border--{$color_name}
     border-color $color_value !important
 
@@ -19,20 +26,22 @@ global-color($color_name, $color_value)
     path
       fill $color_value !important
 
-global-color-accent($color_name, $color_value, $color_type)
-  .{$color_name}--{$color_type}
-    background-color $color_value !important
-    border-color $color_value !important
-
-  .border--{$color_name}--{$color_type}
-    border-color $color_value !important
-
-  .text--{$color_name}--{$color_type}
-    color $color_value !important
-    caret-color $color_value !important
+  .text--{$color_name}--hover
+    transition color 0.12s ease, caret-color 0.12s ease
 
     path
-      fill $color_value !important
+      transition fill 0.12s ease
+
+    &:hover
+      color $color_value !important
+      caret-color: $color_value !important
+
+      path
+        fill $color_value !important
+
+global-color-accent($color_name, $color_value, $color_type)
+  global-color($color_name + '--' + $color_type, $color_value)
+
 
 // Put the loop in a function so it can't leak
 create-global-colors()
