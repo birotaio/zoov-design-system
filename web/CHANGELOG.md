@@ -1,8 +1,15 @@
 # Changelog
 
-## 0.6.4 (Sep 02, 2021)
+## 0.7.0 (Sep 02, 2021)
 
 ### Feature
+
+  * [Colors] Add `--hover` color classes helpers
+  * [Nav] Add `fadedLinkHoverColor` prop
+
+## 0.6.4 (Sep 02, 2021)
+
+### Features
 
   * [Nav] Add colors support for nav CTA in faded mode
   * [Nav] Fix faded mode based on a breakpoint
