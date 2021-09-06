@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.1 (Sep 03, 2021)
+
+### Fix
+
+  * [Nav] Fix the flashing navbar on scroll (iOS)
+
 ## 0.7.0 (Sep 02, 2021)
 
 ### Feature

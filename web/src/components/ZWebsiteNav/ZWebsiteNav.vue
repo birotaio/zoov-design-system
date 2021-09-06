@@ -580,7 +580,7 @@ export default {
   created() {
     // Prepare fade mode by making it always true regardless breakpoint
     // so that in SSR the shipped navbar is consistent with no-script mode
-     this.faded = !!this.fade;
+    this.faded = !!this.fade;
   },
   mounted() {
     this.supportsSticky = supports.sticky();
@@ -657,13 +657,8 @@ export default {
       }
     },
     onScroll() {
-      const rect = this.$el.getBoundingClientRect();
-      if (rect.top > 0) {
-        this.setFadeOn();
-      } else {
-        if (window.scrollY > 0) this.faded = false;
-        else this.setFadeOn();
-      }
+      if (window.scrollY > 0) this.faded = false;
+      else this.setFadeOn();
     },
     onResize() {
       // Call the same handler
