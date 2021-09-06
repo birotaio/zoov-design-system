@@ -2,9 +2,10 @@
 
 ## 0.7.1 (Sep 03, 2021)
 
-### Fix
+### Fixes
 
   * [Nav] Fix the flashing navbar on scroll (iOS)
+  * [Buttons] Disable default css of buttons (iOS)
 
 ## 0.7.0 (Sep 02, 2021)
 

@@ -428,8 +428,6 @@ html:not(.no-script)
   display flex
   align-items center
 
-// .z-link .z-link--exact-active z-link--active hide
-
 +media-down('sm')
   .z-website-nav
     .z-website-nav__logo--blog
