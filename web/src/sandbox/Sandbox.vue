@@ -163,13 +163,11 @@
           h6.mt-1 Flags
             .sandbox__flex
               z-icon(
+                v-for="code in flags"
                 :size="2"
+                :key="code"
                 flag
-              ) fr
-              z-icon(
-                :size="2"
-                flag
-              ) en
+              ) {{ code }}
 
         z-divider
         .sandbox__section
@@ -1084,10 +1082,11 @@ export default {
       rightDrawerOpen: false,
       isDev,
       // nav
-      lang: 'fr',
+      lang: 'pl',
       navLangItems: [
         { lang: 'fr', text: 'French', to: '/' },
         { lang: 'en', text: 'English', to: '/' },
+        { lang: 'pl', text: 'Polish', to: '/' },
       ],
       navItems: [
         {
@@ -1121,6 +1120,7 @@ export default {
         fadedColor: 'danger',
         fadedTextColor: 'danger--light-2',
       },
+      flags: ['fr', 'en', 'pl'],
     };
   },
   computed: {
