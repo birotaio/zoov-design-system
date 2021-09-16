@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.2 (Sep 16, 2021)
+
+### Feature
+
+  * [Icons] Add PL flag
+
 ## 0.7.1 (Sep 03, 2021)
 
 ### Fixes
