@@ -47,6 +47,8 @@
           small Small (Caption)
           caption Caption (Caption)
 
+          h2.my-4 Aktualnościć Jakbyś tam był
+
         z-divider
         .sandbox__section
           h3.mb-2 Colors
