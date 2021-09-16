@@ -9,7 +9,7 @@
       logo-href="/"
       lang-menu-right
       search-button
-      fade="md"
+      :fade="true"
       faded-link-hover-color="danger"
       :breadcrumb="{ text: 'blog', to: '/' }"
       @click-cta="clickCtaHandler"
