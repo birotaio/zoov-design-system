@@ -118,7 +118,25 @@
 
         z-divider
         .sandbox__section
-          h3.mb-2 Elevations
+          h3 Shadows
+          p.mb-2 (Shadows without backgrounds)
+          .sandbox__flex
+            .px-3.pt-4
+              p.my-2.py-2(v-for="z in elevations") {{ 'shadow-' + z }}
+
+            template(v-for="name in ['light', 'dark']")
+              .ma-0
+                p.my-1.text--center --{{ name }}
+                .px-2.py-1(
+                  :class="name === 'light' ? 'neutral--light-4' : name === 'dark' ? 'neutral--dark-3' : name"
+                )
+                  template(v-for="z in elevations")
+                    z-card.my-3.px-3.py-1(
+                      :class="'shadow-' + z + '--' + name"
+                    )
+
+          h3 Elevations
+          p.mb-2 (Shadows <b>with</b> backgrounds)
           .sandbox__flex
             .px-3.pt-4
               p.my-2.py-2(v-for="z in elevations") {{ 'elevation-' + z }}
