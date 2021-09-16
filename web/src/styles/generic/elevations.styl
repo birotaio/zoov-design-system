@@ -1,25 +1,36 @@
-elevation-generator($z, $mod = null)
+elevation-generator($z, $mod = null, $shadow_only = false)
   &{$mod}
-    elevation($z, true)
+    if $shadow_only
+      elevation-shadow($z, true)
+    else
+      elevation($z, true)
 
   &--light
     &{$mod}
-      elevation-light($z, true)
+      if $shadow_only
+        elevation-shadow-light($z, true)
+      else
+        elevation-light($z, true)
 
   &--dark
     &{$mod}
-      elevation-dark($z, true)
+      if $shadow_only
+        elevation-shadow-dark($z, $colors.neutral.dark-4, true)
+      else
+        elevation-dark($z, true)
 
   for $color_name, $color_shade in $colors
     for $color_type, $color_value in $color_shade
       if $color_type == 'base'
         &--{$color_name}
-          elevation-color($z, $color_value, true)
           elevation-shadow-dark($z, $color_value, true)
+          if !$shadow_only
+            elevation-color($z, $color_value, true)
       else
         &--{$color_name}--{$color_type}
-          elevation-color($z, $color_value, true)
           elevation-shadow-dark($z, $color_value, true)
+          if !$shadow_only
+            elevation-color($z, $color_value, true)
 
 generate-elevations()
   for $z in 'inset' 0 1 2 3 4 5 6
@@ -31,6 +42,15 @@ generate-elevations()
 
     .elevation-{$z}--focus
       elevation-generator($z, ':focus')
+
+    .shadow-{$z}
+      elevation-generator($z, null, true)
+
+    .shadow-{$z}--hover
+      elevation-generator($z, ':hover', true)
+
+    .shadow-{$z}--focus
+      elevation-generator($z, ':focus', true)
 
 generate-elevations()
 
