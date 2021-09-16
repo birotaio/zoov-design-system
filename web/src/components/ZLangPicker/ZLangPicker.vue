@@ -7,7 +7,7 @@ z-menu.z-lang-picker(
 )
   template(v-slot:activator)
     .z-lang-picker__menu-activator
-      z-icon.mr-1.elevation-2(
+      z-icon.mr-1.shadow-2(
         :size="2"
         flag
       ) {{ lang }}

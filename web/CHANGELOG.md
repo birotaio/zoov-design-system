@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.3 (Sep 16, 2021)
+
+### Feature
+
+  * [Nav] Use shadow on language icon
+  * [Style] Define classes that expose only shadow
+
 ## 0.7.2 (Sep 16, 2021)
 
 ### Feature
