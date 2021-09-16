@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.4 (Sep 16, 2021)
+
+### Fix
+
+  * [Style] Fix broken elevations & shadows
+
 ## 0.7.3 (Sep 16, 2021)
 
 ### Feature
