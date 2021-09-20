@@ -1,6 +1,6 @@
 {
   "name": "@zoov/design-system",
-  "version": "0.7.4",
+  "version": "0.8.0",
   "private": false,
   "scripts": {
     "dev": "vue-cli-service serve",
