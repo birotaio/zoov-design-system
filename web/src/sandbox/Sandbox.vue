@@ -16,7 +16,7 @@
       @click-search="clickSearchHandler"
     )
     .sandbox
-      .sandbox__title.text--neutral--light-2
+      .sandbox__title.text--neutral--light-4
         p.mb-0 Zoov Design System – {{ version }}
         h3 Sandbox
 
@@ -46,6 +46,8 @@
           z-spacer
           small Small (Caption)
           caption Caption (Caption)
+
+          h2.my-4 Aktualnościć Jakbyś tam był
 
         z-divider
         .sandbox__section

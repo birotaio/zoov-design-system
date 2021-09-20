@@ -3,15 +3,15 @@
  */
 $font-family ?= 'Quicksand', sans-serif;
 $weights ?= {
-  extra-light: 100,
+  extralight: 100,
   lighter: 200,
   light: 300,
   normal: 400,
   medium: 500,
-  semi-bold: 600,
+  semibold: 600,
   bold: 700,
   bolder: 800,
-  extra-bold: 900
+  extrabold: 900
 };
 $typography ?= {
   display-3: { // h1
@@ -51,21 +51,21 @@ $typography ?= {
   },
   subheader: { // h6
     size: 2 * $step,
-    weight: $weights.medium,
+    weight: $weights.semibold,
     line-height: 3 * $step,
     color: inherit,
     font: $font-family
   },
   body: {
     size: 1.75 * $step,
-    weight: $weights.medium,
+    weight: $weights.semibold,
     line-height: 3 * $step,
     color: inherit,
     font: $font-family
   },
   caption: {
     size: 1.5 * $step,
-    weight: $weights.medium,
+    weight: $weights.semibold,
     color: inherit,
     line-height: 2 * $step,
     font: $font-family
@@ -74,7 +74,7 @@ $typography ?= {
     size: 2 * $step,
     letter-spacing: (-1 * $step / 100),
     line-height: 3 * $step,
-    weight: $weights.medium,
+    weight: $weights.semibold,
     font: $font-family
   }
 };

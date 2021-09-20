@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.0 (Sep 20, 2021)
+
+### Feature
+
+  * [Fonts] Update Quicksand webfont (v19 => v24), adjust typography accordingly
+
 ## 0.7.4 (Sep 16, 2021)
 
 ### Fix
