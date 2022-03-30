@@ -21,6 +21,7 @@
 <script>
 import zoovPath from '../../assets/logos/zoov-path.js';
 import zoovOutlinePath from '../../assets/logos/zoov-outline-path.js';
+import zoovByFifteenPath from '../../assets/logos/zoov-by-fifteen-path.js';
 import { hasUnits, getCssVar } from '../../modules/utils';
 
 // Little bit of geomerty
@@ -31,8 +32,11 @@ const sinAlpha = Math.sin(alpha);
 const cosAlpha = Math.cos(alpha);
 const baseW = 1170;
 const baseH = 312;
+const fifteenBaseW = 202 + 6;
+const fifteenBaseH = 81 + 12;
 const baseHOutline = 371;
 const ratio = baseH / baseW;
+const fifteenRatio = fifteenBaseH / fifteenBaseW;
 const ratioOutline = baseHOutline / baseW;
 const kAlpha = (sinAlpha + ratio * (cosAlpha - 1)) / 2;
 const kAlphaOutline = (sinAlpha + ratioOutline * (cosAlpha - 1)) / 2;
@@ -59,6 +63,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    byFifteen: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   render(h, ctx) {
@@ -75,7 +83,11 @@ export default {
     const step = getCssVar('--step', 8);
     const width = props.width || defaultW;
     const widthStr = hasUnits(width) ? width : `${width * step}px`;
-    const r = props.outline ? ratioOutline : ratio;
+    const r = props.byFifteen
+      ? fifteenRatio
+      : props.outline
+      ? ratioOutline
+      : ratio;
 
     const style = {};
     style.width = widthStr;
@@ -93,19 +105,23 @@ export default {
     newCtx.style = [newCtx.style, style];
 
     // Set paths & viewBox given outline option
-    const x1 = baseW - 2 * outlineWidth;
-    const y1 = baseHOutline - 2 * outlineWidth;
-    const x0 = outlineWidth;
-    const y0 = outlineWidth;
+    const x1 = props.byFifteen ? 202 : baseW - 2 * outlineWidth;
+    const y1 = props.byFifteen ? 81 : baseHOutline - 2 * outlineWidth;
+    const x0 = props.byFifteen ? 6 : outlineWidth;
+    const y0 = props.byFifteen ? 12 : outlineWidth;
     let viewBox = `${x0} ${y0} ${x1} ${y1}`;
     const paths = [];
-    if (props.outline) {
+    if (props.outline && !props.byFifteen) {
       viewBox = `0 0 ${baseW} ${baseHOutline}`;
       paths.push(
         h('path', { attrs: { 'fill-opacity': 0.2, d: zoovOutlinePath } })
       );
     }
-    paths.push(h('path', { attrs: { d: zoovPath } }));
+    paths.push(
+      h('path', {
+        attrs: { d: props.byFifteen ? zoovByFifteenPath : zoovPath },
+      })
+    );
 
     return h('div', newCtx, [
       h(
