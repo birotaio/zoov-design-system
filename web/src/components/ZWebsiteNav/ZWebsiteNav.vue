@@ -16,28 +16,32 @@
       .z-website-nav__logo__content
         z-link.z-website-nav__logo__wrapper(:href="logoHref")
           z-logo.z-website-nav__logo.z-website-nav__logo--desktop(
-            outline
-            :slanted="!breadcrumb"
+            :class="{ 'z-website-nav__logo--by-fifteen': logoByFifteen }"
+            :outline="!logoByFifteen"
+            :slanted="!breadcrumb && !logoByFifteen"
+            :by-fifteen="logoByFifteen"
             width="84px"
             :color="logoColor"
           )
           z-logo.z-website-nav__logo.z-website-nav__logo--mobile(
-            outline
-            :slanted="!breadcrumb"
-            width="56px"
+            :class="{ 'z-website-nav__logo--by-fifteen': logoByFifteen }"
+            :outline="!logoByFifteen"
+            :slanted="!breadcrumb && !logoByFifteen"
+            :by-fifteen="logoByFifteen"
+            :width="logoByFifteen ? '72px' : '56px'"
             :color="logoColor"
           )
         z-divider.z-website-nav__separator(
           v-if="breadcrumb"
           vertical
-          :light="faded"
+          :light="faded && !mobileMenuOpen"
           :height="4"
         )
-        z-link.z-website-nav__logo.z-website-nav__breadcrumb(
+        z-link.z-website-nav__breadcrumb(
           v-if="breadcrumb"
           :to="breadcrumb.to"
           :href="breadcrumb.href"
-          :class="faded && fadedLinkHoverColor ? 'text--' + fadedLinkHoverColor + '--hover' : ''"
+          :class="[{ 'z-website-nav__breadcrumb--by-fifteen': logoByFifteen }, faded && fadedLinkHoverColor ? 'text--' + fadedLinkHoverColor + '--hover' : '']"
         )
           | {{ breadcrumb.text }}
 
@@ -316,10 +320,17 @@ html:not(.no-script)
     background-color transparent
 
 .z-website-nav__logo__wrapper, .z-website-nav__logo
-  z-index
+  z-index 2
 
-.z-website-nav__logo
+.z-website-nav__logo,
+.z-website-nav__breadcrumb
   margin size(1)
+
+.z-website-nav__logo--by-fifteen
+  margin-top size(2)
+
+.z-website-nav__breadcrumb--by-fifteen
+  margin-bottom size(1.5)
 
 .z-website-nav
   .z-website-nav__breadcrumb
@@ -560,6 +571,10 @@ export default {
     breadcrumb: {
       type: Object,
       default: null,
+    },
+    logoByFifteen: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

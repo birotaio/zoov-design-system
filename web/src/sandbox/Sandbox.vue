@@ -11,6 +11,7 @@
       search-button
       :fade="true"
       faded-link-hover-color="danger"
+      logo-by-fifteen
       :breadcrumb="{ text: 'blog', to: '/' }"
       @click-cta="clickCtaHandler"
       @click-search="clickSearchHandler"
@@ -223,6 +224,9 @@
         z-divider
         .sandbox__section
           h3 ZLogo
+          .sandbox__flex
+            z-logo(by-fifteen)
+
           .sandbox__flex
             z-logo
             z-logo(slanted)

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (Mar 30, 2021)
+
+### Features
+
+  * [Logo] Add "by fifteen" variant
+  * [Nav] Expose prop to use "by fifteen" logo variant, adjust size and margins in that case
+
 ## 0.8.0 (Sep 20, 2021)
 
 ### Feature
