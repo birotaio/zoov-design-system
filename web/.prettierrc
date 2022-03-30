@@ -6,8 +6,8 @@
   "arrowParens": "avoid",
   "pugSingleQuote": false,
   "pugAttributeSeparator": "none",
-  "pugCommentPreserveSpaces": "trim-all",
+  "pugCommentPreserveSpaces": "keep-all",
   "pugWrapAttributesThreshold": 1,
-  "pugSingleFileComponentIndentation": true,
+  "pugSingleFileComponentIndentation": false,
   "pugEmptyAttributes": "none"
 }
